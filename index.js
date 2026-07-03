@@ -56,6 +56,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.add('active');
             }
         });
+    // Fallback: Disparador manual para los botones de Cal.com si el cargador automático falla
+    const calButtons = document.querySelectorAll('[data-cal-link]');
+    calButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const calLink = btn.getAttribute('data-cal-link');
+            if (window.Cal) {
+                window.Cal("modal", {
+                    calLink: calLink,
+                    config: {
+                        layout: "month_view"
+                    }
+                });
+            }
+        });
     });
 
     // 4. Formulario de Contacto (Simulación)
@@ -110,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 })(window, window.Cal);
 
-Cal("init", {origin:"https://cal.com"});
+Cal("init", {origin:"https://app.cal.com"});
 Cal("ui", {
     "styles": {
         "branding": {
