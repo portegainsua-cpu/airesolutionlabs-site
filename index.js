@@ -35,43 +35,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. Enlaces activos dinámicos según el scroll
+    // 3. Enlaces activos dinámicos según el scroll (y barra deslizante)
     const sections = document.querySelectorAll('section');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            // Si el scroll está en la sección (ajustado por la cabecera de 70px)
-            if (window.scrollY >= (sectionTop - 80)) {
-                current = section.getAttribute('id');
-            }
-        });
+    const menuLinks = document.querySelectorAll('.nav-link:not(.nav-btn)');
+    const menuUl = document.querySelector('.nav-menu ul');
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').slice(1) === current) {
-                link.classList.add('active');
-            }
-        });
-    // Fallback: Disparador manual para los botones de Cal.com si el cargador automático falla
-    const calButtons = document.querySelectorAll('[data-cal-link]');
-    calButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const calLink = btn.getAttribute('data-cal-link');
-            if (window.Cal) {
-                window.Cal("modal", {
-                    calLink: calLink,
-                    config: {
-                        layout: "month_view"
+    // Creamos dinámicamente el indicador de línea
+    const indicator = document.createElement('div');
+    indicator.classList.add('nav-indicator');
+    menuUl.appendChild(indicator);
+
+    function updateIndicator() {
+        const activeLink = document.querySelector('.nav-link.active');
+        if (activeLink) {
+            indicator.style.width = `${activeLink.offsetWidth}px`;
+            indicator.style.left = `${activeLink.offsetLeft}px`;
+            indicator.style.opacity = '1';
+        } else {
+            indicator.style.opacity = '0';
+        }
+    }
+
+    // Usamos IntersectionObserver para una transición súper fluida y precisa al hacer scroll
+    const observerOptions = {
+        root: null,
+        rootMargin: '-30% 0px -50% 0px', // Detecta la sección cuando está en el centro de la pantalla
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                // Evitamos activar si es la sección de contacto (ya que Hablemos es un botón de Cal.com)
+                if (id === 'contacto') return;
+
+                menuLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
                     }
                 });
+                updateIndicator();
             }
         });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
     });
+
+    // Ejecutar al cargar la página para posicionar el indicador en "Inicio"
+    setTimeout(updateIndicator, 100);
+
+    // Ajustar si la ventana cambia de tamaño
+    window.addEventListener('resize', updateIndicator);
 
     // 4. Formulario de Contacto (Simulación)
     const contactForm = document.getElementById('contact-form');
