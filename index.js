@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
 
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             menuToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
@@ -21,6 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
             });
+        });
+
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
         });
     }
 

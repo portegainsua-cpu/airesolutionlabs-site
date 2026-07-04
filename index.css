@@ -777,7 +777,7 @@ ul {
     }
     
     .nav-menu {
-        position: fixed;
+        position: absolute;
         top: 70px;
         left: -100%;
         width: 100%;
@@ -786,10 +786,13 @@ ul {
         transition: var(--transition);
         box-shadow: var(--shadow-sm);
         z-index: 999;
+        overflow-y: auto;
+        visibility: hidden;
     }
     
     .nav-menu.active {
         left: 0;
+        visibility: visible;
     }
     
     .nav-menu ul {
