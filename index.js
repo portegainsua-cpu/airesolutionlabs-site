@@ -91,17 +91,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ajustar si la ventana cambia de tamaño
     window.addEventListener('resize', updateIndicator);
 
-    // 4. Formulario de Contacto (Simulación)
+    // 4. Formulario de Contacto (Integrado con Make.com)
     const contactForm = document.getElementById('contact-form');
     
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Previene la recarga de página convencional
+            e.preventDefault(); // Previene la recarga convencional de la página
             
             // Obtenemos los campos
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
             const messageInput = document.getElementById('message');
+            const submitBtn = document.getElementById('form-submit-btn');
+            const originalBtnText = submitBtn.innerText;
             
             // Capturamos los datos
             const formData = {
@@ -110,24 +112,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 message: messageInput.value
             };
             
-            // Simulación de envío exitoso
-            const submitBtn = document.getElementById('form-submit-btn');
-            const originalBtnText = submitBtn.innerText;
-            
+            // Cambiamos el estado del botón
             submitBtn.innerText = 'Enviando...';
             submitBtn.disabled = true;
+
+            // URL del Webhook de Make.com (Reemplaza esta URL con tu webhook real de Make mañana)
+            const MAKE_WEBHOOK_URL = 'https://hook.us1.make.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
             
-            setTimeout(() => {
-                // Mensaje de éxito
-                alert(`¡Gracias, ${formData.name}! Hemos recibido tu mensaje. Nos pondremos en contacto contigo en info@airesolutionlabs.com.`);
-                
-                // Limpiamos los campos
-                contactForm.reset();
-                
-                // Restablecemos el botón
+            // Si la URL sigue siendo el placeholder, simulamos el envío para evitar errores locales
+            if (MAKE_WEBHOOK_URL.includes('xxxxxxxx')) {
+                setTimeout(() => {
+                    alert(`[Simulación] ¡Mensaje recibido, ${formData.name}! (Nota: Debes configurar tu URL de Make.com en index.js para recibirlo por correo de verdad).`);
+                    contactForm.reset();
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                }, 1000);
+                return;
+            }
+
+            // Envío real mediante Fetch API al Webhook de Make
+            fetch(MAKE_WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert(`¡Gracias, ${formData.name}! Tu mensaje ha sido enviado con éxito. Nos pondremos en contacto contigo en info@airesolutionlabs.com.`);
+                    contactForm.reset();
+                } else {
+                    throw new Error('Error en el servidor de Make');
+                }
+            })
+            .catch(error => {
+                console.error('Error al enviar formulario:', error);
+                alert('Ups, hubo un problema al enviar tu mensaje. Por favor, escríbenos directamente a info@airesolutionlabs.com.');
+            })
+            .finally(() => {
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
-            }, 1500);
+            });
         });
     }
 });
