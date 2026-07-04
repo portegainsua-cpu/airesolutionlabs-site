@@ -154,6 +154,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
             });
+    // 6. Tarjetas de servicios interactivas en la sección Hero
+    const techCards = document.querySelectorAll('.tech-card');
+    if (techCards.length > 0) {
+        const handleCardActive = (selectedCard) => {
+            techCards.forEach(card => {
+                card.classList.remove('active');
+            });
+            selectedCard.classList.add('active');
+        };
+
+        techCards.forEach(card => {
+            // Al pasar el cursor por encima (PC)
+            card.addEventListener('mouseenter', () => {
+                handleCardActive(card);
+            });
+            // Al hacer clic o tocar (Móvil / Tablet)
+            card.addEventListener('click', () => {
+                handleCardActive(card);
+            });
         });
     }
 });
