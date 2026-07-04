@@ -165,6 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
             });
+        });
+    }
     // 6. Tarjetas de servicios interactivas en la sección Hero (Línea de Conexión)
     const techCards = document.querySelectorAll('.tech-card');
     if (techCards.length > 0) {
