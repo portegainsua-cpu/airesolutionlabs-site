@@ -283,81 +283,100 @@ ul {
     position: relative;
     width: 100%;
     max-width: 320px;
-    height: 380px;
+    height: 280px;
+    margin: 0 auto;
 }
 
 .tech-card {
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
-    padding: 1.8rem;
+    padding: 1.5rem;
     box-shadow: var(--shadow-md);
     position: absolute;
-    width: 260px;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    opacity: 0.9;
+    width: 270px;
+    height: 160px;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
+    box-sizing: border-box;
 }
 
-#tech-card-1 {
-    top: 10px;
-    left: -20px;
-    z-index: 1;
-}
-
-#tech-card-2 {
-    top: 110px;
-    left: 20px;
-    z-index: 2;
-}
-
-#tech-card-3 {
-    top: 210px;
-    left: 60px;
-    z-index: 3;
-}
-
-/* Estado activo para la última tarjeta con foco */
-.tech-card.active {
-    z-index: 10 !important;
+/* Posición 1: Tarjeta Activa al Frente */
+.tech-card.pos-1 {
+    transform: translate3d(0, 0, 0) scale(1);
+    z-index: 10;
+    opacity: 1;
     background: var(--primary);
     color: var(--text-light);
     border-color: var(--primary-light);
-    opacity: 1;
-    transform: translateY(-8px) scale(1.04);
     box-shadow: var(--shadow-lg), 0 15px 30px rgba(10, 25, 47, 0.15);
 }
 
-.tech-card.active h3 {
+.tech-card.pos-1 .tech-card-header h3 {
     color: var(--text-light);
 }
 
-.tech-card.active p {
-    color: rgba(255, 255, 255, 0.8);
+.tech-card.pos-1 p {
+    color: rgba(255, 255, 255, 0.85);
 }
 
-/* Hover de tarjeta inactiva */
-.tech-card:not(.active):hover {
-    opacity: 1;
-    transform: translateY(-4px);
+/* Posición 2: Segunda Tarjeta (Detrás y derecha) */
+.tech-card.pos-2 {
+    transform: translate3d(25px, 25px, 0) scale(0.95);
+    z-index: 5;
+    opacity: 0.75;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+/* Posición 3: Tercera Tarjeta (Más atrás y derecha) */
+.tech-card.pos-3 {
+    transform: translate3d(50px, 50px, 0) scale(0.9);
+    z-index: 2;
+    opacity: 0.5;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+/* Hover en las tarjetas inactivas (efecto levantar ligeramente) */
+.tech-card:not(.pos-1):hover {
+    opacity: 0.95;
     border-color: var(--accent);
+}
+.tech-card.pos-2:hover {
+    transform: translate3d(25px, 25px, 0) scale(0.97) translateY(-5px);
+}
+.tech-card.pos-3:hover {
+    transform: translate3d(50px, 50px, 0) scale(0.92) translateY(-5px);
+}
+
+/* Cabecera compacta de la tarjeta */
+.tech-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
 }
 
 .tech-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 0;
 }
 
 .tech-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     color: var(--primary);
-    margin-bottom: 0.5rem;
+    margin: 0;
     transition: var(--transition);
 }
 
 .tech-card p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
     color: var(--text-secondary);
+    margin: 0;
     transition: var(--transition);
 }
 

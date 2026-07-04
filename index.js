@@ -154,24 +154,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
             });
-    // 6. Tarjetas de servicios interactivas en la sección Hero
+    // 6. Tarjetas de servicios interactivas en la sección Hero (Carrusel 3D)
     const techCards = document.querySelectorAll('.tech-card');
     if (techCards.length > 0) {
-        const handleCardActive = (selectedCard) => {
-            techCards.forEach(card => {
-                card.classList.remove('active');
+        const setPositions = (activeIndex) => {
+            techCards.forEach((card, index) => {
+                card.classList.remove('pos-1', 'pos-2', 'pos-3');
+                const position = (index - activeIndex + 3) % 3 + 1;
+                card.classList.add(`pos-${position}`);
             });
-            selectedCard.classList.add('active');
         };
 
-        techCards.forEach(card => {
+        techCards.forEach((card, index) => {
             // Al pasar el cursor por encima (PC)
             card.addEventListener('mouseenter', () => {
-                handleCardActive(card);
+                setPositions(index);
             });
             // Al hacer clic o tocar (Móvil / Tablet)
             card.addEventListener('click', () => {
-                handleCardActive(card);
+                setPositions(index);
             });
         });
     }
