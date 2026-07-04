@@ -641,8 +641,8 @@ ul {
 
 .profile-container {
     position: relative;
-    width: 130px;
-    height: 130px;
+    width: 200px;
+    height: 200px;
     margin: 0 auto 1.5rem auto;
 }
 
@@ -668,6 +668,23 @@ ul {
     z-index: 2;
     background-color: #080c18;
     display: block;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.profile-link-wrapper {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.profile-link-wrapper:hover .profile-img {
+    transform: scale(1.03);
+    border-color: var(--secondary);
+}
+
+.profile-link-wrapper:hover .profile-glow {
+    animation-duration: 4s;
+    box-shadow: 0 0 15px var(--accent), 0 0 30px var(--secondary);
 }
 
 @keyframes rotateGlow {
