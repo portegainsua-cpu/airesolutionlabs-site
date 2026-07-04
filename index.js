@@ -188,6 +188,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 7. Resplandor dinámico del cursor (Sincronizado con la tarjeta de visita)
+    const mouseGlow = document.getElementById('mouse-glow');
+    if (mouseGlow && window.innerWidth > 640) {
+        window.addEventListener('mousemove', (e) => {
+            mouseGlow.style.left = `${e.clientX}px`;
+            mouseGlow.style.top = `${e.clientY}px`;
+        });
+    }
 });
 
 // 5. Integración del Widget de Reservas Cal.com (Modal)
