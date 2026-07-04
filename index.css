@@ -283,8 +283,10 @@ ul {
     position: relative;
     width: 100%;
     max-width: 320px;
-    height: 280px;
+    height: 240px;
     margin: 0 auto;
+    perspective: 1000px;
+    transform-style: preserve-3d;
 }
 
 .tech-card {
@@ -294,22 +296,24 @@ ul {
     padding: 1.5rem;
     box-shadow: var(--shadow-md);
     position: absolute;
-    width: 270px;
+    width: 260px;
     height: 160px;
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    left: 30px;
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
     box-sizing: border-box;
+    backface-visibility: hidden;
 }
 
-/* Posición 1: Tarjeta Activa al Frente */
+/* Posición 1: Cúspide de la Pirámide (Frente Centro) */
 .tech-card.pos-1 {
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 40px) scale(1.05);
     z-index: 10;
     opacity: 1;
     background: var(--primary);
     color: var(--text-light);
     border-color: var(--primary-light);
-    box-shadow: var(--shadow-lg), 0 15px 30px rgba(10, 25, 47, 0.15);
+    box-shadow: var(--shadow-lg), 0 15px 30px rgba(10, 25, 47, 0.2);
 }
 
 .tech-card.pos-1 .tech-card-header h3 {
@@ -320,36 +324,36 @@ ul {
     color: rgba(255, 255, 255, 0.85);
 }
 
-/* Posición 2: Segunda Tarjeta (Detrás y derecha) */
+/* Posición 2: Ala Izquierda de la Pirámide (Detrás a la izquierda) */
 .tech-card.pos-2 {
-    transform: translate3d(25px, 25px, 0) scale(0.95);
+    transform: translate3d(-65px, 20px, -50px) rotateY(25deg) scale(0.85);
     z-index: 5;
-    opacity: 0.75;
+    opacity: 0.65;
     background: var(--bg-primary);
     color: var(--text-primary);
     border-color: var(--border-color);
 }
 
-/* Posición 3: Tercera Tarjeta (Más atrás y derecha) */
+/* Posición 3: Ala Derecha de la Pirámide (Detrás a la derecha) */
 .tech-card.pos-3 {
-    transform: translate3d(50px, 50px, 0) scale(0.9);
-    z-index: 2;
-    opacity: 0.5;
+    transform: translate3d(65px, 20px, -50px) rotateY(-25deg) scale(0.85);
+    z-index: 5;
+    opacity: 0.65;
     background: var(--bg-primary);
     color: var(--text-primary);
     border-color: var(--border-color);
 }
 
-/* Hover en las tarjetas inactivas (efecto levantar ligeramente) */
+/* Hover interactivo en las tarjetas laterales */
 .tech-card:not(.pos-1):hover {
     opacity: 0.95;
     border-color: var(--accent);
 }
 .tech-card.pos-2:hover {
-    transform: translate3d(25px, 25px, 0) scale(0.97) translateY(-5px);
+    transform: translate3d(-65px, 20px, -20px) rotateY(15deg) scale(0.9);
 }
 .tech-card.pos-3:hover {
-    transform: translate3d(50px, 50px, 0) scale(0.92) translateY(-5px);
+    transform: translate3d(65px, 20px, -20px) rotateY(-15deg) scale(0.9);
 }
 
 /* Cabecera compacta de la tarjeta */
@@ -800,5 +804,13 @@ ul {
         flex-direction: column;
         gap: 1.5rem;
         text-align: center;
+    }
+}
+
+/* Optimización para pantallas muy pequeñas (móviles estrechos) */
+@media (max-width: 480px) {
+    .tech-card-wrapper {
+        transform: scale(0.85);
+        height: 210px;
     }
 }

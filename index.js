@@ -48,8 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateIndicator() {
         const activeLink = document.querySelector('.nav-link.active');
         if (activeLink) {
-            indicator.style.width = `${activeLink.offsetWidth}px`;
-            indicator.style.left = `${activeLink.offsetLeft}px`;
+            const linkRect = activeLink.getBoundingClientRect();
+            const ulRect = menuUl.getBoundingClientRect();
+            indicator.style.width = `${linkRect.width}px`;
+            indicator.style.left = `${linkRect.left - ulRect.left}px`;
             indicator.style.opacity = '1';
         } else {
             indicator.style.opacity = '0';
