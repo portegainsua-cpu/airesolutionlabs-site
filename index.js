@@ -113,9 +113,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
             const messageInput = document.getElementById('message');
+            const privacyAgreement = document.getElementById('privacy-agreement');
             const submitBtn = document.getElementById('form-submit-btn');
             const originalBtnText = submitBtn.innerText;
             
+            // Validación de la casilla de verificación legal
+            if (privacyAgreement && !privacyAgreement.checked) {
+                let errorMsg = document.getElementById('privacy-error-msg');
+                if (!errorMsg) {
+                    errorMsg = document.createElement('div');
+                    errorMsg.id = 'privacy-error-msg';
+                    errorMsg.className = 'text-xs text-red-500 font-semibold mt-2';
+                    errorMsg.innerText = 'Es necesario aceptar la Política de Privacidad para continuar.';
+                    privacyAgreement.parentNode.appendChild(errorMsg);
+                }
+                return;
+            } else {
+                const errorMsg = document.getElementById('privacy-error-msg');
+                if (errorMsg) {
+                    errorMsg.remove();
+                }
+            }
+
             // Capturamos los datos
             const formData = {
                 name: nameInput.value,
@@ -128,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             // URL del Webhook de Make.com (Reemplaza esta URL con tu webhook real de Make mañana)
-            const MAKE_WEBHOOK_URL = 'https://hook.eu1.make.com/04wzitcmd4d15xnfrq3fpqtodkehlpq7';
+            const MAKE_WEBHOOK_URL = 'https://hook.us1.make.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
             
             // Si la URL sigue siendo el placeholder, simulamos el envío para evitar errores locales
             if (MAKE_WEBHOOK_URL.includes('xxxxxxxx')) {

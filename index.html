@@ -569,6 +569,12 @@
                                 <label for="message">¿En qué te podemos ayudar?</label>
                                 <textarea id="message" name="message" rows="4" required placeholder="Cuéntanos un poco sobre tu PyME y qué procesos te gustaría automatizar u optimizar..."></textarea>
                             </div>
+                            <div class="form-group flex items-start gap-3 mt-4 mb-4 select-none">
+                                <input type="checkbox" id="privacy-agreement" name="privacy-agreement" required class="mt-1 cursor-pointer accent-[#0057FF]" style="width: 16px; height: 16px; min-width: 16px;">
+                                <label for="privacy-agreement" class="text-xs text-[#E6E8EA] leading-relaxed cursor-pointer">
+                                    He leído y acepto la <a href="politica-privacidad.html" target="_blank" class="text-[#0057FF] hover:underline font-semibold">Política de Privacidad</a>.
+                                </label>
+                            </div>
                             <button type="submit" class="btn btn-primary btn-block" id="form-submit-btn">Enviar Mensaje</button>
                         </form>
                     </div>
@@ -586,8 +592,13 @@
                 </a>
                 <p class="footer-tagline">Soluciones digitales inteligentes para el negocio de hoy.</p>
             </div>
-            <div class="footer-right">
-                <p>&copy; 2026 AI Resolution. Todos los derechos reservados.</p>
+            <div class="footer-right flex flex-col md:items-end gap-3 text-right">
+                <div class="flex flex-wrap gap-4 text-xs font-semibold text-[#E6E8EA] md:justify-end mb-2">
+                    <a href="aviso-legal.html" target="_blank" class="hover:text-[#0057FF] transition-colors duration-200">Aviso Legal</a>
+                    <a href="politica-privacidad.html" target="_blank" class="hover:text-[#0057FF] transition-colors duration-200">Política de Privacidad</a>
+                    <a href="condiciones.html" target="_blank" class="hover:text-[#0057FF] transition-colors duration-200">Condiciones de Contratación</a>
+                </div>
+                <p class="text-xs text-gray-500">&copy; 2026 AI Resolution. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
