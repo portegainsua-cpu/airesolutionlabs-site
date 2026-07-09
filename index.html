@@ -13,6 +13,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="index.css">
+    <!-- Tailwind CSS Play CDN con Preflight desactivado para no entrar en conflicto con los estilos de la web -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false,
+            },
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-purple': '#8b5cf6',
+                        'brand-dark': '#030712',
+                        'brand-card': '#111827',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <!-- Capas de fondo tecnológicas sincronizadas con la tarjeta de visita -->
@@ -80,41 +98,323 @@
             </div>
         </section>
 
-        <!-- Sección de Servicios -->
-        <section class="services-section" id="servicios">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Qué hacemos</span>
-                    <h2>Soluciones diseñadas para el crecimiento de tu PyME</h2>
-                    <p>Diseñamos e implementamos tecnologías que eliminan la fricción operativa y aumentan tu rentabilidad.</p>
+        <!-- Sección de Servicios (Qué Hacemos) Rediseñada -->
+        <section class="py-24 bg-[#030712] relative overflow-hidden" id="servicios">
+            <style>
+                .responsive-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                @media (max-width: 1023px) {
+                    .responsive-table thead {
+                        display: none;
+                    }
+                    .responsive-table tbody, 
+                    .responsive-table tr, 
+                    .responsive-table td {
+                        display: block;
+                        width: 100%;
+                    }
+                    .responsive-table tr {
+                        margin-bottom: 1.5rem;
+                        background: rgba(15, 23, 42, 0.45);
+                        border: 1px solid rgba(255, 255, 255, 0.08);
+                        border-radius: 1rem;
+                        padding: 1.25rem;
+                    }
+                    .responsive-table td {
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                        padding: 0.75rem 0;
+                        text-align: left;
+                    }
+                    .responsive-table td:last-child {
+                        border-bottom: none;
+                        padding-top: 1rem;
+                    }
+                    .responsive-table td::before {
+                        content: attr(data-label);
+                        display: block;
+                        font-size: 0.75rem;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        color: #8b5cf6;
+                        margin-bottom: 0.25rem;
+                        letter-spacing: 0.05em;
+                    }
+                }
+            </style>
+            <div class="max-w-[1200px] mx-auto px-6">
+                <!-- Cabecera de la Sección -->
+                <div class="text-center mb-16">
+                    <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#8b5cf6]/10 text-[#8b5cf6] border border-[#8b5cf6]/20 mb-4">
+                        QUÉ HACEMOS
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+                        Soluciones diseñadas para el crecimiento de tu PyME
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-base">
+                        Diseñamos e implementamos tecnologías que eliminan la fricción operativa y aumentan tu rentabilidad de forma medible.
+                    </p>
                 </div>
-                
-                <div class="services-grid">
-                    <div class="service-card" id="service-consulting">
-                        <div class="service-icon-bg">
-                            <span class="service-icon">🤝</span>
+
+                <!-- Selector de Pestañas (Grid 3 Columnas) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <!-- Pestaña 1 -->
+                    <button onclick="switchTab('tab-consultoria')" id="btn-tab-consultoria" class="tab-button text-left p-6 rounded-2xl border transition-all duration-300 bg-[#111827]/40 backdrop-blur-md cursor-pointer group focus:outline-none border-[#8b5cf6] shadow-[0_0_20px_rgba(139,92,246,0.15)] active-tab">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 flex items-center justify-content-center text-2xl group-hover:bg-[#8b5cf6]/20 transition-all duration-300">
+                                🤝
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-[#8b5cf6] transition-colors duration-300">
+                                Consultoría Estratégica
+                            </h3>
                         </div>
-                        <h3>Consultoría Estratégica</h3>
-                        <p>Analizamos tu negocio para identificar cuellos de botella y diseñar una hoja de ruta hacia la transformación digital.</p>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Analizamos tu negocio para identificar cuellos de botella y diseñar una hoja de ruta hacia la transformación digital.
+                        </p>
+                    </button>
+
+                    <!-- Pestaña 2 -->
+                    <button onclick="switchTab('tab-automatizacion')" id="btn-tab-automatizacion" class="tab-button text-left p-6 rounded-2xl border transition-all duration-300 bg-[#111827]/20 backdrop-blur-md cursor-pointer group focus:outline-none border-white/5 opacity-70 hover:opacity-100 hover:border-white/10">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-content-center text-2xl group-hover:bg-[#8b5cf6]/10 group-hover:border-[#8b5cf6]/20 transition-all duration-300">
+                                ⚙️
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-[#8b5cf6] transition-colors duration-300">
+                                Automatización de Procesos
+                            </h3>
+                        </div>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Conectamos tus aplicaciones (CRM, bases de datos, email) para automatizar flujos y ahorrar cientos de horas al mes.
+                        </p>
+                    </button>
+
+                    <!-- Pestaña 3 -->
+                    <button onclick="switchTab('tab-ia')" id="btn-tab-ia" class="tab-button text-left p-6 rounded-2xl border transition-all duration-300 bg-[#111827]/20 backdrop-blur-md cursor-pointer group focus:outline-none border-white/5 opacity-70 hover:opacity-100 hover:border-white/10">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-content-center text-2xl group-hover:bg-[#8b5cf6]/10 group-hover:border-[#8b5cf6]/20 transition-all duration-300">
+                                🤖
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-[#8b5cf6] transition-colors duration-300">
+                                Integración de IA
+                            </h3>
+                        </div>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Implementamos chatbots inteligentes de atención al cliente, análisis de datos con IA y asistentes personalizados.
+                        </p>
+                    </button>
+                </div>
+
+                <!-- Contenedores de Tablas -->
+                <div class="bg-[#111827]/30 border border-white/5 rounded-2xl overflow-hidden backdrop-blur-md">
+                    <!-- Tabla 1: Consultoría -->
+                    <div id="content-tab-consultoria" class="tab-content block">
+                        <table class="responsive-table">
+                            <thead>
+                                <tr class="border-b border-white/10 bg-white/[0.02]">
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">Solución Inteligente</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">El Día a Día en la PyME</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">La Magia de la Tecnología</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">El Impacto Real</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400 w-[200px]">Siguiente Paso</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/[0.01] transition-colors duration-200">
+                                    <td class="px-6 py-4 text-sm font-semibold text-white" data-label="Solución Inteligente">Tarjetas Inteligentes</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Día a Día en la PyME">Tarjetas de papel que se pierden o caducan.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="La Magia de la Tecnología">Perfil interactivo compartido por QR/NFC.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Impacto Real">Imagen innovadora y cero costes de imprenta.</td>
+                                    <td class="px-6 py-4 text-sm" data-label="Siguiente Paso">
+                                        <a href="https://cal.com/pablo-ortega-insua-wdoysa" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white uppercase tracking-wider rounded-lg bg-[#8b5cf6] hover:bg-[#a78bfa] transition-all duration-300 w-full shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25">
+                                            Evaluar Viabilidad Gratis
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.01] transition-colors duration-200">
+                                    <td class="px-6 py-4 text-sm font-semibold text-white" data-label="Solución Inteligente">Asesoría Flash: IA en el Día a Día</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Día a Día en la PyME">El equipo pierde tiempo en tareas rutinarias por no saber usar ChatGPT o Claude de forma eficiente.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="La Magia de la Tecnología">Taller práctico con plantillas de instrucciones listas para usar.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Impacto Real">Desbloqueo de productividad inmediata.</td>
+                                    <td class="px-6 py-4 text-sm" data-label="Siguiente Paso">
+                                        <a href="https://cal.com/pablo-ortega-insua-wdoysa" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white uppercase tracking-wider rounded-lg bg-[#8b5cf6] hover:bg-[#a78bfa] transition-all duration-300 w-full shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25">
+                                            Evaluar Viabilidad Gratis
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.01] transition-colors duration-200">
+                                    <td class="px-6 py-4 text-sm font-semibold text-white" data-label="Solución Inteligente">Diseño de GPTs Personalizados</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Día a Día en la PyME">Horas perdidas buscando datos en manuales internos o redactando sin tono de empresa.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="La Magia de la Tecnología">Asistentes privados entrenados con los documentos de tu negocio.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Impacto Real">Respuestas en segundos sin errores.</td>
+                                    <td class="px-6 py-4 text-sm" data-label="Siguiente Paso">
+                                        <a href="https://cal.com/pablo-ortega-insua-wdoysa" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white uppercase tracking-wider rounded-lg bg-[#8b5cf6] hover:bg-[#a78bfa] transition-all duration-300 w-full shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25">
+                                            Evaluar Viabilidad Gratis
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.01] transition-colors duration-200">
+                                    <td class="px-6 py-4 text-sm font-semibold text-white" data-label="Solución Inteligente">Páginas Web Corporativas de Alto Rendimiento</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Día a Día en la PyME">Sitios lentos que no generan confianza ni captan clientes.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="La Magia de la Tecnología">Tu cuartel general digital, veloz y elegante.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Impacto Real">Presencia profesional activa las 24 horas.</td>
+                                    <td class="px-6 py-4 text-sm" data-label="Siguiente Paso">
+                                        <a href="https://cal.com/pablo-ortega-insua-wdoysa" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white uppercase tracking-wider rounded-lg bg-[#8b5cf6] hover:bg-[#a78bfa] transition-all duration-300 w-full shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25">
+                                            Evaluar Viabilidad Gratis
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div class="service-card" id="service-automation">
-                        <div class="service-icon-bg">
-                            <span class="service-icon">⚙️</span>
-                        </div>
-                        <h3>Automatización de Procesos</h3>
-                        <p>Conectamos tus aplicaciones (CRM, bases de datos, email) para automatizar flujos y ahorrar cientos de horas al mes.</p>
+                    <!-- Tabla 2: Automatización -->
+                    <div id="content-tab-automatizacion" class="tab-content hidden">
+                        <table class="responsive-table">
+                            <thead>
+                                <tr class="border-b border-white/10 bg-white/[0.02]">
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">Solución Inteligente</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">El Día a Día en la PyME</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">La Magia de la Tecnología</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">El Impacto Real</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400 w-[200px]">Siguiente Paso</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/[0.01] transition-colors duration-200">
+                                    <td class="px-6 py-4 text-sm font-semibold text-white" data-label="Solución Inteligente">Sistema Automatizado de Reservas y Gestión</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Día a Día en la PyME">Caos coordinando agendas por WhatsApp y riesgo de citas dobles.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="La Magia de la Tecnología">Calendario inteligente que trabaja solo y organiza tus reuniones.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Impacto Real">Cero minutos perdidos gestionando la agenda.</td>
+                                    <td class="px-6 py-4 text-sm" data-label="Siguiente Paso">
+                                        <a href="https://cal.com/pablo-ortega-insua-wdoysa" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white uppercase tracking-wider rounded-lg bg-[#8b5cf6] hover:bg-[#a78bfa] transition-all duration-300 w-full shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25">
+                                            Evaluar Viabilidad Gratis
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.01] transition-colors duration-200">
+                                    <td class="px-6 py-4 text-sm font-semibold text-white" data-label="Solución Inteligente">Conectividad y Flujos de Trabajo Centralizados</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Día a Día en la PyME">El personal pierde el día copiando y pegando datos entre programas que no se comunican.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="La Magia de la Tecnología">Conexiones invisibles para que la información viaje sola.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Impacto Real">Eliminación de tareas repetitivas y cero errores humanos.</td>
+                                    <td class="px-6 py-4 text-sm" data-label="Siguiente Paso">
+                                        <a href="https://cal.com/pablo-ortega-insua-wdoysa" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white uppercase tracking-wider rounded-lg bg-[#8b5cf6] hover:bg-[#a78bfa] transition-all duration-300 w-full shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25">
+                                            Evaluar Viabilidad Gratis
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div class="service-card" id="service-ai-integration">
-                        <div class="service-icon-bg">
-                            <span class="service-icon">🤖</span>
-                        </div>
-                        <h3>Integración de IA</h3>
-                        <p>Implementamos chatbots inteligentes de atención al cliente, análisis de datos con IA y asistentes personalizados.</p>
+                    <!-- Tabla 3: IA -->
+                    <div id="content-tab-ia" class="tab-content hidden">
+                        <table class="responsive-table">
+                            <thead>
+                                <tr class="border-b border-white/10 bg-white/[0.02]">
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">Solución Inteligente</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">El Día a Día en la PyME</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">La Magia de la Tecnología</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400">El Impacto Real</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-purple-400 w-[200px]">Siguiente Paso</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/[0.01] transition-colors duration-200">
+                                    <td class="px-6 py-4 text-sm font-semibold text-white" data-label="Solución Inteligente">Asistente Web Inteligente (Chatbot Corporativo)</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Día a Día en la PyME">Pérdida de clientes que escriben por las noches o fuera de horario comercial.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="La Magia de la Tecnología">Bot inteligente entrenado con datos oficiales de tu empresa.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Impacto Real">Captación pasiva y atención impecable 24/7.</td>
+                                    <td class="px-6 py-4 text-sm" data-label="Siguiente Paso">
+                                        <a href="https://cal.com/pablo-ortega-insua-wdoysa" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white uppercase tracking-wider rounded-lg bg-[#8b5cf6] hover:bg-[#a78bfa] transition-all duration-300 w-full shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25">
+                                            Evaluar Viabilidad Gratis
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.01] transition-colors duration-200">
+                                    <td class="px-6 py-4 text-sm font-semibold text-white" data-label="Solución Inteligente">Agentes de IA para Soporte y Postventa</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Día a Día en la PyME">Equipo saturado respondiendo siempre las mismas dudas o incidencias complejas.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="La Magia de la Tecnología">Sistema autónomo capaz de razonar y resolver gestiones de inicio a fin.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Impacto Real">Reducción del 70% de la carga de soporte.</td>
+                                    <td class="px-6 py-4 text-sm" data-label="Siguiente Paso">
+                                        <a href="https://cal.com/pablo-ortega-insua-wdoysa" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white uppercase tracking-wider rounded-lg bg-[#8b5cf6] hover:bg-[#a78bfa] transition-all duration-300 w-full shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25">
+                                            Evaluar Viabilidad Gratis
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.01] transition-colors duration-200">
+                                    <td class="px-6 py-4 text-sm font-semibold text-white" data-label="Solución Inteligente">Agentes Autónomos de Cualificación y Ventas</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Día a Día en la PyME">Pérdida de tiempo filtrando decenas de leads que no están listos para comprar.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="La Magia de la Tecnología">Asistente virtual que evalúa y pre-califica oportunidades de forma autónoma.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Impacto Real">Tu equipo solo habla con clientes listos para cerrar el trato.</td>
+                                    <td class="px-6 py-4 text-sm" data-label="Siguiente Paso">
+                                        <a href="https://cal.com/pablo-ortega-insua-wdoysa" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white uppercase tracking-wider rounded-lg bg-[#8b5cf6] hover:bg-[#a78bfa] transition-all duration-300 w-full shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25">
+                                            Evaluar Viabilidad Gratis
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.01] transition-colors duration-200">
+                                    <td class="px-6 py-4 text-sm font-semibold text-white" data-label="Solución Inteligente">Cerebro de Datos y Análisis Estratégico</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Día a Día en la PyME">Datos de ventas y clientes dispersos e imposibles de analizar de forma rápida.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="La Magia de la Tecnología">Centro de control unificado donde consultas a la tecnología en lenguaje natural.</td>
+                                    <td class="px-6 py-4 text-sm text-gray-300" data-label="El Impacto Real">Decisiones estratégicas basadas en datos reales en tiempo real.</td>
+                                    <td class="px-6 py-4 text-sm" data-label="Siguiente Paso">
+                                        <a href="https://cal.com/pablo-ortega-insua-wdoysa" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white uppercase tracking-wider rounded-lg bg-[#8b5cf6] hover:bg-[#a78bfa] transition-all duration-300 w-full shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25">
+                                            Evaluar Viabilidad Gratis
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+
+            <!-- Script para cambiar de pestaña de forma interactiva y limpia -->
+            <script>
+                function switchTab(tabId) {
+                    // Ocultar todos los contenidos de pestañas
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.add('hidden');
+                        content.classList.remove('block');
+                    });
+                    
+                    // Mostrar el contenido seleccionado
+                    const selectedContent = document.getElementById('content-' + tabId);
+                    if (selectedContent) {
+                        selectedContent.classList.remove('hidden');
+                        selectedContent.classList.add('block');
+                    }
+                    
+                    // Resetear el estilo de todos los botones de pestaña
+                    document.querySelectorAll('.tab-button').forEach(btn => {
+                        btn.classList.remove('border-[#8b5cf6]', 'shadow-[0_0_20px_rgba(139,92,246,0.15)]', 'active-tab');
+                        btn.classList.add('border-white/5', 'opacity-70', 'hover:border-white/10');
+                        btn.classList.remove('opacity-100');
+                        
+                        // Resetear icono interior
+                        const iconContainer = btn.querySelector('.w-12');
+                        if (iconContainer) {
+                            iconContainer.classList.remove('bg-[#8b5cf6]/10', 'border-[#8b5cf6]/20');
+                            iconContainer.classList.add('bg-white/5', 'border-white/10');
+                        }
+                    });
+                    
+                    // Aplicar estilo activo al botón seleccionado
+                    const activeBtn = document.getElementById('btn-' + tabId);
+                    if (activeBtn) {
+                        activeBtn.classList.remove('border-white/5', 'opacity-70', 'hover:border-white/10');
+                        activeBtn.classList.add('border-[#8b5cf6]', 'shadow-[0_0_20px_rgba(139,92,246,0.15)]', 'active-tab', 'opacity-100');
+                        
+                        // Activar icono interior
+                        const iconContainer = activeBtn.querySelector('.w-12');
+                        if (iconContainer) {
+                            iconContainer.classList.remove('bg-white/5', 'border-white/10');
+                            iconContainer.classList.add('bg-[#8b5cf6]/10', 'border-[#8b5cf6]/20');
+                        }
+                    }
+                }
+            </script>
         </section>
 
         <!-- Sección Sobre Nosotros -->
@@ -177,7 +477,7 @@
                     </div>
                     
                     <div class="contact-form-container">
-                        <form class="contact-form" id="contact-form" action="https://hook.eu1.make.com/04wzitcmd4d15xnfrq3fpqtodkehlpq7" method="POST">
+                        <form class="contact-form" id="contact-form" action="#" method="POST">
                             <div class="form-group">
                                 <label for="name">Nombre completo</label>
                                 <input type="text" id="name" name="name" required placeholder="Tu nombre">
