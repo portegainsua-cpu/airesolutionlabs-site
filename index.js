@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             // URL del Webhook de Make.com (Reemplaza esta URL con tu webhook real de Make mañana)
-            const MAKE_WEBHOOK_URL = 'https://hook.us1.make.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+            const MAKE_WEBHOOK_URL = 'https://hook.eu1.make.com/04wzitcmd4d15xnfrq3fpqtodkehlpq7';
             
             // Si la URL sigue siendo el placeholder, simulamos el envío para evitar errores locales
             if (MAKE_WEBHOOK_URL.includes('xxxxxxxx')) {
