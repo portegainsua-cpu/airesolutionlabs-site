@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             // URL del Webhook de Make.com (Reemplaza esta URL con tu webhook real de Make mañana)
-            const MAKE_WEBHOOK_URL = 'https://hook.eu1.make.com/04wzitcmd4d15xnfrq3fpqtodkehlpq7';
+            const MAKE_WEBHOOK_URL = 'https://hook.us1.make.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
             
             // Si la URL sigue siendo el placeholder, simulamos el envío para evitar errores locales
             if (MAKE_WEBHOOK_URL.includes('xxxxxxxx')) {
@@ -160,13 +160,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Envío real mediante Fetch API al Webhook de Make
+            // Envío real mediante Fetch API al Webhook de Make usando URL-encoded (evita preflight OPTIONS de CORS)
             fetch(MAKE_WEBHOOK_URL, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: JSON.stringify(formData)
+                body: new URLSearchParams(formData)
             })
             .then(response => {
                 if (response.ok) {
