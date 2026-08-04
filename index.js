@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     errorMsg = document.createElement('div');
                     errorMsg.id = 'privacy-error-msg';
                     errorMsg.className = 'text-xs text-red-500 font-semibold mt-2';
-                    errorMsg.innerText = 'Es necesario aceptar la Política de Privacidad para continuar.';
+                    errorMsg.innerText = 'Es necesario aceptar la Política de Privacidad para agendar la sesión.';
                     privacyAgreement.parentNode.appendChild(errorMsg);
                 }
                 return;

@@ -534,6 +534,271 @@
             </div>
         </section>
 
+        <!-- Sección de Preguntas Frecuentes (FAQ) -->
+        <section class="py-24 bg-[#0A0E17] relative overflow-hidden" id="faq">
+            <!-- Capa de fondo sutil o gradiente -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,87,255,0.05),transparent_50%)] pointer-events-none"></div>
+            
+            <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+                <!-- Cabecera -->
+                <div class="text-center mb-16">
+                    <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#0057FF]/10 text-[#0057FF] border border-[#0057FF]/20 mb-4">
+                        FAQ
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+                        Preguntas Frecuentes
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-base">
+                        Resolvemos tus dudas sobre cómo implementamos la Inteligencia Artificial y la automatización en tu PyME de forma segura, rentable y sin complicaciones.
+                    </p>
+                </div>
+
+                <!-- Pestañas Temáticas -->
+                <div class="flex flex-wrap justify-center gap-3 mb-12">
+                    <button onclick="switchFaqTab('faq-block-1')" id="btn-faq-block-1" class="faq-tab-btn px-5 py-3 rounded-full text-sm font-semibold border transition-all duration-300 cursor-pointer border-[#0057FF] bg-[#0057FF]/10 text-[#0057FF] active-faq-tab">
+                        🏛️ Enfoque y Metodología
+                    </button>
+                    <button onclick="switchFaqTab('faq-block-2')" id="btn-faq-block-2" class="faq-tab-btn px-5 py-3 rounded-full text-sm font-semibold border transition-all duration-300 cursor-pointer border-white/5 bg-[#111827]/40 text-gray-400 hover:text-white hover:border-white/10">
+                        ⚙️ Servicios e Integración
+                    </button>
+                    <button onclick="switchFaqTab('faq-block-3')" id="btn-faq-block-3" class="faq-tab-btn px-5 py-3 rounded-full text-sm font-semibold border transition-all duration-300 cursor-pointer border-white/5 bg-[#111827]/40 text-gray-400 hover:text-white hover:border-white/10">
+                        💰 Inversión y Pagos
+                    </button>
+                    <button onclick="switchFaqTab('faq-block-4')" id="btn-faq-block-4" class="faq-tab-btn px-5 py-3 rounded-full text-sm font-semibold border transition-all duration-300 cursor-pointer border-white/5 bg-[#111827]/40 text-gray-400 hover:text-white hover:border-white/10">
+                        🔒 Seguridad y RGPD
+                    </button>
+                </div>
+
+                <!-- Bloques de Contenido FAQ -->
+                <div class="max-w-3xl mx-auto">
+                    <!-- Bloque 1: Enfoque, Metodología y Primer Paso -->
+                    <div id="content-faq-block-1" class="faq-block-content block space-y-4">
+                        <!-- Q1 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Es la Inteligencia Artificial una solución adecuada para una pequeña o mediana empresa (PyME)?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    Totalmente. La Inteligencia Artificial ya no es exclusiva de las grandes corporaciones. En AI Resolution diseñamos soluciones a medida pensadas para eliminar tareas manuales repetitivas y optimizar tus operaciones sin necesidad de realizar inversiones millonarias.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q2 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Necesita mi equipo conocimientos técnicos para utilizar las soluciones de AI Resolution?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    No, ninguno. Entregamos soluciones "llave en mano" con paneles intuitivos, formaciones exprés (como nuestra Asesoría Flash) y soporte guiado para que tu equipo no tenga que programar ni aprender código.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q3 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Qué diferencia a AI Resolution Labs de una agencia de software tradicional?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    Nos enfocamos en los resultados tangibles, no en vender software inflado o líneas de código confusas. Nos centramos en resolver tus cuellos de botella para ahorrarte cientos de horas de trabajo al mes y activar la atención 24/7 en tu negocio.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q4 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>Tengo claros mis problemas de tiempo pero no sé por dónde empezar, ¿cuál es el primer paso?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    El primer paso es muy sencillo: agendar una Sesión de Diagnóstico Estratégico de 30 minutos. En esa llamada rápida analizamos tus procesos actuales, identificamos la mayor ineficiencia y trazamos una hoja de ruta clara adaptada a tu presupuesto, sin compromiso.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloque 2: Servicios, Integración y Mantenimiento -->
+                    <div id="content-faq-block-2" class="faq-block-content hidden space-y-4">
+                        <!-- Q5 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Cuánto tiempo se tarda en implementar una automatización con AI Resolution?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    La agilidad es nuestra prioridad. Los desarrollos iniciales y GPTs (Fase 1) se entregan en pocos días; los sistemas de reservas y chatbots estandarizados (Fase 2) tardan entre 1 y 2 semanas; mientras que los agentes avanzados (Fase 3) se planifican según la complejidad del proyecto.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q6 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Se pueden integrar las automatizaciones de AI Resolution con mis herramientas actuales?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    Sí, de forma 100% fluida. Conectamos tus aplicaciones del día a día (Google Workspace, WhatsApp, CRMs, ERPs, gestores de correo) para que la información viaje de manera automática y sin errores humanos.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q7 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Qué ocurre si mi empresa evoluciona o si los flujos necesitan ajustes en el futuro?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    Disponemos de Planes de Continuidad y Soporte Mensual (Plan Cimientos, Flujos Activos y Cerebro Digital) que garantizan que tu infraestructura digital se mantenga actualizada, monitorizada y optimizada ante cualquier cambio comercial.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q8 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Qué ocurre si un asistente de IA genera una respuesta errónea o "alucinación"?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    En AI Resolution alimentamos los modelos exclusivamente con Bases de Conocimiento cerradas y validadas de tu empresa (RAG). Además, mediante nuestros planes de mantenimiento monitorizamos periódicamente los registros para calibrar y prevenir desviaciones.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloque 3: Inversión y Modalidades de Pago -->
+                    <div id="content-faq-block-3" class="faq-block-content hidden space-y-4">
+                        <!-- Q9 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Cuánto cuesta trabajar con AI Resolution Labs?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    Contamos con una Escalera de Valor transparente: desde productos de entrada accesibles (Tarjetas Virtuales por 49 € o Asesoría Flash por 199 €), pasando por automatizaciones estándar (desde 299 € - 450 €), hasta proyectos enterprise cotizados bajo presupuesto tras auditoría técnica.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q10 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Qué modalidades y condiciones de pago ofrece AI Resolution?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    Facilitamos el pago B2B mediante pasarela segura para tarjeta de crédito/débito, PayPal, Bizum, transferencia bancaria y domiciliación bancaria SEPA para servicios recurrentes y suscripciones.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloque 4: Ciberseguridad, RGPD y Transparencia -->
+                    <div id="content-faq-block-4" class="faq-block-content hidden space-y-4">
+                        <!-- Q11 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Estarán seguros los datos privados de mi empresa al usar las soluciones de AI Resolution?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    Máxima seguridad garantizada. Trabajamos bajo el marco de APIs corporativas cerradas de pago (OpenAI, Anthropic, etc.), asegurando por contrato que los datos comerciales procesados en la nube jamás se utilizan para entrenar modelos públicos de IA. La información se procesa bajo cifrado de extremo a extremo (AES-256).
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q12 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Cómo evita AI Resolution las fugas de datos o vulnerabilidades en los asistentes de IA?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    Aplicamos arquitectura <em>Security & Privacy by Design</em>. Desplegamos Bases de Conocimiento aisladas, integramos filtros de seguridad anti-manipulación de prompts (<em>anti-prompt injection</em>) y formalizamos Contratos de Encargado del Tratamiento (DPA) para blindar la protección de los datos de tu PyME.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q13 -->
+                        <div class="faq-item border border-white/5 bg-[#111827]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10">
+                            <button onclick="toggleFaqAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-white hover:text-[#0057FF] transition-colors duration-200 focus:outline-none cursor-pointer">
+                                <span>¿Cumple AI Resolution Labs con la normativa europea de Inteligencia Artificial (AI Act) y el Artículo 50?</span>
+                                <span class="faq-icon text-xl text-gray-500 transition-transform duration-300">+</span>
+                            </button>
+                            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <div class="p-6 pt-0 text-sm text-gray-400 leading-relaxed border-t border-white/5">
+                                    Estrictamente. En cumplimiento con el Artículo 50 del AI Act de la UE (que exige transparencia al interactuar con IA), todas las soluciones conversacionales desarrolladas por AI Resolution incorporan de serie los avisos y sellos de transparencia requeridos para informarle al usuario final.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Script interactivo específico para FAQ -->
+            <script>
+                function switchFaqTab(tabId) {
+                    // Ocultar todos los bloques de contenido
+                    document.querySelectorAll('.faq-block-content').forEach(content => {
+                        content.classList.add('hidden');
+                        content.classList.remove('block');
+                    });
+                    
+                    // Mostrar el bloque de contenido seleccionado
+                    const selectedContent = document.getElementById('content-' + tabId);
+                    if (selectedContent) {
+                        selectedContent.classList.remove('hidden');
+                        selectedContent.classList.add('block');
+                    }
+                    
+                    // Resetear el estilo de todos los botones de pestaña
+                    document.querySelectorAll('.faq-tab-btn').forEach(btn => {
+                        btn.classList.remove('border-[#0057FF]', 'bg-[#0057FF]/10', 'text-[#0057FF]', 'active-faq-tab');
+                        btn.classList.add('border-white/5', 'bg-[#111827]/40', 'text-gray-400', 'hover:text-white', 'hover:border-white/10');
+                    });
+                    
+                    // Aplicar estilo activo al botón seleccionado
+                    const activeBtn = document.getElementById('btn-' + tabId);
+                    if (activeBtn) {
+                        activeBtn.classList.remove('border-white/5', 'bg-[#111827]/40', 'text-gray-400', 'hover:text-white', 'hover:border-white/10');
+                        activeBtn.classList.add('border-[#0057FF]', 'bg-[#0057FF]/10', 'text-[#0057FF]', 'active-faq-tab');
+                    }
+                }
+
+                function toggleFaqAccordion(button) {
+                    const faqAnswer = button.nextElementSibling;
+                    const faqIcon = button.querySelector('.faq-icon');
+                    const isOpen = faqAnswer.style.maxHeight && faqAnswer.style.maxHeight !== '0px';
+
+                    // Cerrar todos los accordions en el bloque activo para mantenerlo limpio
+                    button.closest('.faq-block-content').querySelectorAll('.faq-answer').forEach(ans => {
+                        ans.style.maxHeight = '0px';
+                        ans.previousElementSibling.querySelector('.faq-icon').innerText = '+';
+                        ans.previousElementSibling.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                        ans.closest('.faq-item').classList.remove('border-[#0057FF]/30', 'bg-[#111827]/40');
+                    });
+
+                    // Si no estaba abierto, abrirlo
+                    if (!isOpen) {
+                        faqAnswer.style.maxHeight = faqAnswer.scrollHeight + 'px';
+                        faqIcon.innerText = '−';
+                        faqIcon.style.transform = 'rotate(180deg)';
+                        button.closest('.faq-item').classList.add('border-[#0057FF]/30', 'bg-[#111827]/40');
+                    }
+                }
+            </script>
+        </section>
+
         <!-- Sección de Contacto -->
         <section class="contact-section" id="contacto">
             <div class="container">
@@ -604,7 +869,7 @@
     </footer>
 
     <!-- Script de interactividad -->
-    <script src="index.js?v=1.0.2"></script>
+    <script src="index.js?v=1.0.3"></script>
 
     <!-- Integración del Chatbot de Botpress (Burbuja flotante en parte inferior izquierda) -->
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
