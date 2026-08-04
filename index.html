@@ -566,6 +566,22 @@
                     box-shadow: 0px 0px 15px rgba(0, 87, 255, 0.15);
                 }
 
+                /* Forzar transparencia y resetear el fondo por defecto del navegador en botones */
+                .faq-item-custom button {
+                    background: transparent !important;
+                    border: none !important;
+                    color: #E6E8EA !important;
+                    transition: color 0.3s ease;
+                }
+                
+                .faq-item-custom:hover button {
+                    color: #8b5cf6 !important; /* Morado de la sección de servicios */
+                }
+                
+                .faq-item-custom.faq-active button {
+                    color: #8b5cf6 !important; /* Morado activo */
+                }
+
                 .faq-answer-custom {
                     background: rgba(10, 14, 23, 0.8);
                     max-height: 0;
@@ -915,7 +931,7 @@
     </footer>
 
     <!-- Script de interactividad -->
-    <script src="index.js?v=1.0.6"></script>
+    <script src="index.js?v=1.0.7"></script>
 
     <!-- Integración del Chatbot de Botpress (Burbuja flotante en parte inferior izquierda) -->
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
