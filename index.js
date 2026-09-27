@@ -104,11 +104,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Formulario de Contacto (Integrado con Make.com)
     const contactForm = document.getElementById('contact-form');
-    
+    const formStatus = document.getElementById('form-status');
+
+    // Mensaje de resultado bajo el botón (aria-live), en lugar de alert()
+    function showFormStatus(text, isError) {
+        if (!formStatus) return;
+        formStatus.textContent = text;
+        formStatus.classList.toggle('text-red-500', isError);
+        formStatus.classList.toggle('text-purple-400', !isError);
+        formStatus.hidden = false;
+    }
+
+    function hideFormStatus() {
+        if (formStatus) formStatus.hidden = true;
+    }
+
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault(); // Previene la recarga convencional de la página
-            
+            hideFormStatus();
+
             // Obtenemos los campos
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
@@ -124,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     errorMsg = document.createElement('div');
                     errorMsg.id = 'privacy-error-msg';
                     errorMsg.className = 'text-xs text-red-500 font-semibold mt-2';
-                    errorMsg.innerText = 'Es necesario aceptar la Política de Privacidad para agendar la sesión.';
+                    errorMsg.innerText = 'Es necesario aceptar la Política de Privacidad para enviar el mensaje.';
                     privacyAgreement.parentNode.appendChild(errorMsg);
                 }
                 return;
@@ -152,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Si la URL sigue siendo el placeholder, simulamos el envío para evitar errores locales
             if (MAKE_WEBHOOK_URL.includes('xxxxxxxx')) {
                 setTimeout(() => {
-                    alert(`[Simulación] ¡Mensaje recibido, ${formData.name}! (Nota: Debes configurar tu URL de Make.com en index.js para recibirlo por correo de verdad).`);
+                    showFormStatus(`[Simulación] ¡Mensaje recibido, ${formData.name}! (Falta configurar la URL de Make.com en index.js).`, false);
                     contactForm.reset();
                     submitBtn.innerText = originalBtnText;
                     submitBtn.disabled = false;
@@ -170,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => {
                 if (response.ok) {
-                    alert(`¡Gracias, ${formData.name}! Tu mensaje ha sido enviado con éxito. Nos pondremos en contacto contigo en info@airesolutionlabs.com.`);
+                    showFormStatus(`¡Gracias, ${formData.name}! Hemos recibido tu mensaje y te responderemos al correo que nos has indicado.`, false);
                     contactForm.reset();
                 } else {
                     throw new Error('Error en el servidor de Make');
@@ -178,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Error al enviar formulario:', error);
-                alert('Ups, hubo un problema al enviar tu mensaje. Por favor, escríbenos directamente a info@airesolutionlabs.com.');
+                showFormStatus('No hemos podido enviar tu mensaje. Inténtalo de nuevo o escríbenos a info@airesolutionlabs.com.', true);
             })
             .finally(() => {
                 submitBtn.innerText = originalBtnText;
