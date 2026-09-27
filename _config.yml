@@ -1,0 +1,7 @@
+# Configuración de Jekyll (GitHub Pages)
+# Archivos del repo que no deben publicarse en la web.
+exclude:
+  - dossier_servicios.md
+  - CLAUDE.md
+  - docs/
+  - privado/
