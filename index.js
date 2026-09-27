@@ -1,5 +1,5 @@
 /**
- * AI Resolution - Sitio Web Corporativo
+ * AI Resolution Labs - Sitio Web Corporativo
  * JavaScript para interactividad básica y experiencia de usuario minimalista.
  */
 
