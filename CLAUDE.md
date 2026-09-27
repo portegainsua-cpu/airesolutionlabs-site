@@ -15,6 +15,14 @@ Nunca copies su contenido, ni partes de él, a archivos que se suban al repo, a 
 - Añade los archivos por su nombre. No uses "git add .", "git add -A" ni "git add -f".
 - Usa git y gh por su nombre, nunca por ruta completa.
 
+## Cambios visibles
+- Mantén arrancada una vista previa local de la web y di a Pablo la dirección para abrirla. Si hace falta instalar algo, pregunta antes.
+- Cambios que se ven o se usan (textos, colores, botones, imágenes, menú, formulario, chatbot, enlaces):
+  - antes de hacerlos, explica en una frase qué vas a cambiar y en qué parte de la página;
+  - después, di qué hay que recargar y dónde mirar;
+  - espera el "OK" de Pablo antes del commit. Si dice que no, deshaz el cambio.
+- Cambios técnicos que no se ven (robots.txt, sitemap, metadatos, datos estructurados, configuración): hazlos y resúmelos en una línea al terminar cada uno.
+
 ## Seguridad del frontend
 - El repo es público y todo lo que llega al navegador (HTML, CSS, JS) también.
 - Nunca pongas en el código claves de API, tokens, contraseñas ni URLs de webhooks (Make, n8n, etc.).
