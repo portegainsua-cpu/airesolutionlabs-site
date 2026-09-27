@@ -22,6 +22,7 @@ Nunca copies su contenido, ni partes de él, a archivos que se suban al repo, a 
   - después, di qué hay que recargar y dónde mirar;
   - espera el "OK" de Pablo antes del commit. Si dice que no, deshaz el cambio.
 - Cambios técnicos que no se ven (robots.txt, sitemap, metadatos, datos estructurados, configuración): hazlos y resúmelos en una línea al terminar cada uno.
+- Si cambia el texto de una pregunta o respuesta del FAQ, actualízalo igual, palabra por palabra, en el JSON-LD de FAQPage de index.html, en el mismo commit.
 
 ## Seguridad del frontend
 - El repo es público y todo lo que llega al navegador (HTML, CSS, JS) también.
