@@ -12,6 +12,8 @@
       "Bash(gh repo edit *)",
       "Bash(gh repo delete *)",
       "Bash(gh api *)",
+      "Bash(git add -f *)",
+      "Bash(git add --force *)",
       "PowerShell(gh pr merge *)",
       "PowerShell(git merge *)",
       "PowerShell(git push --force *)",
