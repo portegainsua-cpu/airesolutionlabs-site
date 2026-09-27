@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(gh pr merge *)",
+      "Bash(git merge *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git push origin main *)",
+      "Bash(git push origin --delete *)",
+      "Bash(git branch -D *)",
+      "Bash(git reset --hard *)",
+      "Bash(gh repo edit *)",
+      "Bash(gh repo delete *)",
+      "Bash(gh api *)",
+      "PowerShell(gh pr merge *)",
+      "PowerShell(git merge *)",
+      "PowerShell(git push --force *)",
+      "PowerShell(git push origin main *)",
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(gh pr create *)",
+      "PowerShell(git push *)",
+      "PowerShell(gh pr create *)"
+    ]
+  }
+}
