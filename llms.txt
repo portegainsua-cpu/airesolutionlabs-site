@@ -1,0 +1,36 @@
+# AI Resolution Labs
+
+> AI Resolution Labs es una consultoría de automatización e inteligencia artificial para pymes de Sevilla y Andalucía, también en remoto.
+
+Ayudamos a pequeñas y medianas empresas a quitarse tareas manuales repetitivas: conectamos sus herramientas, automatizamos procesos e implantamos asistentes de IA. Web en español.
+
+## Servicios
+
+- Consultoría estratégica: análisis del negocio y hoja de ruta de digitalización.
+- Tarjetas digitales: perfil interactivo que se comparte por QR o NFC.
+- Asesoría Flash: taller práctico para usar ChatGPT o Claude en el trabajo diario.
+- GPTs personalizados: asistentes privados con los documentos de la empresa.
+- Páginas web corporativas rápidas y preparadas para buscadores.
+- Sistemas automatizados de reservas y gestión de agenda.
+- Automatización de procesos e integración de aplicaciones (CRM, bases de datos, correo).
+- Asistentes de IA para la web y la atención al cliente.
+- Agentes de IA para soporte, postventa y cualificación de clientes potenciales.
+- Análisis de datos con IA en lenguaje natural.
+
+## Contacto
+
+- Correo: info@airesolutionlabs.com
+- Sesión de diagnóstico de 30 minutos: https://cal.com/pablo-ortega-insua-wdoysa
+- Formulario de contacto: https://www.airesolutionlabs.com/#contacto
+
+## Páginas
+
+- [Inicio](https://www.airesolutionlabs.com/)
+- [Servicios](https://www.airesolutionlabs.com/#servicios)
+- [Sobre nosotros](https://www.airesolutionlabs.com/#nosotros)
+- [Preguntas frecuentes](https://www.airesolutionlabs.com/#faq)
+- [Contacto](https://www.airesolutionlabs.com/#contacto)
+- [Tarjeta digital del fundador, Pablo Ortega Insúa](https://founder.airesolutionlabs.com/)
+- [Aviso legal](https://www.airesolutionlabs.com/aviso-legal.html)
+- [Política de privacidad](https://www.airesolutionlabs.com/politica-privacidad.html)
+- [Condiciones de contratación](https://www.airesolutionlabs.com/condiciones.html)

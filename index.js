@@ -1,5 +1,5 @@
 /**
- * AI Resolution - Sitio Web Corporativo
+ * AI Resolution Labs - Sitio Web Corporativo
  * JavaScript para interactividad básica y experiencia de usuario minimalista.
  */
 
@@ -104,11 +104,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Formulario de Contacto (Integrado con Make.com)
     const contactForm = document.getElementById('contact-form');
-    
+    const formStatus = document.getElementById('form-status');
+
+    // Mensaje de resultado bajo el botón (aria-live), en lugar de alert()
+    function showFormStatus(text, isError) {
+        if (!formStatus) return;
+        formStatus.textContent = text;
+        formStatus.classList.toggle('text-red-500', isError);
+        formStatus.classList.toggle('text-purple-400', !isError);
+        formStatus.hidden = false;
+    }
+
+    function hideFormStatus() {
+        if (formStatus) formStatus.hidden = true;
+    }
+
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault(); // Previene la recarga convencional de la página
-            
+            hideFormStatus();
+
             // Obtenemos los campos
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
@@ -124,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     errorMsg = document.createElement('div');
                     errorMsg.id = 'privacy-error-msg';
                     errorMsg.className = 'text-xs text-red-500 font-semibold mt-2';
-                    errorMsg.innerText = 'Es necesario aceptar la Política de Privacidad para agendar la sesión.';
+                    errorMsg.innerText = 'Es necesario aceptar la Política de Privacidad para enviar el mensaje.';
                     privacyAgreement.parentNode.appendChild(errorMsg);
                 }
                 return;
@@ -152,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Si la URL sigue siendo el placeholder, simulamos el envío para evitar errores locales
             if (MAKE_WEBHOOK_URL.includes('xxxxxxxx')) {
                 setTimeout(() => {
-                    alert(`[Simulación] ¡Mensaje recibido, ${formData.name}! (Nota: Debes configurar tu URL de Make.com en index.js para recibirlo por correo de verdad).`);
+                    showFormStatus(`[Simulación] ¡Mensaje recibido, ${formData.name}! (Falta configurar la URL de Make.com en index.js).`, false);
                     contactForm.reset();
                     submitBtn.innerText = originalBtnText;
                     submitBtn.disabled = false;
@@ -170,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => {
                 if (response.ok) {
-                    alert(`¡Gracias, ${formData.name}! Tu mensaje ha sido enviado con éxito. Nos pondremos en contacto contigo en info@airesolutionlabs.com.`);
+                    showFormStatus(`¡Gracias, ${formData.name}! Hemos recibido tu mensaje y te responderemos al correo que nos has indicado.`, false);
                     contactForm.reset();
                 } else {
                     throw new Error('Error en el servidor de Make');
@@ -178,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Error al enviar formulario:', error);
-                alert('Ups, hubo un problema al enviar tu mensaje. Por favor, escríbenos directamente a info@airesolutionlabs.com.');
+                showFormStatus('No hemos podido enviar tu mensaje. Inténtalo de nuevo o escríbenos a info@airesolutionlabs.com.', true);
             })
             .finally(() => {
                 submitBtn.innerText = originalBtnText;
@@ -218,24 +233,124 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// 5. Integración del Widget de Reservas Cal.com (Modal)
-(function (C, A, L) {
-    var p = function (a, ar) { a.q.push(ar); };
-    var c = C.document; C.Cal = C.Cal || function () {
-        var a = C.Cal; if (!a.loaded) {
-            a.q = []; a.loaded = true; var s = c.createElement("script"); s.src = "https://app.cal.com/embed/embed.js";
-            var h = c.getElementsByTagName("head")[0]; h.appendChild(s);
-        } p(a, arguments);
-    };
-})(window, window.Cal);
+// 5. Reservas con Cal.com (modal)
+// embed.js se descarga solo al pulsar un botón de reserva. Mientras carga, el botón
+// muestra "Cargando…"; si no está listo en 5 segundos, se abre cal.com en una pestaña nueva.
+// Los botones usan data-cal-booking (y no data-cal-link) para que el propio embed.js
+// no abra un segundo modal con su escucha de clics.
+(function () {
+    const CAL_EMBED_URL = 'https://app.cal.com/embed/embed.js';
+    const LOAD_TIMEOUT_MS = 5000;
+    let calState = 'idle'; // idle | loading | ready | failed
+    let pendingButton = null;
+    let timeoutId = null;
 
-Cal("init", {origin:"https://app.cal.com"});
-Cal("ui", {
-    "styles": {
-        "branding": {
-            "brandColor": "#0A192F"
+    function loadCalEmbed() {
+        timeoutId = setTimeout(onCalFailed, LOAD_TIMEOUT_MS);
+
+        // Fragmento oficial de Cal.com (incluye Cal.ns, que faltaba en la versión anterior)
+        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, CAL_EMBED_URL, "init");
+
+        Cal("init", { origin: "https://app.cal.com" });
+        Cal("ui", {
+            "styles": { "branding": { "brandColor": "#0A192F" } },
+            "hideEventTypeDetails": false,
+            "layout": "month_view"
+        });
+
+        const script = document.querySelector(`script[src="${CAL_EMBED_URL}"]`);
+        if (!script) {
+            onCalFailed();
+            return;
         }
-    },
-    "hideEventTypeDetails": false,
-    "layout": "month_view"
-});
+        script.addEventListener('load', () => {
+            // Si embed.js falla al arrancar, no crea Cal.instance
+            if (window.Cal && window.Cal.instance) {
+                onCalReady();
+            } else {
+                onCalFailed();
+            }
+        });
+        script.addEventListener('error', onCalFailed);
+    }
+
+    function openModal(button) {
+        let config = {};
+        try { config = JSON.parse(button.dataset.calConfig || '{}'); } catch (e) { config = {}; }
+        Cal('modal', { calLink: button.dataset.calBooking, config: config });
+    }
+
+    function openInNewTab(button) {
+        // Sin 'noopener' en window.open, porque con él siempre devuelve null;
+        // se corta el enlace con esta página a mano.
+        const win = window.open(button.href, '_blank');
+        if (win) {
+            win.opener = null;
+        } else {
+            // El navegador ha bloqueado la pestaña nueva: abrimos cal.com en esta misma
+            window.location.href = button.href;
+        }
+    }
+
+    function setLoading(button, isLoading) {
+        if (isLoading) {
+            button.dataset.originalText = button.textContent;
+            button.textContent = 'Cargando…';
+            button.setAttribute('aria-busy', 'true');
+        } else if (button.dataset.originalText !== undefined) {
+            button.textContent = button.dataset.originalText;
+            delete button.dataset.originalText;
+            button.removeAttribute('aria-busy');
+        }
+    }
+
+    function onCalReady() {
+        if (calState !== 'loading') return;
+        calState = 'ready';
+        clearTimeout(timeoutId);
+        if (pendingButton) {
+            setLoading(pendingButton, false);
+            openModal(pendingButton);
+            pendingButton = null;
+        }
+    }
+
+    function onCalFailed() {
+        if (calState !== 'loading') return;
+        calState = 'failed';
+        clearTimeout(timeoutId);
+        if (pendingButton) {
+            setLoading(pendingButton, false);
+            openInNewTab(pendingButton);
+            pendingButton = null;
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        const button = e.target.closest('[data-cal-booking]');
+        if (!button) return;
+
+        // Con Cal.com caído, dejamos que el enlace abra cal.com como siempre
+        if (calState === 'failed') return;
+
+        e.preventDefault();
+
+        if (calState === 'ready') {
+            openModal(button);
+            return;
+        }
+
+        if (pendingButton && pendingButton !== button) {
+            setLoading(pendingButton, false);
+        }
+        if (pendingButton !== button) {
+            pendingButton = button;
+            setLoading(button, true);
+        }
+
+        if (calState === 'idle') {
+            calState = 'loading';
+            loadCalEmbed();
+        }
+    });
+})();

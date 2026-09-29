@@ -121,6 +121,16 @@ ul {
     list-style: none;
 }
 
+/* Foco visible al navegar con teclado (contraste ≥ 3:1 sobre los fondos oscuros) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.form-group input[type="checkbox"]:focus-visible {
+    outline: 2px solid #60a5fa;
+    outline-offset: 2px;
+}
+
 /* Contenedor principal */
 .container {
     width: 100%;
