@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Página no encontrada | AI Resolution Labs</title>
+    <!-- Página 404: GitHub Pages la sirve en cualquier ruta, por eso todas las rutas son absolutas -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/index.css">
+    <!-- Tailwind CSS Play CDN con Preflight desactivado para no entrar en conflicto con los estilos de la web -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false,
+            }
+        }
+    </script>
+</head>
+<body class="flex flex-col">
+    <!-- Capas de fondo tecnológicas -->
+    <div class="bg-grid"></div>
+
+    <!-- Cabecera de navegación (la misma que la portada, con enlaces a la portada) -->
+    <header class="main-header" id="header">
+        <div class="container header-container">
+            <a href="/" class="logo" id="logo-link">
+                <span class="logo-text-bold">AI</span> <span class="logo-text-light">Resolution Labs</span>
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="/#inicio" class="nav-link">Inicio</a></li>
+                    <li><a href="/#servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="/#nosotros" class="nav-link">Sobre Nosotros</a></li>
+                    <li><a href="/#contacto" class="nav-link nav-btn" id="contact-nav-btn">Hablemos</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 w-full pt-32 pb-24 max-w-4xl mx-auto px-6">
+        <div class="bg-[#111827]/40 border border-white/5 p-8 md:p-12 rounded-3xl backdrop-blur-md shadow-2xl text-center">
+            <span class="section-tag">Error 404</span>
+            <h1 class="text-3xl font-bold text-white mb-4">Página no encontrada</h1>
+            <p class="text-gray-400 text-base mb-8">La página que buscas no existe o ha cambiado de dirección.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/" class="btn btn-primary">Volver al inicio</a>
+                <a href="/#contacto" class="btn btn-secondary">Contactar</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-left">
+                <a href="/" class="logo" id="footer-logo-link">
+                    <span class="logo-text-bold">AI</span> <span class="logo-text-light">Resolution Labs</span>
+                </a>
+                <p class="footer-tagline">Soluciones digitales inteligentes para el negocio de hoy.</p>
+            </div>
+            <div class="footer-right flex flex-col md:items-end gap-3 text-right">
+                <div class="flex flex-wrap gap-4 text-xs font-semibold text-[#E6E8EA] md:justify-end mb-2">
+                    <a href="/aviso-legal.html" target="_blank" class="hover:text-[#4d8dff] transition-colors duration-200">Aviso Legal</a>
+                    <a href="/politica-privacidad.html" target="_blank" class="hover:text-[#4d8dff] transition-colors duration-200">Política de Privacidad</a>
+                    <a href="/condiciones.html" target="_blank" class="hover:text-[#4d8dff] transition-colors duration-200">Condiciones de Contratación</a>
+                </div>
+                <p class="text-xs text-gray-400">&copy; 2026 AI Resolution Labs. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Menú móvil: sin index.js, solo abrir y cerrar el menú -->
+    <script>
+        (function () {
+            const menuToggle = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            document.addEventListener('click', (e) => {
+                if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
