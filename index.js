@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ENDPOINT: 'https://script.google.com/macros/s/AKfycbzCgaigJtDxVea-eIOW5tq_OZKyM_AU4Bv7mUer4SZhgpuEOlUX0wJQLEbWa500PQMFIg/exec',
         // Clave del sitio de Turnstile (es pública). Clave de prueba: 1x00000000000000000000AA
         TURNSTILE_SITEKEY: '0x4AAAAAAFIFiqOfy6ts7wC6',
-        VERSION_TEXTO_LEGAL: '2026-10-02',
+        VERSION_TEXTO_LEGAL: '2026-10-05',
         TIEMPO_MAXIMO_MS: 25000,
         EMAIL_CONTACTO: 'info@airesolutionlabs.com'
     };
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nombre: { id: 'name', etiqueta: 'Nombre completo', msg: 'escribe tu nombre (entre 2 y 80 caracteres).' },
         email: { id: 'email', etiqueta: 'Correo electrónico', msg: 'escribe un correo electrónico válido.' },
         mensaje: { id: 'message', etiqueta: '¿En qué te podemos ayudar?', msg: 'cuéntanos tu consulta (entre 10 y 2.000 caracteres).' },
-        privacidad: { id: 'privacy-agreement', etiqueta: 'Política de Privacidad', msg: 'es necesario aceptarla para enviar el mensaje.' }
+        privacidad: { id: 'privacy-agreement', etiqueta: 'Política de Privacidad', msg: 'marca la casilla para confirmar que la has leído.' }
     };
 
     function limpiar(v) {

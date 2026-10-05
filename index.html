@@ -1097,7 +1097,7 @@
                             <div class="form-group flex items-start gap-3 mt-4 mb-4 select-none">
                                 <input type="checkbox" id="privacy-agreement" name="privacy-agreement" required class="mt-1 cursor-pointer accent-[#0057FF]" style="width: 16px; height: 16px; min-width: 16px;">
                                 <label for="privacy-agreement" class="text-xs text-[#E6E8EA] leading-relaxed cursor-pointer">
-                                    He leído y acepto la <a href="politica-privacidad.html" target="_blank" class="text-[#4d8dff] hover:underline font-semibold">Política de Privacidad</a>.
+                                    He leído la <a href="politica-privacidad.html" target="_blank" class="text-[#4d8dff] hover:underline font-semibold">Política de Privacidad</a>.
                                 </label>
                             </div>
                             <!-- Campo trampa para bots: fuera de la pantalla, las personas no lo ven ni lo rellenan -->
@@ -1109,6 +1109,16 @@
                             <div id="turnstile" style="display: contents;"></div>
                             <button type="submit" class="btn btn-primary btn-block" id="form-submit-btn">Enviar Mensaje</button>
                             <p id="form-status" class="text-xs font-semibold mt-2" role="status" aria-live="polite" hidden></p>
+                            <!-- Primera capa de información de privacidad (RGPD, art. 13) -->
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                <strong class="text-[#E6E8EA]">Responsable:</strong> Pablo Ortega Insúa (AI Resolution Labs).
+                                <strong class="text-[#E6E8EA]">Finalidad:</strong> responder a tu mensaje.
+                                <strong class="text-[#E6E8EA]">Legitimación:</strong> atender tu solicitud, como medida precontractual a petición tuya (art. 6.1.b del RGPD); si tu mensaje no trata de un servicio, el interés legítimo en responderte (art. 6.1.f del RGPD).
+                                <strong class="text-[#E6E8EA]">Destinatarios:</strong> Google y Cloudflare, que tratan los datos por encargo; no se ceden a nadie más.
+                                <strong class="text-[#E6E8EA]">Derechos:</strong> acceso, rectificación, supresión y los demás que reconoce el RGPD, en
+                                <a href="mailto:info@airesolutionlabs.com" class="text-[#4d8dff] hover:underline">info@airesolutionlabs.com</a>.
+                                Más información en la <a href="politica-privacidad.html" target="_blank" class="text-[#4d8dff] hover:underline font-semibold">Política de Privacidad</a>.
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -1137,6 +1147,6 @@
     </footer>
 
     <!-- Script de interactividad -->
-    <script src="index.js?v=1.1.0"></script>
+    <script src="index.js?v=1.1.1"></script>
 </body>
 </html>
