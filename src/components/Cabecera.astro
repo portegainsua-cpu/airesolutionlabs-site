@@ -20,7 +20,6 @@ const enlaces = [
     <nav class="cabecera__menu" aria-label="Principal">
       {enlaces.map((e) => <a href={e.href}>{e.texto}</a>)}
     </nav>
-    <span class="cabecera__hueco"></span>
     <button class="cabecera__abrir" type="button" aria-expanded="false" aria-controls="menu-movil" data-menu-boton>
       <span class="solo-lectores" data-menu-texto>Abrir menú</span>
       <span data-menu-icono-abrir><Icono nombre="menu" tamano={24} /></span>
@@ -31,6 +30,7 @@ const enlaces = [
   <nav class="menu-movil" id="menu-movil" aria-label="Principal (móvil)" hidden>
     <ul>
       {enlaces.map((e) => <li><a href={e.href}>{e.texto}</a></li>)}
+      <li class="menu-movil__accion"><a class="boton boton--primario" href="/#contacto">Hablemos</a></li>
     </ul>
   </nav>
 </header>

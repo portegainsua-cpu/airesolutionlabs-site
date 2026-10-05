@@ -272,9 +272,9 @@ button, input, textarea { font: inherit; }
 }
 .cabecera__menu a, .menu-movil a:not(.boton) { color: var(--color-text); text-decoration: none; }
 .cabecera__menu a:hover, .menu-movil a:not(.boton):hover { color: var(--color-accent); text-decoration: underline; }
-.cabecera__hueco { flex: 1 1 auto; }
 .cabecera__abrir {
   flex: none;
+  margin-left: auto;
   width: 44px;
   height: 44px;
   padding: 0;
@@ -288,9 +288,19 @@ button, input, textarea { font: inherit; }
 }
 .cabecera__hablemos { flex: none; }
 
+/* Móviles estrechos: logo, menú y "Hablemos" caben sin desbordar */
+@media (max-width: 419px) {
+  .cabecera__barra { gap: var(--space-2); }
+  .cabecera__hablemos { padding: 0 var(--space-3); }
+}
+/* Por debajo de 360 px no cabe: "Hablemos" queda dentro del menú móvil */
+@media (max-width: 359px) {
+  .cabecera__hablemos { display: none; }
+}
+
 @media (min-width: 960px) {
   .cabecera__menu { display: flex; }
-  .cabecera__hueco, .cabecera__abrir { display: none; }
+  .cabecera__abrir { display: none; }
 }
 
 /* Menú móvil a pantalla completa */
@@ -309,6 +319,10 @@ button, input, textarea { font: inherit; }
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+}
+.menu-movil__accion { margin-top: var(--space-5); }
+@media (min-width: 360px) {
+  .menu-movil__accion { display: none; }
 }
 .menu-movil a:not(.boton) {
   display: flex;
