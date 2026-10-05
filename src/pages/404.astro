@@ -1,0 +1,21 @@
+---
+// Página 404 (DESIGN §11): cabecera y pie normales, una frase, botón a la portada y enlace a contacto.
+// GitHub Pages la sirve en cualquier ruta que no exista; todas las rutas son absolutas.
+import Base from '../layouts/Base.astro';
+import Icono from '../components/Icono.astro';
+---
+<Base titulo="Página no encontrada | AI Resolution Labs" descripcion="La página que buscas no existe o ha cambiado de dirección." noindex>
+  <div class="pagina">
+    <div class="contenedor">
+      <div class="error-404">
+        <p class="etiqueta">Error 404</p>
+        <h1 class="titulo-pagina">Página no encontrada</h1>
+        <p class="entradilla">La página que buscas no existe o ha cambiado de dirección.</p>
+        <div class="error-404__acciones">
+          <a class="boton boton--primario" href="/">Volver al inicio</a>
+          <a class="enlace-flecha" href="/#contacto">Contactar <Icono nombre="flecha" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
