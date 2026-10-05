@@ -5,3 +5,5 @@ exclude:
   - CLAUDE.md
   - docs/
   - privado/
+  # Retiradas hasta tener el catálogo nuevo (el archivo se conserva en el repo)
+  - condiciones.html
