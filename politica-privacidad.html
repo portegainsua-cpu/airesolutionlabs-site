@@ -22,10 +22,9 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#2347C5">
-    <!-- Google Fonts: Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fuente Outfit alojada en la propia web (sin peticiones a Google Fonts) -->
+    <link rel="preload" href="/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/fonts/outfit.css">
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="index.css">
     <!-- Tailwind CSS Play CDN -->
@@ -101,7 +100,7 @@
                         <li><strong>Cal.com</strong>: reserva de la sesión de diagnóstico, solo si pulsas un botón de reserva.</li>
                         <li><strong>GitHub</strong> (GitHub Pages): alojamiento de esta web, que registra datos técnicos de las visitas.</li>
                     </ul>
-                    <p class="mt-3">Para mostrar la web también se cargan las tipografías de Google Fonts y la hoja de estilos de Tailwind CSS desde sus servidores, que reciben tu dirección IP.</p>
+                    <p class="mt-3">Para mostrar la web también se carga la hoja de estilos de Tailwind CSS desde su servidor, que recibe tu dirección IP. La tipografía de la web está alojada en la propia web.</p>
                     <p class="mt-3">No uso los datos que envías por el formulario para entrenar modelos de inteligencia artificial ni los cedo a terceros, salvo a los encargados indicados en esta política.</p>
                 </section>
 
