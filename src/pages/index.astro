@@ -1,0 +1,211 @@
+---
+// Portada. Textos literales de la maqueta aprobada (privado/2b/maqueta-portada.html).
+import Base from '../layouts/Base.astro';
+import Icono from '../components/Icono.astro';
+import TarjetaServicio from '../components/TarjetaServicio.astro';
+import Faq from '../components/Faq.astro';
+import Formulario from '../components/Formulario.astro';
+import BotonReserva from '../components/BotonReserva.astro';
+import { preguntasPublicadas, textoPlano } from '../data/faq.js';
+
+// title y meta description: los actuales hasta que Pablo decida la propuesta del PR
+const titulo = 'AI Resolution Labs | Soluciones Digitales e IA para PyMEs';
+const descripcion = 'Consultoría de automatización e IA para pymes de Sevilla y Andalucía: conectamos tus herramientas, automatizamos tareas y creamos asistentes de IA y webs.';
+
+const sitio = 'https://www.airesolutionlabs.com';
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['Organization', 'ProfessionalService'],
+      '@id': `${sitio}/#org`,
+      name: 'AI Resolution Labs',
+      url: `${sitio}/`,
+      logo: `${sitio}/icon-512.png`,
+      email: 'info@airesolutionlabs.com',
+      // Brief §8g
+      description: 'Consultoría de tecnología e IA desde Sevilla para empresas de toda España',
+      areaServed: [
+        { '@type': 'City', name: 'Sevilla' },
+        { '@type': 'Country', name: 'España' },
+      ],
+      founder: { '@id': `${sitio}/#pablo` },
+      // Catálogo de servicios v1
+      knowsAbout: [
+        'Asesoría en tecnología e IA',
+        'Webs y captación',
+        'Tarjetas digitales',
+        'Reservas automáticas',
+        'Formularios con seguimiento',
+        'Automatizaciones e integraciones',
+        'Aplicaciones a medida',
+        'Implantación de Microsoft 365 y Google Workspace',
+        'Formación en IA para equipos',
+      ],
+    },
+    {
+      '@type': 'Person',
+      '@id': `${sitio}/#pablo`,
+      name: 'Pablo Ortega Insúa',
+      jobTitle: 'Fundador y Consultor Principal',
+      worksFor: { '@id': `${sitio}/#org` },
+      image: `${sitio}/pablo.webp`,
+      url: `${sitio}/#quien`,
+      sameAs: [
+        'https://founder.airesolutionlabs.com/',
+        'https://www.linkedin.com/in/pablo-ortega-ins%C3%BAa-775b92277/',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${sitio}/#web`,
+      url: `${sitio}/`,
+      name: 'AI Resolution Labs',
+      inLanguage: 'es-ES',
+      publisher: { '@id': `${sitio}/#org` },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${sitio}/#faq`,
+      inLanguage: 'es-ES',
+      // Misma fuente que el FAQ visible (src/data/faq.js)
+      mainEntity: preguntasPublicadas.map((p) => ({
+        '@type': 'Question',
+        name: p.pregunta,
+        acceptedAnswer: { '@type': 'Answer', text: textoPlano(p.respuesta) },
+      })),
+    },
+  ],
+};
+
+const flujo = [
+  'Rellena el formulario de tu web',
+  'Sus datos se guardan en tu hoja de clientes',
+  'Te llega un aviso al móvil',
+  'El cliente recibe la confirmación al momento',
+];
+
+const pasos = [
+  { titulo: 'Diagnóstico gratuito', texto: '30 minutos para entender qué te quita tiempo y si puedo ayudarte.' },
+  { titulo: 'Propuesta cerrada', texto: 'Qué se hace, en qué plazo y por cuánto, por escrito.' },
+  { titulo: 'Construcción por fases', texto: 'Empezamos por lo que más tiempo ahorra. Lo pruebas antes de pasar a lo siguiente.' },
+  { titulo: 'Entrega y formación', texto: 'Te enseño a usarlo para que no dependas de mí y, si quieres, me encargo del mantenimiento.' },
+];
+
+const dosCifras = (n: number) => String(n).padStart(2, '0');
+---
+<Base titulo={titulo} descripcion={descripcion} ruta="/" jsonld={jsonld}>
+
+  <section class="hero" id="inicio">
+    <div class="contenedor rejilla-dos">
+      <div class="hero__texto">
+        <p class="etiqueta">AI Resolution Labs · Consultoría de tecnología e IA</p>
+        <h1 class="titulo-portada">Tecnología e IA para empresas que no tienen tiempo de investigarla.</h1>
+        <p class="entradilla hero__entradilla">Sabes que la inteligencia artificial y las herramientas digitales pueden ahorrarte trabajo, pero no tienes horas para estudiarlas. Soy Pablo Ortega y hago esa parte por ti: te explico qué te sirve, lo pongo en marcha y te enseño a usarlo. Trabajo desde Sevilla con empresas de toda España.</p>
+        <div class="hero__acciones">
+          <a class="boton boton--primario" href="#contacto">Reserva 30 minutos gratis</a>
+          <a class="enlace-flecha" href="#servicios">Ver servicios <Icono nombre="flecha" /></a>
+        </div>
+        <p class="texto-pequeno texto-apagado">Diagnóstico gratuito la primera vez.</p>
+      </div>
+      <div class="flujo">
+        <p class="etiqueta etiqueta--apagada flujo__titulo">Ejemplo · Un cliente te escribe desde la web</p>
+        <ol>
+          {flujo.map((paso, i) => (
+            <li class={i === flujo.length - 1 ? 'flujo__final' : undefined}>
+              <span class="flujo__numero">{dosCifras(i + 1)}</span>
+              <span>{paso}</span>
+            </li>
+          ))}
+        </ol>
+        <p class="texto-pequeno texto-apagado flujo__nota">Sin que nadie copie datos a mano.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--oscura porque" id="porque">
+    <div class="contenedor rejilla-dos">
+      <div>
+        <p class="etiqueta">Por qué existe AI Resolution Labs</p>
+        <h2 class="titulo-seccion porque__titulo">Casi todas las empresas saben que la IA importa. Casi ninguna tiene tiempo para pararse a aprenderla.</h2>
+      </div>
+      <div class="porque__textos">
+        <p class="entradilla">Entre los clientes, el equipo y los papeles, nadie tiene horas para comparar herramientas o hacer cursos.</p>
+        <p class="porque__destacado">Ese atasco es el que quito: investigo por ti, lo pongo en marcha y te enseño a usarlo, a tu ritmo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--alterna" id="servicios">
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <h2 class="titulo-seccion">Tres formas de ayudarte</h2>
+        <p class="entradilla">Elige por el problema que tienes. La investigación y la parte técnica corren de mi cuenta.</p>
+      </div>
+      <div class="tarjetas">
+        <TarjetaServicio icono="monitor" titulo="Webs y captación" texto="Una web rápida y preparada para Google y para los buscadores de IA, con reservas y formularios que no dejan escapar a nadie." />
+        <TarjetaServicio icono="flujo" titulo="Automatizaciones y aplicaciones" texto="Conecto tus herramientas para que nadie pase datos a mano y, cuando una suscripción te sale cara, creo una aplicación a tu medida." nota="Ya en uso: Redyapp, para parques de bomberos" />
+        <TarjetaServicio icono="equipo" titulo="Entorno de trabajo e IA" texto="Correo, archivos, permisos y coordinación bien montados con Microsoft 365 u otra plataforma, y formación para que tu equipo use la IA con criterio desde el primer día." />
+      </div>
+      <p class="servicios__orientacion">¿No sabes cuál encaja contigo? <a href="#contacto">Cuéntamelo y te oriento</a>.</p>
+    </div>
+  </section>
+
+  <section class="seccion" id="como">
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <h2 class="titulo-seccion">Cómo trabajo</h2>
+        <p class="entradilla">Proyectos con alcance y precio cerrados, por fases. Revisas cada paso antes de seguir.</p>
+      </div>
+      <ol class="pasos">
+        {pasos.map((p, i) => (
+          <li>
+            <span class="etiqueta etiqueta--apagada">{dosCifras(i + 1)}</span>
+            <h3 class="titulo-tarjeta">{p.titulo}</h3>
+            <p class="texto-apagado">{p.texto}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion seccion--alterna quien" id="quien">
+    <span id="nosotros"></span>
+    <div class="contenedor rejilla-dos">
+      <img class="quien__foto" src="/pablo.webp" alt="Pablo Ortega, fundador de AI Resolution Labs" width="640" height="800" loading="lazy" decoding="async">
+      <div class="quien__texto">
+        <p class="etiqueta">Quién soy</p>
+        <h2 class="titulo-seccion">Soy Pablo Ortega. Hablas conmigo desde el primer mensaje hasta la entrega.</h2>
+        <p class="quien__destacado">Antes de AI Resolution Labs dirigí una empresa de marketing. Sé lo que es llevar un negocio con poco tiempo y muchos frentes abiertos.</p>
+        <p class="texto-apagado">Hoy me dedico a estudiar herramientas de tecnología e IA, quedarme con las que funcionan y ponerlas en marcha en empresas reales. También desarrollo aplicaciones propias, y algunas ya están en uso.</p>
+        <p class="texto-apagado">Trabajo con método: alcance cerrado, pruebas antes de entregar y todo explicado por escrito.</p>
+        <div class="quien__enlaces">
+          <a class="enlace-flecha" href="https://www.linkedin.com/in/pablo-ortega-ins%C3%BAa-775b92277/" target="_blank" rel="noopener">Ver mi perfil en LinkedIn <Icono nombre="flecha-externa" /><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+          <a class="enlace-flecha" href="https://founder.airesolutionlabs.com/">Ver mi tarjeta digital</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="faq">
+    <div class="contenedor contenedor--lectura">
+      <h2 class="titulo-seccion">Preguntas frecuentes</h2>
+      <Faq />
+    </div>
+  </section>
+
+  <section class="seccion seccion--oscura contacto" id="contacto">
+    <div class="contenedor rejilla-dos">
+      <div class="contacto__texto">
+        <h2 class="titulo-portada contacto__titulo">Cuéntame qué te quita tiempo.</h2>
+        <p class="entradilla contacto__entradilla">Te respondo lo antes posible, como máximo en 72 horas. Si no puedo ayudarte, también te lo digo.</p>
+        <div class="contacto__reserva">
+          <p>¿Prefieres hablarlo directamente?</p>
+          <BotonReserva>Reserva 30 minutos gratis</BotonReserva>
+        </div>
+      </div>
+      <Formulario />
+    </div>
+  </section>
+
+</Base>
