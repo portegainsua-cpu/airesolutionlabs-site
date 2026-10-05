@@ -1,21 +1,15 @@
 # AI Resolution Labs
 
-> AI Resolution Labs es una consultoría de automatización e inteligencia artificial para pymes de Sevilla y Andalucía, también en remoto.
+> Consultoría de tecnología e IA desde Sevilla para empresas de toda España.
 
-Ayudamos a pequeñas y medianas empresas a quitarse tareas manuales repetitivas: conectamos sus herramientas, automatizamos procesos e implantamos asistentes de IA. Web en español.
+Tecnología e IA para empresas que no tienen tiempo de investigarla: te explico qué te sirve, lo pongo en marcha y te enseño a usarlo. Web en español.
 
 ## Servicios
 
-- Consultoría estratégica: análisis del negocio y hoja de ruta de digitalización.
-- Tarjetas digitales: perfil interactivo que se comparte por QR o NFC.
-- Asesoría Flash: taller práctico para usar ChatGPT o Claude en el trabajo diario.
-- GPTs personalizados: asistentes privados con los documentos de la empresa.
-- Páginas web corporativas rápidas y preparadas para buscadores.
-- Sistemas automatizados de reservas y gestión de agenda.
-- Automatización de procesos e integración de aplicaciones (CRM, bases de datos, correo).
-- Asistentes de IA para la web y la atención al cliente.
-- Agentes de IA para soporte, postventa y cualificación de clientes potenciales.
-- Análisis de datos con IA en lenguaje natural.
+- Webs y captación: una web rápida y preparada para Google y para los buscadores de IA, con reservas y formularios que no dejan escapar a nadie.
+- Automatizaciones y aplicaciones: conecto tus herramientas para que nadie pase datos a mano y, cuando una suscripción te sale cara, creo una aplicación a tu medida.
+- Entorno de trabajo e IA: correo, archivos, permisos y coordinación bien montados con Microsoft 365 u otra plataforma, y formación para que tu equipo use la IA con criterio desde el primer día.
+- Diagnóstico gratuito de 30 minutos la primera vez.
 
 ## Contacto
 
@@ -26,8 +20,10 @@ Ayudamos a pequeñas y medianas empresas a quitarse tareas manuales repetitivas:
 ## Páginas
 
 - [Inicio](https://www.airesolutionlabs.com/)
+- [Por qué](https://www.airesolutionlabs.com/#porque)
 - [Servicios](https://www.airesolutionlabs.com/#servicios)
-- [Sobre nosotros](https://www.airesolutionlabs.com/#nosotros)
+- [Cómo trabajo](https://www.airesolutionlabs.com/#como)
+- [Quién soy](https://www.airesolutionlabs.com/#quien)
 - [Preguntas frecuentes](https://www.airesolutionlabs.com/#faq)
 - [Contacto](https://www.airesolutionlabs.com/#contacto)
 - [Tarjeta digital del fundador, Pablo Ortega Insúa](https://founder.airesolutionlabs.com/)
