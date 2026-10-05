@@ -1,0 +1,68 @@
+---
+// Cabecera (DESIGN §11): símbolo AIR + nombre a la izquierda; enlaces a la derecha, pegados a "Hablemos".
+// En móvil, menú a pantalla completa con aria-expanded, aria-controls y cierre con Escape.
+import Icono from './Icono.astro';
+import SimboloAir from './SimboloAir.astro';
+
+const enlaces = [
+  { texto: 'Por qué', href: '/#porque' },
+  { texto: 'Servicios', href: '/#servicios' },
+  { texto: 'Cómo trabajo', href: '/#como' },
+  { texto: 'Quién soy', href: '/#quien' },
+];
+---
+<header class="cabecera">
+  <div class="contenedor cabecera__barra">
+    <a class="logo" href="/">
+      <SimboloAir />
+      AI Resolution Labs
+    </a>
+    <nav class="cabecera__menu" aria-label="Principal">
+      {enlaces.map((e) => <a href={e.href}>{e.texto}</a>)}
+    </nav>
+    <span class="cabecera__hueco"></span>
+    <button class="cabecera__abrir" type="button" aria-expanded="false" aria-controls="menu-movil" data-menu-boton>
+      <span class="solo-lectores" data-menu-texto>Abrir menú</span>
+      <span data-menu-icono-abrir><Icono nombre="menu" tamano={24} /></span>
+      <span data-menu-icono-cerrar hidden><Icono nombre="cerrar" tamano={24} /></span>
+    </button>
+    <a class="boton boton--primario boton--compacto cabecera__hablemos" href="/#contacto">Hablemos</a>
+  </div>
+  <nav class="menu-movil" id="menu-movil" aria-label="Principal (móvil)" hidden>
+    <ul>
+      {enlaces.map((e) => <li><a href={e.href}>{e.texto}</a></li>)}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const boton = document.querySelector<HTMLButtonElement>('[data-menu-boton]');
+  const menu = document.getElementById('menu-movil');
+  if (boton && menu) {
+    const texto = boton.querySelector('[data-menu-texto]');
+    const iconoAbrir = boton.querySelector<HTMLElement>('[data-menu-icono-abrir]');
+    const iconoCerrar = boton.querySelector<HTMLElement>('[data-menu-icono-cerrar]');
+
+    const poner = (abierto: boolean, devolverFoco = false) => {
+      menu.hidden = !abierto;
+      boton.setAttribute('aria-expanded', String(abierto));
+      if (texto) texto.textContent = abierto ? 'Cerrar menú' : 'Abrir menú';
+      if (iconoAbrir) iconoAbrir.hidden = abierto;
+      if (iconoCerrar) iconoCerrar.hidden = !abierto;
+      document.body.style.overflow = abierto ? 'hidden' : '';
+      if (devolverFoco) boton.focus();
+    };
+
+    boton.addEventListener('click', () => poner(menu.hidden));
+    menu.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) poner(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hidden) poner(false, true);
+    });
+    // Si se pasa a escritorio con el menú abierto, se cierra
+    matchMedia('(min-width: 960px)').addEventListener('change', (e) => {
+      if (e.matches && !menu.hidden) poner(false);
+    });
+  }
+</script>
