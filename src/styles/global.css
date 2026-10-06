@@ -530,7 +530,10 @@ button, input, textarea { font: inherit; }
   cursor: pointer;
 }
 .casilla input {
+  /* Anula el alto mínimo y el relleno de .campo input para centrarla en la primera línea */
   margin: 3px 0 0;
+  min-height: 0;
+  padding: 0;
   width: 18px;
   height: 18px;
   flex: none;
