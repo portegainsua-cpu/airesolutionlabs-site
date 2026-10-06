@@ -40,13 +40,14 @@ const campos = [
     <span data-icono-error hidden><Icono nombre="alerta" /></span>
     <span data-texto></span>
   </p>
-  <!-- Primera capa de información de privacidad (RGPD, art. 13), aprobada en la Fase 2A -->
+  <!-- Primera capa de información de privacidad (RGPD, art. 13), aprobada en la Fase 2A.
+       Los espacios explícitos al final de cada frase son necesarios: al compilar, Astro quita el salto de línea antes de una etiqueta. -->
   <p class="formulario__privacidad">
-    <strong>Responsable:</strong> Pablo Ortega Insúa (AI Resolution Labs).
-    <strong>Finalidad:</strong> responder a tu mensaje.
-    <strong>Legitimación:</strong> atender tu solicitud, como medida precontractual a petición tuya (art. 6.1.b del RGPD); si tu mensaje no trata de un servicio, el interés legítimo en responderte (art. 6.1.f del RGPD).
-    <strong>Destinatarios:</strong> Google y Cloudflare, que tratan los datos por encargo; no se ceden a nadie más.
-    <strong>Derechos:</strong> acceso, rectificación, supresión y los demás que reconoce el RGPD, en
+    <strong>Responsable:</strong> Pablo Ortega Insúa (AI Resolution Labs).{' '}
+    <strong>Finalidad:</strong> responder a tu mensaje.{' '}
+    <strong>Legitimación:</strong> atender tu solicitud, como medida precontractual a petición tuya (art. 6.1.b del RGPD); si tu mensaje no trata de un servicio, el interés legítimo en responderte (art. 6.1.f del RGPD).{' '}
+    <strong>Destinatarios:</strong> Google y Cloudflare, que tratan los datos por encargo; no se ceden a nadie más.{' '}
+    <strong>Derechos:</strong> acceso, rectificación, supresión y los demás que reconoce el RGPD, en{' '}
     <a href="mailto:info@airesolutionlabs.com">info@airesolutionlabs.com</a>.
     Más información en la <a href="/politica-privacidad.html">Política de Privacidad</a>.
   </p>
