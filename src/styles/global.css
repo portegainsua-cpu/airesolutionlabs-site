@@ -48,6 +48,12 @@
   --space-10: 128px;
   --section-y: clamp(4rem, 2rem + 8vw, 8rem);
   --gutter: clamp(16px, 4vw, 32px);
+  /* Valores de la maqueta que no estaban en DESIGN.md (propuestos para añadirlos) */
+  --space-bloque: 40px;        /* titular → bloque (FAQ, nota de servicios, foto/texto) y relleno máximo de tarjetas */
+  --boton-alto: 52px;          /* alto de los botones grandes (el mínimo táctil es 44 px) */
+  --boton-relleno-x: 28px;     /* relleno lateral de los botones grandes */
+  --menu-separacion: 28px;     /* separación entre enlaces de la cabecera (DESIGN §11) */
+  --flujo-numero-ancho: 28px;  /* columna de los números 01–04 del esquema del hero */
 
   /* Color (§7.1) */
   --color-bg: #FFFFFF;
@@ -207,8 +213,8 @@ button, input, textarea { font: inherit; }
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  min-height: 52px;
-  padding: 0 28px;
+  min-height: var(--boton-alto);
+  padding: 0 var(--boton-relleno-x);
   border: 1px solid transparent;
   border-radius: var(--radius-pill);
   font-weight: 500;
@@ -266,7 +272,7 @@ button, input, textarea { font: inherit; }
   flex: 1 1 auto;
   display: none;
   justify-content: flex-end;
-  gap: 28px;
+  gap: var(--menu-separacion);
   padding-right: var(--space-3);
   font-size: var(--text-small);
 }
@@ -351,7 +357,7 @@ button, input, textarea { font: inherit; }
 .flujo {
   border-radius: var(--radius-lg);
   background: var(--color-surface);
-  padding: clamp(24px, 4vw, 40px);
+  padding: clamp(var(--space-5), 4vw, var(--space-bloque));
 }
 .flujo__titulo { margin-bottom: var(--space-5); }
 .flujo ol { list-style: none; padding: 0; display: flex; flex-direction: column; }
@@ -377,7 +383,7 @@ button, input, textarea { font: inherit; }
 }
 .flujo__numero {
   flex: none;
-  width: 28px;
+  width: var(--flujo-numero-ancho);
   font-family: var(--font-mono);
   font-size: var(--text-label);
   color: var(--color-support);
@@ -411,7 +417,7 @@ button, input, textarea { font: inherit; }
 }
 .tarjeta__texto { color: var(--color-text-muted); }
 .tarjeta__nota { font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-text-muted); }
-.servicios__orientacion { margin-top: 40px; color: var(--color-text-muted); }
+.servicios__orientacion { margin-top: var(--space-bloque); color: var(--color-text-muted); }
 .servicios__orientacion a { font-weight: 500; }
 
 /* --- Cómo trabajo --- */
@@ -432,7 +438,7 @@ button, input, textarea { font: inherit; }
 }
 
 /* --- Quién soy --- */
-.quien .rejilla-dos { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 40px var(--space-8); align-items: center; }
+.quien .rejilla-dos { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: var(--space-bloque) var(--space-8); align-items: center; }
 .quien__foto {
   width: 100%;
   max-width: 480px;
@@ -446,7 +452,7 @@ button, input, textarea { font: inherit; }
 .quien__enlaces { display: flex; flex-direction: column; align-items: flex-start; }
 
 /* --- Preguntas frecuentes (§11) --- */
-.faq__lista { margin-top: 40px; border-top: 1px solid var(--color-border); }
+.faq__lista { margin-top: var(--space-bloque); border-top: 1px solid var(--color-border); }
 .faq__item { border-bottom: 1px solid var(--color-border); }
 .faq__item summary {
   display: flex;
@@ -484,7 +490,7 @@ button, input, textarea { font: inherit; }
   background: var(--color-surface);
   color: var(--color-text);
   border-radius: var(--radius-lg);
-  padding: clamp(24px, 4vw, 40px);
+  padding: clamp(var(--space-5), 4vw, var(--space-bloque));
   display: flex;
   flex-direction: column;
   gap: 20px;
