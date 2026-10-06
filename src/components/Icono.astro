@@ -1,0 +1,22 @@
+---
+// Iconos de la familia Lucide (licencia ISC), trazo de 1,5 px (DESIGN §10).
+// Decorativos: siempre acompañan a un texto, por eso llevan aria-hidden.
+interface Props {
+  nombre: 'monitor' | 'flujo' | 'equipo' | 'flecha' | 'flecha-externa' | 'abajo' | 'menu' | 'cerrar' | 'alerta' | 'correcto';
+  tamano?: number;
+}
+const { nombre, tamano = 20 } = Astro.props;
+const trazos: Record<Props['nombre'], string> = {
+  monitor: '<rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path>',
+  flujo: '<circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="18" r="3"></circle><path d="M9 6h4a4 4 0 0 1 4 4v5"></path>',
+  equipo: '<circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a5.5 5.5 0 0 1 3.5 5.5"></path>',
+  flecha: '<path d="M5 12h14M13 6l6 6-6 6"></path>',
+  'flecha-externa': '<path d="M7 17L17 7M9 7h8v8"></path>',
+  abajo: '<path d="M6 9l6 6 6-6"></path>',
+  menu: '<path d="M4 7h16M4 12h16M4 17h16"></path>',
+  cerrar: '<path d="M6 6l12 12M18 6L6 18"></path>',
+  alerta: '<circle cx="12" cy="12" r="9"></circle><path d="M12 8v4M12 16h.01"></path>',
+  correcto: '<circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.5l2.5 2.5 4.5-5"></path>',
+};
+---
+<svg width={tamano} height={tamano} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={trazos[nombre]}></svg>

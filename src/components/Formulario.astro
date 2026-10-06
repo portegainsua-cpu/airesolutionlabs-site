@@ -1,0 +1,57 @@
+---
+// Formulario de contacto (DESIGN §11). El envío y la validación están en src/scripts/formulario.js.
+import Icono from './Icono.astro';
+
+const campos = [
+  { id: 'name', nombre: 'name', etiqueta: 'Nombre', tipo: 'text', maxlength: 80, autocomplete: 'name', ejemplo: 'Tu nombre' },
+  { id: 'email', nombre: 'email', etiqueta: 'Email', tipo: 'email', maxlength: 254, autocomplete: 'email', ejemplo: 'tu@empresa.com' },
+];
+---
+<form class="formulario" id="contact-form" action="#" method="POST" novalidate>
+  {campos.map((c) => (
+    <div class="campo">
+      <label for={c.id}>{c.etiqueta}</label>
+      <input type={c.tipo} id={c.id} name={c.nombre} required maxlength={c.maxlength} autocomplete={c.autocomplete} placeholder={c.ejemplo} aria-describedby={`error-${c.id}`}>
+      <p class="campo__error" id={`error-${c.id}`} hidden><Icono nombre="alerta" /><span data-texto></span></p>
+    </div>
+  ))}
+  <div class="campo">
+    <label for="message">¿Qué te quita tiempo?</label>
+    <textarea id="message" name="message" rows="4" required maxlength="2000" placeholder="Por ejemplo: paso cada semana dos horas copiando pedidos del correo a una hoja." aria-describedby="error-message"></textarea>
+    <p class="campo__error" id="error-message" hidden><Icono nombre="alerta" /><span data-texto></span></p>
+  </div>
+  <div class="campo">
+    <label class="casilla" for="privacy-agreement">
+      <input type="checkbox" id="privacy-agreement" name="privacy-agreement" required aria-describedby="error-privacy-agreement">
+      <span>He leído la <a href="/politica-privacidad.html">Política de Privacidad</a>.</span>
+    </label>
+    <p class="campo__error" id="error-privacy-agreement" hidden><Icono nombre="alerta" /><span data-texto></span></p>
+  </div>
+  <!-- Campo trampa para bots: fuera de la pantalla, las personas no lo ven ni lo rellenan -->
+  <div class="formulario__trampa" aria-hidden="true">
+    <label for="web_empresa">No rellenes este campo</label>
+    <input type="text" id="web_empresa" name="web_empresa" tabindex="-1" autocomplete="off">
+  </div>
+  <!-- Verificación antispam (Cloudflare Turnstile, tema claro, interaction-only): solo se ve si hace falta -->
+  <div class="formulario__turnstile" id="turnstile"></div>
+  <button type="submit" class="boton boton--primario formulario__boton" id="form-submit-btn">Enviar mensaje</button>
+  <p class="formulario__estado" id="form-status" role="status" aria-live="polite" hidden>
+    <span data-icono-exito hidden><Icono nombre="correcto" /></span>
+    <span data-icono-error hidden><Icono nombre="alerta" /></span>
+    <span data-texto></span>
+  </p>
+  <!-- Primera capa de información de privacidad (RGPD, art. 13), aprobada en la Fase 2A -->
+  <p class="formulario__privacidad">
+    <strong>Responsable:</strong> Pablo Ortega Insúa (AI Resolution Labs).
+    <strong>Finalidad:</strong> responder a tu mensaje.
+    <strong>Legitimación:</strong> atender tu solicitud, como medida precontractual a petición tuya (art. 6.1.b del RGPD); si tu mensaje no trata de un servicio, el interés legítimo en responderte (art. 6.1.f del RGPD).
+    <strong>Destinatarios:</strong> Google y Cloudflare, que tratan los datos por encargo; no se ceden a nadie más.
+    <strong>Derechos:</strong> acceso, rectificación, supresión y los demás que reconoce el RGPD, en
+    <a href="mailto:info@airesolutionlabs.com">info@airesolutionlabs.com</a>.
+    Más información en la <a href="/politica-privacidad.html">Política de Privacidad</a>.
+  </p>
+</form>
+
+<script>
+  import '../scripts/formulario.js';
+</script>

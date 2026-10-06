@@ -1,2 +1,7 @@
 privado/
 .claude/launch.json
+
+# Astro: dependencias, compilación y caché (no se suben)
+node_modules/
+dist/
+.astro/

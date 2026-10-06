@@ -1,0 +1,11 @@
+---
+// Botón de reserva de Cal.com. Abre el modal al primer clic (src/scripts/cal.js);
+// si Cal.com no carga en 5 s, abre cal.com en una pestaña nueva.
+interface Props { clase?: string }
+const { clase = 'boton boton--secundario-oscuro' } = Astro.props;
+---
+<a class={clase} href="https://cal.com/pablo-ortega-insua-wdoysa" target="_blank" rel="noopener" data-cal-booking="pablo-ortega-insua-wdoysa" data-cal-config='{"layout":"month_view"}'><slot /></a>
+
+<script>
+  import '../scripts/cal.js';
+</script>

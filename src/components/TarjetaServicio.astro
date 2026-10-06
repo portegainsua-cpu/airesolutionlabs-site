@@ -1,0 +1,19 @@
+---
+// Tarjeta de servicio (DESIGN §11): icono, titular, una frase y, si existe, una nota.
+// Sin enlace hasta que existan las páginas de servicio (etapa A de la 2B).
+import Icono from './Icono.astro';
+
+interface Props {
+  icono: 'monitor' | 'flujo' | 'equipo';
+  titulo: string;
+  texto: string;
+  nota?: string;
+}
+const { icono, titulo, texto, nota } = Astro.props;
+---
+<article class="tarjeta">
+  <Icono nombre={icono} tamano={24} />
+  <h3 class="titulo-tarjeta">{titulo}</h3>
+  <p class="tarjeta__texto">{texto}</p>
+  {nota && <p class="tarjeta__nota">{nota}</p>}
+</article>

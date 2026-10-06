@@ -1,0 +1,40 @@
+# Publica la web en GitHub Pages con Astro (guía oficial: docs.astro.build/en/guides/deploy/github/).
+# Requiere Settings > Pages > Source = "GitHub Actions" (lo cambia Pablo).
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un solo despliegue a la vez; no se cancela uno que ya esté en marcha
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v7
+      - name: Instalar, compilar y subir la web
+        uses: withastro/action@v6
+        env:
+          ASTRO_TELEMETRY_DISABLED: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
