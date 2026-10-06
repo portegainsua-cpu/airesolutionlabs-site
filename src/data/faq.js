@@ -19,6 +19,12 @@ export const preguntas = [
     publicar: true,
   },
   {
+    // Pregunta P6 del FAQ anterior, pasada a primera persona por Pablo (06/10/2026)
+    pregunta: '¿Puedo conectar las automatizaciones con las herramientas que ya uso?',
+    respuesta: 'En la mayoría de los casos, sí. Trabajo con herramientas como Make o n8n, que se conectan con Google Workspace, Microsoft 365, WhatsApp Business, gestores de correo y muchos CRM y ERP. En el diagnóstico gratuito compruebo si tus herramientas concretas lo permiten.',
+    publicar: true,
+  },
+  {
     pregunta: '¿Cuánto cuesta?',
     respuesta: 'Depende de lo que necesites. Antes de empezar te doy un precio cerrado por escrito.',
     publicar: true,
