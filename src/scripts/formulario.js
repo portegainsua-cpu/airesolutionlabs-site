@@ -6,7 +6,8 @@ const FORM_AJUSTES = {
   // Clave del sitio de Turnstile (es pública). Clave de prueba: 1x00000000000000000000AA
   TURNSTILE_SITEKEY: '0x4AAAAAAFIFiqOfy6ts7wC6',
   VERSION_TEXTO_LEGAL: '2026-10-05',
-  TIEMPO_MAXIMO_MS: 25000,
+  // Apps Script puede tardar más de 25 s en responder aunque el envío llegue bien
+  TIEMPO_MAXIMO_MS: 45000,
   EMAIL_CONTACTO: 'info@airesolutionlabs.com',
 };
 // Permite probar en local con ?endpoint=...&sitekey=... sin tocar el código publicado
@@ -222,7 +223,12 @@ if (contactForm) {
       console.error('Error al enviar formulario:', error);
       ocupado(false);
       reiniciarTurnstile();
-      showFormStatus(`No se ha podido enviar tu mensaje. Inténtalo de nuevo o escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
+      if (error && error.name === 'AbortError') {
+        // Se agotó la espera, pero el servidor puede haberlo registrado: se evita que se reenvíe varias veces
+        showFormStatus(`Tu mensaje puede haberse enviado. Si en unos minutos no te llega la confirmación por correo, escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
+      } else {
+        showFormStatus(`No se ha podido enviar tu mensaje. Inténtalo de nuevo o escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
+      }
     });
   });
 }
