@@ -172,7 +172,7 @@ if (contactForm) {
     obtenerToken(12000).then((token) => {
       if (!token) {
         ocupado(false);
-        showFormStatus(`No se ha podido completar la verificación antispam (puede que un bloqueador la esté impidiendo). Escríbenos a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
+        showFormStatus(`No se ha podido completar la verificación antispam (puede que un bloqueador la esté impidiendo). Escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
         return null;
       }
       // Apps Script tarda unos segundos en responder: se avisa para que nadie pulse dos veces
@@ -215,14 +215,14 @@ if (contactForm) {
         } else if (r && r.error === 'verificacion') {
           showFormStatus('No se ha podido verificar el envío. Vuelve a pulsar el botón.', true);
         } else {
-          showFormStatus(`No hemos podido enviar tu mensaje. Inténtalo de nuevo o escríbenos a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
+          showFormStatus(`No se ha podido enviar tu mensaje. Inténtalo de nuevo o escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
         }
       });
     }).catch((error) => {
       console.error('Error al enviar formulario:', error);
       ocupado(false);
       reiniciarTurnstile();
-      showFormStatus(`No hemos podido enviar tu mensaje. Inténtalo de nuevo o escríbenos a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
+      showFormStatus(`No se ha podido enviar tu mensaje. Inténtalo de nuevo o escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
     });
   });
 }
