@@ -10,10 +10,9 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+# Por defecto, solo lectura. Los permisos de Pages están solo en el paso de publicar.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 # Un solo despliegue a la vez; no se cancela uno que ya esté en marcha.
 # Las compilaciones de los Pull Request van en su propio grupo y no esperan a los despliegues.
@@ -34,9 +33,12 @@ jobs:
 
   deploy:
     needs: build
-    # Solo se publica desde main, nunca desde un Pull Request
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    # Solo se publica con un push a main: nunca desde un Pull Request ni al lanzarlo a mano
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
