@@ -1,0 +1,15 @@
+---
+// Sección con titular y lista de puntos ("Qué resuelve", "Para quién").
+// `id` opcional para enlazar la sección; el slot va después de la lista.
+interface Props { titulo: string; puntos: string[]; id?: string }
+const { titulo, puntos, id } = Astro.props;
+---
+<section class="seccion" id={id}>
+  <div class="contenedor">
+    <h2 class="titulo-seccion">{titulo}</h2>
+    <ul class="lista-puntos">
+      {puntos.map((p) => <li set:html={p}></li>)}
+    </ul>
+    <slot />
+  </div>
+</section>

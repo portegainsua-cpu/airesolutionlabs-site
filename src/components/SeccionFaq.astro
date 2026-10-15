@@ -1,0 +1,14 @@
+---
+// Sección de preguntas frecuentes de una página interior. El JSON-LD FAQPage se genera
+// con las mismas preguntas (faqLd en src/data/entidad.js).
+import Faq from './Faq.astro';
+
+interface Props { preguntas: { pregunta: string; respuesta: string }[] }
+const { preguntas } = Astro.props;
+---
+<section class="seccion" id="faq">
+  <div class="contenedor contenedor--lectura">
+    <h2 class="titulo-seccion">Preguntas frecuentes</h2>
+    <Faq preguntas={preguntas} />
+  </div>
+</section>

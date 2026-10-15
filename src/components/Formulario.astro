@@ -1,13 +1,35 @@
 ---
 // Formulario de contacto (DESIGN §11). El envío y la validación están en src/scripts/formulario.js.
+// Mismo formulario en la portada y en /contacto/. Sin `textos`, lleva los de la portada;
+// /contacto/ pasa los suyos (textos de la etapa B, §9). Los mensajes que muestra el script
+// van en data-textos; los que no se pasan, se quedan como en la portada.
 import Icono from './Icono.astro';
 
+interface Textos {
+  nombre: string; ejemploNombre: string;
+  email: string; ejemploEmail: string;
+  mensaje: string; ejemploMensaje: string;
+  casilla: string; boton: string;
+  /** Mensajes del script (ver TEXTOS en src/scripts/formulario.js) */
+  script?: Record<string, unknown>;
+}
+interface Props { textos?: Textos }
+
+const portada: Textos = {
+  nombre: 'Nombre', ejemploNombre: 'Tu nombre',
+  email: 'Email', ejemploEmail: 'tu@empresa.com',
+  mensaje: '¿Qué te quita tiempo?', ejemploMensaje: 'Por ejemplo: paso cada semana dos horas copiando pedidos del correo a una hoja.',
+  casilla: 'He leído la <a href="/politica-privacidad.html">Política de Privacidad</a>.',
+  boton: 'Enviar mensaje',
+};
+const { textos = portada } = Astro.props;
+
 const campos = [
-  { id: 'name', nombre: 'name', etiqueta: 'Nombre', tipo: 'text', maxlength: 80, autocomplete: 'name', ejemplo: 'Tu nombre' },
-  { id: 'email', nombre: 'email', etiqueta: 'Email', tipo: 'email', maxlength: 254, autocomplete: 'email', ejemplo: 'tu@empresa.com' },
+  { id: 'name', nombre: 'name', etiqueta: textos.nombre, tipo: 'text', maxlength: 80, autocomplete: 'name', ejemplo: textos.ejemploNombre },
+  { id: 'email', nombre: 'email', etiqueta: textos.email, tipo: 'email', maxlength: 254, autocomplete: 'email', ejemplo: textos.ejemploEmail },
 ];
 ---
-<form class="formulario" id="contact-form" action="#" method="POST" novalidate>
+<form class="formulario" id="contact-form" action="#" method="POST" novalidate data-textos={textos.script ? JSON.stringify(textos.script) : undefined}>
   {campos.map((c) => (
     <div class="campo">
       <label for={c.id}>{c.etiqueta}</label>
@@ -16,14 +38,14 @@ const campos = [
     </div>
   ))}
   <div class="campo">
-    <label for="message">¿Qué te quita tiempo?</label>
-    <textarea id="message" name="message" rows="4" required maxlength="2000" placeholder="Por ejemplo: paso cada semana dos horas copiando pedidos del correo a una hoja." aria-describedby="error-message"></textarea>
+    <label for="message">{textos.mensaje}</label>
+    <textarea id="message" name="message" rows="4" required maxlength="2000" placeholder={textos.ejemploMensaje} aria-describedby="error-message"></textarea>
     <p class="campo__error" id="error-message" hidden><Icono nombre="alerta" /><span data-texto></span></p>
   </div>
   <div class="campo">
     <label class="casilla" for="privacy-agreement">
       <input type="checkbox" id="privacy-agreement" name="privacy-agreement" required aria-describedby="error-privacy-agreement">
-      <span>He leído la <a href="/politica-privacidad.html">Política de Privacidad</a>.</span>
+      <span set:html={textos.casilla}></span>
     </label>
     <p class="campo__error" id="error-privacy-agreement" hidden><Icono nombre="alerta" /><span data-texto></span></p>
   </div>
@@ -34,7 +56,7 @@ const campos = [
   </div>
   <!-- Verificación antispam (Cloudflare Turnstile, tema claro, interaction-only): solo se ve si hace falta -->
   <div class="formulario__turnstile" id="turnstile"></div>
-  <button type="submit" class="boton boton--primario formulario__boton" id="form-submit-btn">Enviar mensaje</button>
+  <button type="submit" class="boton boton--primario formulario__boton" id="form-submit-btn">{textos.boton}</button>
   <p class="formulario__estado" id="form-status" role="status" aria-live="polite" hidden>
     <span data-icono-exito hidden><Icono nombre="correcto" /></span>
     <span data-icono-error hidden><Icono nombre="alerta" /></span>

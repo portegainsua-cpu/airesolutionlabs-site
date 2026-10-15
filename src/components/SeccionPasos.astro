@@ -1,0 +1,22 @@
+---
+// "Cómo trabajo" de las páginas de servicio: pasos numerados 01–04 (mismo estilo que la portada).
+// El slot va bajo los pasos (p. ej. el texto de herramientas).
+interface Props { titulo: string; pasos: { titulo: string; texto: string }[] }
+const { titulo, pasos } = Astro.props;
+const dosCifras = (n: number) => String(n).padStart(2, '0');
+---
+<section class="seccion">
+  <div class="contenedor">
+    <h2 class="titulo-seccion">{titulo}</h2>
+    <ol class="pasos">
+      {pasos.map((p, i) => (
+        <li>
+          <span class="etiqueta etiqueta--apagada">{dosCifras(i + 1)}</span>
+          <h3 class="titulo-tarjeta">{p.titulo}</h3>
+          <p class="texto-apagado">{p.texto}</p>
+        </li>
+      ))}
+    </ol>
+    <slot />
+  </div>
+</section>

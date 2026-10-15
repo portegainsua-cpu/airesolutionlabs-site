@@ -1,0 +1,24 @@
+---
+// Hero de las páginas interiores (DESIGN §6): migas, etiqueta opcional, titular, entradilla
+// y acciones (slot). Variante sin foto: texto a ancho completo (DESIGN §9.1).
+import Migas from './Migas.astro';
+
+interface Props {
+  migas: { nombre: string; ruta: string }[];
+  etiqueta?: string;
+  titulo: string;
+  entradilla: string;
+}
+const { migas, etiqueta, titulo, entradilla } = Astro.props;
+---
+<section class="hero-pagina">
+  <div class="contenedor">
+    <Migas migas={migas} />
+    <div class="hero-pagina__texto">
+      {etiqueta && <p class="etiqueta">{etiqueta}</p>}
+      <h1 class="titulo-pagina">{titulo}</h1>
+      <p class="entradilla">{entradilla}</p>
+      {Astro.slots.has('default') && <div class="acciones"><slot /></div>}
+    </div>
+  </div>
+</section>
