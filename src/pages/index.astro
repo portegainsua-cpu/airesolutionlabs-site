@@ -7,63 +7,19 @@ import Faq from '../components/Faq.astro';
 import Formulario from '../components/Formulario.astro';
 import BotonReserva from '../components/BotonReserva.astro';
 import { preguntasPublicadas, textoPlano } from '../data/faq.js';
+import { sitio, organizacion, persona, web } from '../data/entidad.js';
 
 // title (≤ 60) y meta description (≤ 155), aprobados por Pablo el 06/10/2026
 const titulo = 'AI Resolution Labs: consultoría de tecnología e IA, Sevilla';
 const descripcion = 'Consultoría de tecnología e IA desde Sevilla para empresas de toda España: te explico qué te sirve, lo pongo en marcha y te enseño a usarlo.';
 
-const sitio = 'https://www.airesolutionlabs.com';
+// Organización, persona y web: comunes a todas las páginas (src/data/entidad.js)
 const jsonld = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': ['Organization', 'ProfessionalService'],
-      '@id': `${sitio}/#org`,
-      name: 'AI Resolution Labs',
-      url: `${sitio}/`,
-      logo: `${sitio}/icon-512.png`,
-      email: 'info@airesolutionlabs.com',
-      // Brief §8g
-      description: 'Consultoría de tecnología e IA desde Sevilla para empresas de toda España',
-      areaServed: [
-        { '@type': 'City', name: 'Sevilla' },
-        { '@type': 'Country', name: 'España' },
-      ],
-      founder: { '@id': `${sitio}/#pablo` },
-      // Catálogo de servicios v1
-      knowsAbout: [
-        'Asesoría en tecnología e IA',
-        'Webs y captación',
-        'Tarjetas digitales',
-        'Reservas automáticas',
-        'Formularios con seguimiento',
-        'Automatizaciones e integraciones',
-        'Aplicaciones a medida',
-        'Implantación de Microsoft 365 y Google Workspace',
-        'Formación en IA para equipos',
-      ],
-    },
-    {
-      '@type': 'Person',
-      '@id': `${sitio}/#pablo`,
-      name: 'Pablo Ortega Insúa',
-      jobTitle: 'Fundador y Consultor Principal',
-      worksFor: { '@id': `${sitio}/#org` },
-      image: `${sitio}/pablo.webp`,
-      url: `${sitio}/#quien`,
-      sameAs: [
-        'https://founder.airesolutionlabs.com/',
-        'https://www.linkedin.com/in/pablo-ortega-ins%C3%BAa-775b92277/',
-      ],
-    },
-    {
-      '@type': 'WebSite',
-      '@id': `${sitio}/#web`,
-      url: `${sitio}/`,
-      name: 'AI Resolution Labs',
-      inLanguage: 'es-ES',
-      publisher: { '@id': `${sitio}/#org` },
-    },
+    organizacion,
+    persona,
+    web,
     {
       '@type': 'FAQPage',
       '@id': `${sitio}/#faq`,
