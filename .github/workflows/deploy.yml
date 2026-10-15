@@ -5,6 +5,9 @@ name: Publicar en GitHub Pages
 on:
   push:
     branches: [ main ]
+  # En los Pull Request hacia main solo se compila (comprobación); no se publica
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -12,9 +15,10 @@ permissions:
   pages: write
   id-token: write
 
-# Un solo despliegue a la vez; no se cancela uno que ya esté en marcha
+# Un solo despliegue a la vez; no se cancela uno que ya esté en marcha.
+# Las compilaciones de los Pull Request van en su propio grupo y no esperan a los despliegues.
 concurrency:
-  group: pages
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.ref) || 'pages' }}
   cancel-in-progress: false
 
 jobs:
@@ -30,6 +34,8 @@ jobs:
 
   deploy:
     needs: build
+    # Solo se publica desde main, nunca desde un Pull Request
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
