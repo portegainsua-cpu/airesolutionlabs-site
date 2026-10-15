@@ -31,6 +31,15 @@ Nunca copies su contenido, ni partes de él, a archivos que se suban al repo, a 
 - Los identificadores públicos de Google Ads (AW-...), Google Analytics (G-...) o Search Console sí pueden ir en la web.
 - Si encuentras un secreto ya publicado, avisa a Pablo y no lo copies en ningún otro sitio.
 
+## Etapa B (páginas de servicio, asesoría, sobre y contacto)
+- Fuente de los textos: privado/2b/textos-etapa-b.md (aprobados). Se copian literalmente: no se reescriben, no se resumen y no se añaden textos propios. Si falta un texto, se pregunta a Pablo.
+- Tratamiento: "usted" con el cliente en toda la web, en primera persona del singular ("trabajo", "le respondo"). La portada pasa de "tú" a "usted" en el PR de la portada.
+- Precios: interruptor único `mostrarPrecios` en src/config.js, a `false`. Todo lo marcado como [precio] (columnas de precio, packs, notas de IVA, bloque del coste del primer año) solo se genera con `true`; con `false` no puede aparecer ningún importe ni el símbolo € en el HTML generado. Nunca se oculta con CSS ni con comentarios. Solo Pablo decide cuándo pasa a `true`.
+- Bloques con "publicar: no": `publicar: false` en Astro; no se generan (DESIGN §13). No se ocultan con CSS ni con comentarios.
+- Mientras `mostrarPrecios` sea `false`, el JSON-LD `Service` no lleva `offers`.
+- Las FAQ de cada página salen de la misma lista que su JSON-LD FAQPage: si cambia el texto, cambian los dos a la vez.
+- Antes de cada PR, buscar en el HTML generado (dist/) `[`, `TODO`, `pendiente`, `próximamente`, `en construcción` y `€`: 0 en texto visible y 0 € en todo el HTML.
+
 ## Datos del negocio
 No inventes precios, NIF, direcciones, clientes, cifras ni reseñas. Usa TODO(Pablo) y lístalos al final.
 No escribas en el repo datos personales, legales o de clientes de Pablo.
