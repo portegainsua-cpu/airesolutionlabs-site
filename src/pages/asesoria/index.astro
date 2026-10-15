@@ -66,6 +66,7 @@ const jsonld = {
 
     <section class="seccion" id="formatos">
       <div class="contenedor">
+        <h2 class="titulo-seccion">Dos formatos de sesión</h2>
         <TablaProductos columnas={['Sesión', 'Qué se lleva']} filas={sesiones} />
         <div class="notas">
           <p>Por videollamada. Si prefiere que vaya en persona a Sevilla o alrededores, el desplazamiento se presupuesta aparte. Si en los 30 días siguientes contrata un proyecto conmigo, le descuento lo que pagó por la asesoría.</p>
@@ -74,9 +75,14 @@ const jsonld = {
       </div>
     </section>
 
-    <SeccionLista titulo="Para quien quiere avanzar sin perder semanas investigando" puntos={paraQuien}>
-      <p class="texto-bloque">El diagnóstico dura 30 minutos y sirve para conocernos y ver si puedo ayudarle. Después le envío un email con 2 o 3 oportunidades. La asesoría es una sesión de trabajo: salimos con algo configurado o planificado.</p>
-    </SeccionLista>
+    <SeccionLista titulo="Para quien quiere avanzar sin perder semanas investigando" puntos={paraQuien} />
+
+    <section class="seccion">
+      <div class="contenedor contenedor--columna">
+        <h2 class="titulo-seccion">En qué se diferencia del diagnóstico gratuito</h2>
+        <p class="texto-bloque">El diagnóstico dura 30 minutos y sirve para conocernos y ver si puedo ayudarle. Después le envío un email con 2 o 3 oportunidades. La asesoría es una sesión de trabajo: salimos con algo configurado o planificado.</p>
+      </div>
+    </section>
 
     <SeccionFaq preguntas={preguntas} />
 
