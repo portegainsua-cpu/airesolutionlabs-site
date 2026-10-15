@@ -521,6 +521,21 @@ button, input, textarea { font: inherit; }
 .formulario__estado--error { color: var(--color-error); }
 .formulario__estado--exito { color: var(--color-success); }
 .formulario__estado svg { margin-top: 3px; }
+/* Aviso de espera agotada: tono neutro (ni error ni éxito), porque no se sabe si el envío llegó */
+.formulario__aviso:empty { display: none; }
+.formulario__aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-small);
+}
+.formulario__aviso svg { margin-top: 2px; }
+.formulario__aviso strong { display: block; margin-bottom: var(--space-1); font-weight: 600; }
 
 .casilla {
   display: flex;
@@ -676,7 +691,10 @@ button, input, textarea { font: inherit; }
 .packs .lista-puntos { margin-top: var(--space-3); }
 .no-incluye { margin-top: var(--space-6); max-width: 68ch; color: var(--color-text-muted); }
 .no-incluye strong { color: var(--color-text); font-weight: 600; }
-.nota-mono { margin-top: var(--space-5); font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-text-muted); }
+.nota-app { margin-top: var(--space-5); font-size: var(--text-small); color: var(--color-text-muted); }
+
+/* Columna de lectura (720 px, DESIGN §6) alineada a la izquierda del contenedor, como el resto de la página */
+.contenedor--columna > * { max-width: 720px; }
 
 .destacado {
   margin-top: var(--space-7);
