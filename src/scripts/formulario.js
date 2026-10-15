@@ -33,8 +33,6 @@ const TEXTOS = {
   limite: 'Has enviado varios mensajes seguidos. Espera un rato antes de volver a intentarlo.',
   verificacion: 'No se ha podido verificar el envío. Vuelve a pulsar el botón.',
   general: `No se ha podido enviar tu mensaje. Inténtalo de nuevo o escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`,
-  // Se agotó la espera, pero el servidor puede haberlo registrado: se evita que se reenvíe varias veces
-  esperaAgotada: `Tu mensaje puede haberse enviado. Si en unos minutos no te llega la confirmación por correo, escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`,
   errores: null,
 };
 if (contactForm && contactForm.dataset.textos) {
@@ -61,6 +59,19 @@ function showFormStatus(text, isError) {
 
 function hideFormStatus() {
   if (formStatus) formStatus.hidden = true;
+}
+
+// Aviso de espera agotada (tono neutro): el envío puede haber llegado aunque no haya respuesta.
+// Se rellena la región aria-live, que ya está en la página, con el contenido de la plantilla.
+const formAviso = document.getElementById('form-aviso');
+const formAvisoContenido = document.getElementById('form-aviso-contenido');
+
+function mostrarAviso() {
+  if (formAviso && formAvisoContenido) formAviso.replaceChildren(formAvisoContenido.content.cloneNode(true));
+}
+
+function ocultarAviso() {
+  if (formAviso) formAviso.replaceChildren();
 }
 
 // Campos que valida el servidor: nombre del campo en el Apps Script → campo del formulario
@@ -182,6 +193,7 @@ if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault(); // Previene la recarga convencional de la página
     hideFormStatus();
+    ocultarAviso();
     cargarTurnstile();
 
     const datos = {
@@ -251,7 +263,9 @@ if (contactForm) {
       ocupado(false);
       reiniciarTurnstile();
       if (error && error.name === 'AbortError') {
-        showFormStatus(TEXTOS.esperaAgotada, true);
+        // Se agotó la espera, pero el servidor puede haberlo registrado: aviso neutro, los campos se
+        // conservan y el texto no invita a reenviar, para no duplicar solicitudes
+        mostrarAviso();
       } else {
         showFormStatus(TEXTOS.general, true);
       }

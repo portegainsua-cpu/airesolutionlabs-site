@@ -2,7 +2,7 @@
 // Iconos de la familia Lucide (licencia ISC), trazo de 1,5 px (DESIGN §10).
 // Decorativos: siempre acompañan a un texto, por eso llevan aria-hidden.
 interface Props {
-  nombre: 'monitor' | 'flujo' | 'equipo' | 'flecha' | 'flecha-externa' | 'abajo' | 'menu' | 'cerrar' | 'alerta' | 'correcto';
+  nombre: 'monitor' | 'flujo' | 'equipo' | 'flecha' | 'flecha-externa' | 'abajo' | 'menu' | 'cerrar' | 'alerta' | 'correcto' | 'reloj';
   tamano?: number;
 }
 const { nombre, tamano = 20 } = Astro.props;
@@ -17,6 +17,8 @@ const trazos: Record<Props['nombre'], string> = {
   cerrar: '<path d="M6 6l12 12M18 6L6 18"></path>',
   alerta: '<circle cx="12" cy="12" r="9"></circle><path d="M12 8v4M12 16h.01"></path>',
   correcto: '<circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.5l2.5 2.5 4.5-5"></path>',
+  // Lucide "clock"
+  reloj: '<circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>',
 };
 ---
 <svg width={tamano} height={tamano} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={trazos[nombre]}></svg>

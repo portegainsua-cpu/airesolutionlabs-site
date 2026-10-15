@@ -62,12 +62,19 @@ const campos = [
     <span data-icono-error hidden><Icono nombre="alerta" /></span>
     <span data-texto></span>
   </p>
+  <!-- Aviso si la confirmación tarda más de 45 s (textos de la etapa B, §9). La región aria-live
+       está siempre en la página y vacía; el script la rellena cuando se agota la espera. -->
+  <div class="formulario__aviso" id="form-aviso" role="status" aria-live="polite"></div>
+  <template id="form-aviso-contenido">
+    <Icono nombre="reloj" />
+    <p><strong>Su mensaje puede haberse enviado</strong> La confirmación está tardando más de lo normal. Si en los próximos 10 minutos recibe un email de confirmación, su mensaje ha llegado y no tiene que hacer nada más. Revise también la carpeta de correo no deseado. Si no le llega, escríbame a info@airesolutionlabs.com. He dejado su mensaje en el formulario para que pueda copiarlo.</p>
+  </template>
   <!-- Primera capa de información de privacidad (RGPD, art. 13), aprobada en la Fase 2A.
        Los espacios explícitos al final de cada frase son necesarios: al compilar, Astro quita el salto de línea antes de una etiqueta. -->
   <p class="formulario__privacidad">
     <strong>Responsable:</strong> Pablo Ortega Insúa (AI Resolution Labs).{' '}
-    <strong>Finalidad:</strong> responder a tu mensaje.{' '}
-    <strong>Legitimación:</strong> atender tu solicitud, como medida precontractual a petición tuya (art. 6.1.b del RGPD); si tu mensaje no trata de un servicio, el interés legítimo en responderte (art. 6.1.f del RGPD).{' '}
+    <strong>Finalidad:</strong> responder a su mensaje.{' '}
+    <strong>Legitimación:</strong> atender su solicitud, como medida precontractual a petición suya (art. 6.1.b del RGPD); si su mensaje no trata de un servicio, el interés legítimo en responderle (art. 6.1.f del RGPD).{' '}
     <strong>Destinatarios:</strong> Google y Cloudflare, que tratan los datos por encargo; no se ceden a nadie más.{' '}
     <strong>Derechos:</strong> acceso, rectificación, supresión y los demás que reconoce el RGPD, en{' '}
     <a href="mailto:info@airesolutionlabs.com">info@airesolutionlabs.com</a>.

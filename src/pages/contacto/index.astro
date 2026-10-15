@@ -16,6 +16,7 @@ const descripcion = 'Reserve un diagnóstico gratuito de 30 minutos o escríbame
 const migas = [migaInicio, { nombre: 'Contacto', ruta }];
 
 const errorGeneral = 'No se ha podido enviar. Inténtelo de nuevo o escríbame a info@airesolutionlabs.com.';
+const errorSeguridad = 'No se ha podido completar la verificación de seguridad. Recargue la página e inténtelo de nuevo.';
 const textosFormulario = {
   nombre: 'Nombre', ejemploNombre: 'Ana García',
   email: 'Email', ejemploEmail: 'ana@suempresa.es',
@@ -32,10 +33,12 @@ const textosFormulario = {
       mensaje: 'Cuénteme en una frase qué necesita.',
       privacidad: 'Para enviar el mensaje, marque la casilla de privacidad.',
     },
+    // Turnstile no da el token (verificacionAntispam) o el servidor no lo acepta (verificacion)
+    verificacionAntispam: errorSeguridad,
+    verificacion: errorSeguridad,
+    limite: 'Ha enviado varios mensajes seguidos. Espere unos minutos e inténtelo de nuevo, o escríbame a info@airesolutionlabs.com.',
+    // El filtro antispam del servidor (campo trampa, envío demasiado rápido) da el error general a propósito
     revisa: errorGeneral,
-    verificacionAntispam: errorGeneral,
-    limite: errorGeneral,
-    verificacion: errorGeneral,
     general: errorGeneral,
   },
 };
@@ -57,7 +60,7 @@ const jsonld = {
     <HeroPagina migas={migas} titulo="Hablemos de su empresa" entradilla="Puede reservar un diagnóstico gratuito de 30 minutos o escribirme. Respondo en un máximo de 48 horas." />
 
     <section class="seccion" id="diagnostico">
-      <div class="contenedor contenedor--lectura">
+      <div class="contenedor contenedor--columna">
         <h2 class="titulo-seccion">30 minutos gratis por videollamada</h2>
         <p class="texto-bloque">Me cuenta qué le quita tiempo y qué herramientas usa, y le digo si puedo ayudarle. Después le envío un email con 2 o 3 oportunidades concretas y el siguiente paso. Es gratis la primera vez y no le compromete a nada.</p>
         <div class="acciones">
@@ -67,7 +70,7 @@ const jsonld = {
     </section>
 
     <section class="seccion" id="contacto">
-      <div class="contenedor contenedor--lectura">
+      <div class="contenedor contenedor--columna">
         <h2 class="titulo-seccion">Escríbame</h2>
         <div class="contacto__formulario">
           <Formulario textos={textosFormulario} />
@@ -76,13 +79,13 @@ const jsonld = {
     </section>
 
     <section class="seccion">
-      <div class="contenedor contenedor--lectura">
+      <div class="contenedor contenedor--columna">
         <div class="bloque-final bloque-final--sin-linea">
           <p>Si lo prefiere, escríbame a <a href="mailto:info@airesolutionlabs.com">info@airesolutionlabs.com</a>.</p>
           <p>Trabajo desde Sevilla con empresas de toda España, por videollamada o en persona.</p>
           <div class="enlaces-lista">
             <a class="enlace-flecha" href="https://www.linkedin.com/in/pablo-ortega-ins%C3%BAa-775b92277/" target="_blank" rel="noopener">LinkedIn <Icono nombre="flecha-externa" /><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
-            <a class="enlace-flecha" href="https://founder.airesolutionlabs.com/">Tarjeta digital</a>
+            <a class="enlace-flecha" href="https://founder.airesolutionlabs.com/">Tarjeta digital <Icono nombre="flecha-externa" /></a>
           </div>
         </div>
       </div>
