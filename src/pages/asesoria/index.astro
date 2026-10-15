@@ -1,0 +1,86 @@
+---
+// Asesoría en tecnología e IA. Textos literales de los textos aprobados de la etapa B (§7).
+// Lo marcado como [precio] solo se genera con mostrarPrecios = true (src/config.js).
+import Base from '../../layouts/Base.astro';
+import HeroPagina from '../../components/HeroPagina.astro';
+import TablaProductos from '../../components/TablaProductos.astro';
+import SeccionLista from '../../components/SeccionLista.astro';
+import SeccionFaq from '../../components/SeccionFaq.astro';
+import LlamadaFinal from '../../components/LlamadaFinal.astro';
+import { mostrarPrecios } from '../../config.js';
+import { migaInicio } from '../../data/paginas.js';
+import { organizacion, persona, web, migasLd, faqLd, paginaLd, servicioLd } from '../../data/entidad.js';
+
+const ruta = '/asesoria/';
+const titulo = 'Asesoría en tecnología e IA · AI Resolution Labs';
+const descripcion = 'Sesiones de 1 o 2 horas por videollamada. Sale con una herramienta de IA configurada o con una hoja de ruta para su empresa.';
+const h1 = 'Asesoría en tecnología e IA';
+const entradilla = 'Una sesión por videollamada para resolver una duda concreta o decidir por dónde empezar. Además de la conversación, siempre se lleva algo hecho: una herramienta configurada o una hoja de ruta con prioridades.';
+const migas = [migaInicio, { nombre: 'Asesoría', ruta }];
+
+const sesiones = [
+  { nombre: '1 hora · Puesta en marcha', texto: 'ChatGPT, Claude o Copilot configurado para su trabajo, una guía de 1 o 2 páginas y 10 plantillas de instrucciones adaptadas a sus tareas', precio: '150 €' },
+  { nombre: '2 horas · Hoja de ruta', texto: 'Una hoja de ruta con 3 a 5 mejoras ordenadas por prioridad, cada una con el tiempo que calculo que le ahorra, su coste y la herramienta. Además, dejamos configurada una mejora rápida', precio: '290 €' },
+];
+
+const paraQuien = [
+  'Dueños y responsables de pymes que quieren empezar a usar IA con criterio.',
+  'Profesionales que ya usan ChatGPT o Copilot y quieren sacarle más partido.',
+  'Empresas que dudan entre varias herramientas y quieren decidir con datos.',
+];
+
+const preguntas = [
+  {
+    pregunta: '¿Tengo que preparar algo?',
+    respuesta: 'Una lista de las tareas que más tiempo le quitan y, si ya usa alguna herramienta de IA, acceso a su cuenta durante la sesión. Le envío un recordatorio con esto antes de la cita.',
+  },
+  {
+    pregunta: '¿Qué herramienta de IA me conviene?',
+    respuesta: 'La que encaje con lo que ya usa. Si su empresa trabaja con Microsoft 365, empezamos por Copilot. Si no, comparamos ChatGPT y Claude con sus tareas reales. En la sesión de 1 hora configuramos la que elija.',
+  },
+  {
+    pregunta: '¿La suscripción a la herramienta va aparte?',
+    respuesta: 'Sí. Si necesita una cuenta de pago, se contrata a nombre de su empresa. Le digo antes cuánto cuesta y si le hace falta.',
+  },
+];
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organizacion,
+    persona,
+    web,
+    paginaLd(ruta, 'WebPage', titulo, descripcion),
+    migasLd(ruta, migas),
+    servicioLd(ruta, h1, entradilla),
+    faqLd(ruta, preguntas),
+  ],
+};
+---
+<Base titulo={titulo} descripcion={descripcion} ruta={ruta} jsonld={jsonld}>
+  <div class="alterna">
+
+    <HeroPagina migas={migas} titulo={h1} entradilla={entradilla}>
+      <a class="boton boton--primario" href="/contacto/">Solicitar una asesoría</a>
+    </HeroPagina>
+
+    <section class="seccion" id="formatos">
+      <div class="contenedor">
+        <TablaProductos columnas={['Sesión', 'Qué se lleva']} filas={sesiones} />
+        <div class="notas">
+          <p>Por videollamada. Si prefiere que vaya en persona a Sevilla o alrededores, el desplazamiento se presupuesta aparte. Si en los 30 días siguientes contrata un proyecto conmigo, le descuento lo que pagó por la asesoría.</p>
+          {mostrarPrecios && <p>Precios sin IVA.</p>}
+        </div>
+      </div>
+    </section>
+
+    <SeccionLista titulo="Para quien quiere avanzar sin perder semanas investigando" puntos={paraQuien}>
+      <p class="texto-bloque">El diagnóstico dura 30 minutos y sirve para conocernos y ver si puedo ayudarle. Después le envío un email con 2 o 3 oportunidades. La asesoría es una sesión de trabajo: salimos con algo configurado o planificado.</p>
+    </SeccionLista>
+
+    <SeccionFaq preguntas={preguntas} />
+
+    <LlamadaFinal />
+
+  </div>
+</Base>

@@ -1,0 +1,103 @@
+---
+// Línea 3: Entorno de trabajo e IA. Textos literales de los textos aprobados de la etapa B (§6).
+// Lo marcado como [precio] solo se genera con mostrarPrecios = true (src/config.js).
+import Base from '../../../layouts/Base.astro';
+import HeroPagina from '../../../components/HeroPagina.astro';
+import BotonReserva from '../../../components/BotonReserva.astro';
+import Icono from '../../../components/Icono.astro';
+import SeccionLista from '../../../components/SeccionLista.astro';
+import TablaProductos from '../../../components/TablaProductos.astro';
+import NotaPrecios from '../../../components/NotaPrecios.astro';
+import SeccionPasos from '../../../components/SeccionPasos.astro';
+import SeccionFaq from '../../../components/SeccionFaq.astro';
+import LlamadaFinal from '../../../components/LlamadaFinal.astro';
+import { eventoDiagnostico, migaInicio, migaServicios } from '../../../data/paginas.js';
+import { organizacion, persona, web, migasLd, faqLd, paginaLd, servicioLd } from '../../../data/entidad.js';
+
+const ruta = '/servicios/entorno-de-trabajo-e-ia/';
+const titulo = 'Microsoft 365, Google Workspace y formación en IA';
+const descripcion = 'Implanto Microsoft 365 o Google Workspace y formo a su equipo en IA, como pide el artículo 4 del Reglamento europeo de IA. Desde Sevilla.';
+const h1 = 'Entorno de trabajo e IA para su equipo';
+const entradilla = 'Pongo en orden el correo, los archivos y los permisos de su empresa con Microsoft 365 o Google Workspace, y enseño a su equipo a usar la IA en su trabajo diario. Recibe el entorno configurado y un equipo que sabe usarlo.';
+const migas = [migaInicio, migaServicios, { nombre: 'Entorno de trabajo e IA', ruta }];
+
+const problemas = [
+  'Cada persona guarda los archivos en su ordenador o en su correo, y nadie encuentra la última versión.',
+  'Se trabaja con cuentas de correo gratuitas o personales.',
+  'Cuando alguien se va, nadie sabe qué accesos tenía ni cómo recuperar su información.',
+  'El equipo usa ChatGPT o Copilot por su cuenta, sin un criterio común sobre qué datos se pueden meter.',
+];
+
+const productos = [
+  { nombre: 'Implantación del entorno', texto: 'Microsoft 365 o Google Workspace configurado: cuentas y correo con su dominio, carpetas compartidas con permisos por persona o por área, y la seguridad básica activada', precio: 'desde 500 € + 100 € por usuario' },
+  { nombre: 'Migración de correo antiguo', texto: 'Paso del correo de cada buzón anterior a la cuenta nueva', precio: '30 € por buzón' },
+  { nombre: 'Taller de IA', texto: '2 horas para hasta 8 personas: usos prácticos en su trabajo, qué datos no meter en la IA y cómo comprobar lo que responde. Incluye un registro de la formación', precio: 'desde 390 €' },
+  { nombre: 'Formación de IA en 3 sesiones', texto: 'Tres sesiones con ejercicios sobre tareas reales de su equipo. Incluye un registro de la formación', precio: 'desde 990 €' },
+];
+
+const pasos = [
+  { titulo: 'Diagnóstico gratuito.', texto: 'Veo qué usan hoy, cuántas personas son y qué les falla.' },
+  { titulo: 'Propuesta por escrito.', texto: 'Plataforma recomendada, usuarios, migración y formación, con precio cerrado.' },
+  { titulo: 'Implantación.', texto: 'Configuro el entorno y paso el correo antiguo sin que dejen de trabajar.' },
+  { titulo: 'Formación.', texto: 'Enseño al equipo a trabajar con el entorno nuevo y con la IA.' },
+];
+
+const preguntas = [
+  {
+    pregunta: '¿El Reglamento europeo de IA me obliga a formar a mi equipo?',
+    respuesta: 'Sí, si su empresa usa herramientas de IA en su actividad. El artículo 4 del Reglamento (UE) 2024/1689 se aplica desde el 2 de febrero de 2025 y pide a las empresas que usan sistemas de IA que tomen medidas para que su personal tenga conocimientos suficientes sobre ellos. El <a href="https://eur-lex.europa.eu/eli/reg/2026/1744/oj/spa">Reglamento (UE) 2026/1744</a>, en vigor desde el 27 de julio de 2026, mantiene la obligación y aclara que no exige garantizar un nivel concreto a cada persona. Mis talleres y formaciones incluyen un registro de fecha, contenidos y asistentes, que le sirve para demostrar que ha tomado esas medidas. Esta respuesta es información general, no asesoramiento jurídico.',
+  },
+  {
+    pregunta: '¿Microsoft 365 o Google Workspace?',
+    respuesta: 'Depende de lo que ya usa su equipo y de los programas con los que trabaja. Si viven en Word y Excel, suele encajar Microsoft 365; si ya usan Gmail y Google Drive, Google Workspace. Se lo recomiendo en el diagnóstico, con el coste de las licencias de cada opción.',
+  },
+  {
+    pregunta: '¿Por qué ordenar los permisos antes de usar Copilot?',
+    respuesta: 'Porque Copilot puede mostrar a cada persona cualquier documento al que tenga acceso. <a href="https://learn.microsoft.com/microsoft-365-copilot/microsoft-365-copilot-privacy">Microsoft lo explica así en su documentación</a>: Copilot solo usa los datos de la organización que ese usuario tiene permiso para ver. Si los permisos están mal puestos, alguien puede encontrar con una pregunta un archivo que no debería ver.',
+  },
+  {
+    pregunta: '¿Sirve si mi equipo no sabe de tecnología?',
+    respuesta: 'Sí. Las sesiones parten de las tareas que ya hace cada persona, sin tecnicismos. El objetivo es que al terminar las usen solas.',
+  },
+];
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organizacion,
+    persona,
+    web,
+    paginaLd(ruta, 'WebPage', titulo, descripcion),
+    migasLd(ruta, migas),
+    servicioLd(ruta, h1, entradilla),
+    faqLd(ruta, preguntas),
+  ],
+};
+---
+<Base titulo={titulo} descripcion={descripcion} ruta={ruta} jsonld={jsonld}>
+  <div class="alterna">
+
+    <HeroPagina migas={migas} etiqueta="Línea 3" titulo={h1} entradilla={entradilla}>
+      <BotonReserva clase="boton boton--primario" evento={eventoDiagnostico}>Reservar diagnóstico gratuito</BotonReserva>
+      <a class="enlace-flecha" href="#incluye">Ver qué incluye <Icono nombre="flecha" /></a>
+    </HeroPagina>
+
+    <SeccionLista titulo="Para equipos que trabajan cada uno a su manera" puntos={problemas} />
+
+    <section class="seccion" id="incluye">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Entorno configurado y equipo formado</h2>
+        <TablaProductos columnas={['Producto', 'Qué recibe']} filas={productos} />
+        <NotaPrecios />
+        <p class="texto-bloque">Las licencias de Microsoft o Google van aparte y a nombre de su empresa. Le ayudo a elegir el plan que necesita para no pagar de más.</p>
+      </div>
+    </section>
+
+    <SeccionPasos titulo="Primero el orden, después la IA" pasos={pasos} />
+
+    <SeccionFaq preguntas={preguntas} />
+
+    <LlamadaFinal />
+
+  </div>
+</Base>

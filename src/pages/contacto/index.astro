@@ -1,0 +1,92 @@
+---
+// Contacto. Textos literales de los textos aprobados de la etapa B (§9).
+// El formulario es el de la portada (mismo envío al Apps Script, Turnstile, campo trampa
+// y espera de 45 s) con los textos de la tabla de la §9.
+import Base from '../../layouts/Base.astro';
+import HeroPagina from '../../components/HeroPagina.astro';
+import BotonReserva from '../../components/BotonReserva.astro';
+import Formulario from '../../components/Formulario.astro';
+import Icono from '../../components/Icono.astro';
+import { eventoDiagnostico, migaInicio } from '../../data/paginas.js';
+import { organizacion, persona, web, migasLd, paginaLd } from '../../data/entidad.js';
+
+const ruta = '/contacto/';
+const titulo = 'Contacto · AI Resolution Labs';
+const descripcion = 'Reserve un diagnóstico gratuito de 30 minutos o escríbame. Respondo en un máximo de 48 horas. Trabajo desde Sevilla para toda España.';
+const migas = [migaInicio, { nombre: 'Contacto', ruta }];
+
+const errorGeneral = 'No se ha podido enviar. Inténtelo de nuevo o escríbame a info@airesolutionlabs.com.';
+const textosFormulario = {
+  nombre: 'Nombre', ejemploNombre: 'Ana García',
+  email: 'Email', ejemploEmail: 'ana@suempresa.es',
+  mensaje: '¿Qué le quita tiempo en su empresa?', ejemploMensaje: 'Por ejemplo: paso a mano los pedidos del correo a una hoja de cálculo',
+  casilla: 'He leído la <a href="/politica-privacidad.html">política de privacidad</a> y acepto que use mis datos para responder a mi consulta.',
+  boton: 'Enviar mensaje',
+  script: {
+    enviando: 'Enviando…',
+    registrando: 'Enviando…',
+    exito: 'Mensaje enviado. Le he mandado una confirmación a su email y le respondo en un máximo de 48 horas.',
+    errores: {
+      nombre: 'Escriba su nombre.',
+      email: 'Revise el email: parece que falta algo.',
+      mensaje: 'Cuénteme en una frase qué necesita.',
+      privacidad: 'Para enviar el mensaje, marque la casilla de privacidad.',
+    },
+    revisa: errorGeneral,
+    verificacionAntispam: errorGeneral,
+    limite: errorGeneral,
+    verificacion: errorGeneral,
+    general: errorGeneral,
+  },
+};
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organizacion,
+    persona,
+    web,
+    paginaLd(ruta, 'ContactPage', titulo, descripcion),
+    migasLd(ruta, migas),
+  ],
+};
+---
+<Base titulo={titulo} descripcion={descripcion} ruta={ruta} jsonld={jsonld}>
+  <div class="alterna">
+
+    <HeroPagina migas={migas} titulo="Hablemos de su empresa" entradilla="Puede reservar un diagnóstico gratuito de 30 minutos o escribirme. Respondo en un máximo de 48 horas." />
+
+    <section class="seccion" id="diagnostico">
+      <div class="contenedor contenedor--lectura">
+        <h2 class="titulo-seccion">30 minutos gratis por videollamada</h2>
+        <p class="texto-bloque">Me cuenta qué le quita tiempo y qué herramientas usa, y le digo si puedo ayudarle. Después le envío un email con 2 o 3 oportunidades concretas y el siguiente paso. Es gratis la primera vez y no le compromete a nada.</p>
+        <div class="acciones">
+          <BotonReserva clase="boton boton--primario" evento={eventoDiagnostico}>Reservar diagnóstico</BotonReserva>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="contacto">
+      <div class="contenedor contenedor--lectura">
+        <h2 class="titulo-seccion">Escríbame</h2>
+        <div class="contacto__formulario">
+          <Formulario textos={textosFormulario} />
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor contenedor--lectura">
+        <div class="bloque-final bloque-final--sin-linea">
+          <p>Si lo prefiere, escríbame a <a href="mailto:info@airesolutionlabs.com">info@airesolutionlabs.com</a>.</p>
+          <p>Trabajo desde Sevilla con empresas de toda España, por videollamada o en persona.</p>
+          <div class="enlaces-lista">
+            <a class="enlace-flecha" href="https://www.linkedin.com/in/pablo-ortega-ins%C3%BAa-775b92277/" target="_blank" rel="noopener">LinkedIn <Icono nombre="flecha-externa" /><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+            <a class="enlace-flecha" href="https://founder.airesolutionlabs.com/">Tarjeta digital</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Base>
