@@ -33,7 +33,7 @@ Nunca copies su contenido, ni partes de él, a archivos que se suban al repo, a 
 
 ## Etapa B (páginas de servicio, asesoría, sobre y contacto)
 - Fuente de los textos: privado/2b/textos-etapa-b.md (aprobados). Se copian literalmente: no se reescriben, no se resumen y no se añaden textos propios. Si falta un texto, se pregunta a Pablo.
-- Tratamiento: "usted" con el cliente en toda la web, en primera persona del singular ("trabajo", "le respondo"). La portada pasa de "tú" a "usted" en el PR de la portada.
+- Tratamiento: "usted" con el cliente en toda la web, en primera persona del singular ("trabajo", "le respondo"). La portada ya está en "usted" (etapa B). Siguen en "tú" la 404 y los textos legales (aviso legal y política de privacidad): no se cambian sin el OK de Pablo.
 - Precios: interruptor único `mostrarPrecios` en src/config.js, a `false`. Todo lo marcado como [precio] (columnas de precio, packs, notas de IVA, bloque del coste del primer año) solo se genera con `true`; con `false` no puede aparecer ningún importe ni el símbolo € en el HTML generado. Nunca se oculta con CSS ni con comentarios. Solo Pablo decide cuándo pasa a `true`.
 - Bloques con "publicar: no": `publicar: false` en Astro; no se generan (DESIGN §13). No se ocultan con CSS ni con comentarios.
 - Mientras `mostrarPrecios` sea `false`, el JSON-LD `Service` no lleva `offers`.
