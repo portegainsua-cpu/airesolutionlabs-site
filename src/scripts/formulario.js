@@ -80,7 +80,7 @@ function ocultarAviso() {
 const CAMPOS = {
   nombre: { id: 'name', etiqueta: 'Nombre', msg: 'escriba su nombre (entre 2 y 80 caracteres).' },
   email: { id: 'email', etiqueta: 'Email', msg: 'escriba un correo electrónico válido.' },
-  mensaje: { id: 'message', etiqueta: '¿Qué le quita tiempo?', msg: 'cuéntenos su consulta (entre 10 y 2.000 caracteres).' },
+  mensaje: { id: 'message', etiqueta: '¿Qué le quita tiempo?', msg: 'cuénteme su consulta (entre 10 y 2.000 caracteres).' },
   privacidad: { id: 'privacy-agreement', etiqueta: 'política de privacidad', msg: 'marque la casilla para confirmar que la ha leído.' },
 };
 
