@@ -5,33 +5,33 @@
 export const preguntas = [
   {
     pregunta: '¿Necesito saber de tecnología?',
-    respuesta: 'No. Me encargo de la configuración y te enseño a usar lo que entrego, con palabras normales.',
+    respuesta: 'No. Me encargo de la configuración y le enseño a usar lo que entrego, con palabras normales.',
     publicar: true,
   },
   {
     pregunta: 'No tengo tiempo para aprender. ¿Esto es para mí?',
-    respuesta: 'Sí, está pensado justo para eso. Yo investigo y lo monto, y la formación se adapta a los huecos que tengas.',
+    respuesta: 'Sí, está pensado justo para eso. Yo investigo y lo monto, y la formación se adapta a los huecos que tenga.',
     publicar: true,
   },
   {
-    pregunta: '¿Trabajas solo en Sevilla?',
+    pregunta: '¿Trabaja solo en Sevilla?',
     respuesta: 'No. Tengo la base en Sevilla y trabajo con empresas de toda España, en persona o por videollamada.',
     publicar: true,
   },
   {
     // Pregunta P6 del FAQ anterior, pasada a primera persona por Pablo (06/10/2026)
     pregunta: '¿Puedo conectar las automatizaciones con las herramientas que ya uso?',
-    respuesta: 'En la mayoría de los casos, sí. Trabajo con herramientas como Make o n8n, que se conectan con Google Workspace, Microsoft 365, WhatsApp Business, gestores de correo y muchos CRM y ERP. En el diagnóstico gratuito compruebo si tus herramientas concretas lo permiten.',
+    respuesta: 'En la mayoría de los casos, sí. Trabajo con herramientas como Make o n8n, que se conectan con Google Workspace, Microsoft 365, WhatsApp Business, gestores de correo y muchos CRM y ERP. En el diagnóstico gratuito compruebo si sus herramientas concretas lo permiten.',
     publicar: true,
   },
   {
     pregunta: '¿Cuánto cuesta?',
-    respuesta: 'Depende de lo que necesites. Antes de empezar te doy un precio cerrado por escrito.',
+    respuesta: 'Depende de lo que necesite. Antes de empezar le doy un precio cerrado por escrito.',
     publicar: true,
   },
   {
     pregunta: '¿Qué pasa con mis datos?',
-    respuesta: 'Antes de empezar te explico qué datos se envían, a qué proveedor y para qué. Lo que pasa con lo que envías por esta web está en la <a href="/politica-privacidad.html">política de privacidad</a>.',
+    respuesta: 'Antes de empezar le explico qué datos se envían, a qué proveedor y para qué. Lo que pasa con lo que envía por esta web está en la <a href="/politica-privacidad.html">política de privacidad</a>.',
     publicar: true,
   },
 ];
