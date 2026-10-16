@@ -1,0 +1,31 @@
+---
+// Tabla de productos o planes. La columna de precio solo se genera con mostrarPrecios = true
+// (src/config.js): con false, los importes no llegan al HTML.
+import { mostrarPrecios } from '../config.js';
+
+interface Props {
+  columnas: [string, string];
+  filas: { nombre: string; texto: string; precio?: string }[];
+}
+const { columnas, filas } = Astro.props;
+---
+<div class="tabla">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">{columnas[0]}</th>
+        <th scope="col">{columnas[1]}</th>
+        {mostrarPrecios && <th scope="col" class="tabla__precio">Precio</th>}
+      </tr>
+    </thead>
+    <tbody>
+      {filas.map((f) => (
+        <tr>
+          <th scope="row">{f.nombre}</th>
+          <td>{f.texto}</td>
+          {mostrarPrecios && <td class="tabla__precio">{f.precio}</td>}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,25 @@
+---
+// Mantenimiento sin permanencia (bloque compartido 3.2), en Webs y captación y en Automatizaciones.
+// Los importes y la nota de IVA solo se generan con mostrarPrecios = true.
+import TablaProductos from './TablaProductos.astro';
+import { mostrarPrecios } from '../config.js';
+
+const planes = [
+  { nombre: 'Web', texto: 'Revisión, copias de seguridad, certificado y dominio al día, y un cambio pequeño al mes', precio: '59 €/mes' },
+  { nombre: 'Web y automatizaciones', texto: 'Todo lo anterior, revisión de flujos, agenda y formularios, hasta 1,5 horas de cambios al mes y respuesta en 48 horas laborables', precio: '119 €/mes' },
+  { nombre: 'Intervención puntual', texto: 'Un cambio o arreglo suelto de hasta 1 hora, sin plan. Si necesita más, le paso presupuesto antes', precio: '95 €' },
+];
+---
+<section class="seccion" id="mantenimiento">
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2 class="titulo-seccion">Mantenimiento sin permanencia</h2>
+      <p class="entradilla">Cuando la web o las automatizaciones están en marcha, puedo encargarme de que sigan funcionando. Se paga mes a mes y puede darlo de baja cuando quiera.</p>
+    </div>
+    <TablaProductos columnas={['Plan', 'Qué cubre']} filas={planes} />
+    <div class="notas">
+      <p>El trabajo que no entre en el plan se presupuesta antes de hacerlo.</p>
+      {mostrarPrecios && <p>Precios sin IVA. Si paga el año por adelantado, le regalo dos meses: 590 € al año el plan Web y 1.190 € el plan Web y automatizaciones.</p>}
+    </div>
+  </div>
+</section>

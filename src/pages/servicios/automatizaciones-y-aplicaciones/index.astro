@@ -1,0 +1,113 @@
+---
+// Línea 2: Automatizaciones y aplicaciones. Textos literales de los textos aprobados de la etapa B (§5).
+// Lo marcado como [precio] solo se genera con mostrarPrecios = true (src/config.js).
+import Base from '../../../layouts/Base.astro';
+import HeroPagina from '../../../components/HeroPagina.astro';
+import BotonReserva from '../../../components/BotonReserva.astro';
+import Icono from '../../../components/Icono.astro';
+import SeccionLista from '../../../components/SeccionLista.astro';
+import TablaProductos from '../../../components/TablaProductos.astro';
+import NotaPrecios from '../../../components/NotaPrecios.astro';
+import SeccionPasos from '../../../components/SeccionPasos.astro';
+import Mantenimiento from '../../../components/Mantenimiento.astro';
+import SeccionFaq from '../../../components/SeccionFaq.astro';
+import LlamadaFinal from '../../../components/LlamadaFinal.astro';
+import { eventoDiagnostico, migaInicio, migaServicios } from '../../../data/paginas.js';
+import { organizacion, persona, web, migasLd, faqLd, paginaLd, servicioLd } from '../../../data/entidad.js';
+
+const ruta = '/servicios/automatizaciones-y-aplicaciones/';
+const titulo = 'Automatizaciones y aplicaciones · AI Resolution Labs';
+const descripcion = 'Conecto las herramientas de su empresa para que las tareas repetitivas se hagan solas, y desarrollo aplicaciones a medida. Desde Sevilla.';
+const h1 = 'Automatizaciones y aplicaciones a medida para empresas';
+const entradilla = 'Conecto las herramientas que ya usa para que las tareas repetitivas se hagan solas: pasar datos de un programa a otro, avisar a un cliente o preparar un documento. Cuando ninguna herramienta del mercado encaja, o paga varias suscripciones por algo que resolvería una sola aplicación, se la desarrollo a medida.';
+const migas = [migaInicio, migaServicios, { nombre: 'Automatizaciones y aplicaciones', ruta }];
+
+const problemas = [
+  'Copia los mismos datos en el correo, en una hoja de cálculo y en el programa de facturación.',
+  'Hay tareas que dependen de que alguien se acuerde: enviar un presupuesto, recordar un pago, avisar al equipo.',
+  'Paga programas de los que usa una parte pequeña.',
+  'Lleva el control de algo importante en papel o en hojas sueltas.',
+];
+
+const productos = [
+  { nombre: 'Automatización puntual', texto: 'Un flujo que conecta dos o más herramientas, probado con casos reales de su empresa y con aviso si algo falla', precio: 'desde 350 €' },
+  { nombre: 'Paquete de automatizaciones', texto: 'Tres flujos de una misma área (por ejemplo, ventas o administración) y 30 días de ajustes después de la entrega', precio: 'desde 950 €' },
+  { nombre: 'Definición de una aplicación', texto: 'Qué hará, quién la usará, qué datos guarda, sus pantallas y el precio cerrado de la primera versión. Si después la contrata, se lo descuento', precio: '300 €' },
+  { nombre: 'Aplicación a medida, primera versión', texto: 'Una aplicación web para su empresa, instalable en el móvil, construida sobre la definición anterior', precio: 'desde 3.400 €' },
+];
+
+const pasos = [
+  { titulo: 'Diagnóstico gratuito.', texto: 'Veo qué herramientas usa y si se pueden conectar.' },
+  { titulo: 'Propuesta por escrito.', texto: 'Qué se automatiza, qué no, precio cerrado y plazo.' },
+  { titulo: 'Construcción.', texto: 'Cada flujo lleva control de errores: si algo falla, lo reintenta y, si no puede, le avisa.' },
+  { titulo: 'Entrega.', texto: 'Le explico cómo funciona y le dejo una guía breve. Las cuentas quedan a su nombre.' },
+];
+
+const preguntas = [
+  {
+    pregunta: '¿Puede conectar los programas que ya uso?',
+    respuesta: 'En la mayoría de los casos, sí: casi todos los programas actuales tienen una conexión (API) o una integración con Make o n8n. Lo compruebo en el diagnóstico, antes de darle precio. Si alguno no se puede conectar, se lo digo.',
+  },
+  {
+    pregunta: '¿Y si la IA se inventa algo?',
+    respuesta: 'Puede pasar. Los modelos de IA, como los de ChatGPT, Claude o Copilot, a veces dan respuestas falsas que parecen correctas. Se llaman alucinaciones, y <a href="https://openai.com/index/why-language-models-hallucinate/">los propios fabricantes reconocen</a> que siguen siendo un problema de todos los modelos de lenguaje. Por eso, en lo que yo monto, la IA trabaja con los datos de su empresa como fuente, tiene limitado lo que puede hacer y, antes de que algo llegue a un cliente, a un pago o a un documento oficial, lo revisa una persona.',
+  },
+  {
+    pregunta: '¿Qué pasa con los datos de mi empresa?',
+    respuesta: 'Antes de empezar le explico qué datos pasan por cada herramienta, a qué proveedor y para qué. Los datos viajan cifrados y cada proveedor los guarda según sus condiciones, que le enseño. Si voy a tratar datos de sus clientes, firmamos el contrato de encargo del tratamiento que exige el RGPD.',
+  },
+  {
+    pregunta: '¿Por qué una aplicación a medida y no un programa del mercado?',
+    respuesta: 'Solo la recomiendo cuando le sale a cuenta. En la definición comparo lo que paga hoy en suscripciones con lo que costaría la aplicación y su mantenimiento. Si una herramienta que ya existe le sirve, se lo digo y no le hago la aplicación.',
+  },
+  {
+    pregunta: '¿Qué pasa si una automatización deja de funcionar?',
+    respuesta: 'Le llega un aviso. Con el plan Web y automatizaciones, lo reviso yo dentro de las horas del plan. Sin plan, puede pedirme una intervención puntual.',
+  },
+];
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organizacion,
+    persona,
+    web,
+    paginaLd(ruta, 'WebPage', titulo, descripcion),
+    migasLd(ruta, migas),
+    servicioLd(ruta, h1, entradilla),
+    faqLd(ruta, preguntas),
+  ],
+};
+---
+<Base titulo={titulo} descripcion={descripcion} ruta={ruta} jsonld={jsonld}>
+  <div class="alterna">
+
+    <HeroPagina migas={migas} etiqueta="Línea 2" titulo={h1} entradilla={entradilla}>
+      <BotonReserva clase="boton boton--primario" evento={eventoDiagnostico}>Reservar diagnóstico gratuito</BotonReserva>
+      <a class="enlace-flecha" href="#incluye">Ver qué incluye <Icono nombre="flecha" /></a>
+    </HeroPagina>
+
+    <SeccionLista titulo="Para el trabajo que se repite cada semana" puntos={problemas} />
+
+    <section class="seccion" id="incluye">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">De una tarea suelta a una aplicación propia</h2>
+        <TablaProductos columnas={['Producto', 'Qué recibe']} filas={productos} />
+        <NotaPrecios />
+        <p class="texto-bloque">Desarrollo las aplicaciones de una en una para dedicar a cada una la atención que necesita. Si en ese momento tengo otra en marcha, le doy fecha de inicio por escrito.</p>
+        <p class="nota-app">Aplicación para servicios de bomberos: RedyApp.</p>
+      </div>
+    </section>
+
+    <SeccionPasos titulo="Alcance cerrado, por fases" pasos={pasos}>
+      <p class="herramientas">Trabajo sobre todo con <a href="https://www.make.com/">Make</a>, <a href="https://n8n.io/">n8n</a> y <a href="https://developers.google.com/apps-script">Google Apps Script</a>. Cuando un proceso necesita IA, uso los modelos de OpenAI, Anthropic o Google a través de sus conexiones oficiales (API).</p>
+    </SeccionPasos>
+
+    <Mantenimiento />
+
+    <SeccionFaq preguntas={preguntas} />
+
+    <LlamadaFinal />
+
+  </div>
+</Base>

@@ -1,0 +1,145 @@
+---
+// Línea 1: Webs y captación. Textos literales de los textos aprobados de la etapa B (§4).
+// Lo marcado como [precio] solo se genera con mostrarPrecios = true (src/config.js).
+import Base from '../../../layouts/Base.astro';
+import HeroPagina from '../../../components/HeroPagina.astro';
+import BotonReserva from '../../../components/BotonReserva.astro';
+import Icono from '../../../components/Icono.astro';
+import SeccionLista from '../../../components/SeccionLista.astro';
+import TablaProductos from '../../../components/TablaProductos.astro';
+import NotaPrecios from '../../../components/NotaPrecios.astro';
+import SeccionPasos from '../../../components/SeccionPasos.astro';
+import Mantenimiento from '../../../components/Mantenimiento.astro';
+import SeccionFaq from '../../../components/SeccionFaq.astro';
+import LlamadaFinal from '../../../components/LlamadaFinal.astro';
+import { mostrarPrecios } from '../../../config.js';
+import { eventoDiagnostico, migaInicio, migaServicios } from '../../../data/paginas.js';
+import { organizacion, persona, web, migasLd, faqLd, paginaLd, servicioLd } from '../../../data/entidad.js';
+
+const ruta = '/servicios/webs-y-captacion/';
+const titulo = 'Webs y captación para empresas · AI Resolution Labs';
+const descripcion = 'Webs rápidas y preparadas para Google y asistentes de IA, con reservas, formularios y tarjeta digital. Desde Sevilla para toda España.';
+const h1 = 'Webs y captación para empresas y profesionales';
+const entradilla = 'Hago webs rápidas, preparadas para Google y para asistentes de IA como ChatGPT, y les conecto lo que convierte una visita en un cliente: reservas, formularios y tarjeta digital. Empezamos por lo que su negocio necesita ya y añadimos el resto por fases.';
+const migas = [migaInicio, migaServicios, { nombre: 'Webs y captación', ruta }];
+
+const problemas = [
+  'Su web tarda en cargar o se ve mal en el móvil.',
+  'Le escriben por teléfono, WhatsApp, correo e Instagram, y alguna consulta se queda sin contestar.',
+  'Da las citas a mano y nadie le recuerda al cliente que tiene una.',
+  'Le han presupuestado una web con una cuota mensual alta y no sabe bien qué paga.',
+  'Cuando alguien busca lo que usted hace, en Google o en ChatGPT, su negocio no sale.',
+];
+
+const productos = [
+  { nombre: 'Tarjeta digital Pro', texto: 'Su tarjeta de visita en el móvil, con su diseño, botón para guardar el contacto, enlaces y código QR, y sin el aviso de AI Resolution Labs', precio: 'desde 149 €' },
+  { nombre: 'Reservas automáticas', texto: 'Agenda online conectada a su calendario. El cliente elige hora y recibe la confirmación y un recordatorio por email', precio: 'desde 220 €' },
+  { nombre: 'Formulario con seguimiento', texto: 'Formulario en su web o en su tarjeta. Cada solicitud queda guardada en una hoja, a usted le llega un aviso y el cliente recibe una respuesta automática', precio: 'desde 250 €' },
+  { nombre: 'Web desde plantilla', texto: 'Web de varias páginas con mi sistema de diseño, adaptada a sus colores, su logo y sus textos. Rápida, accesible y preparada para buscadores y para IA', precio: 'desde 990 €' },
+  { nombre: 'Web a medida', texto: 'Diseño y estructura propios para negocios que necesitan más páginas, funciones o contenido', precio: 'desde 3.200 €' },
+];
+
+const packs = [
+  'Tarjeta Pro + reservas: desde 329 €',
+  'Web desde plantilla + reservas: desde 1.150 €',
+];
+
+const pasos = [
+  { titulo: 'Diagnóstico gratuito.', texto: '30 minutos por videollamada: qué tiene, qué necesita y qué le sobra.' },
+  { titulo: 'Propuesta por escrito.', texto: 'Precio cerrado y plazo de cada fase. Cada fase se contrata por separado.' },
+  { titulo: 'Primera fase.', texto: 'Normalmente, la página principal y la forma de contacto que más use.' },
+  { titulo: 'Entrega.', texto: 'Le explico cómo funciona todo. El dominio y las cuentas quedan a su nombre.' },
+];
+
+const preguntas = [
+  {
+    pregunta: '¿Mi web saldrá en Google o en ChatGPT?',
+    respuesta: 'Nadie puede garantizarlo, y desconfíe de quien se lo prometa. Lo que sí hago es lo que piden los propios buscadores: <a href="https://developers.google.com/search/docs/fundamentals/ai-optimization-guide">Google indica</a> que para aparecer en sus resultados con IA la página tiene que estar indexada y ofrecer contenido útil y propio, y que no hace falta ningún truco especial. Por eso cuido la velocidad, los textos y los datos estructurados, y dejo pasar a los rastreadores de los buscadores de IA.',
+  },
+  {
+    pregunta: '¿La web y el dominio son míos?',
+    respuesta: 'Sí. El dominio se registra a nombre de su empresa y las cuentas también. Si un día deja el mantenimiento, le entrego los archivos de la web para que pueda seguir con ella.',
+  },
+  {
+    pregunta: '¿Tengo que contratar mantenimiento?',
+    respuesta: 'No. Es opcional y sin permanencia. Una web sin mantenimiento sigue funcionando, pero alguien tiene que renovar el dominio, revisar que todo carga bien y hacer los cambios. Puede hacerlo usted o pedirme una intervención puntual cuando la necesite.',
+  },
+  {
+    pregunta: '¿Qué tengo que preparar?',
+    respuesta: 'Su logo, si lo tiene, las fotos que quiera usar y una idea de lo que quiere contar. Si le faltan textos o fotos, lo hablamos en el diagnóstico y lo incluyo en la propuesta.',
+  },
+  {
+    pregunta: '¿Diseña logos?',
+    respuesta: 'No. Trabajo con el logo y los colores que ya tenga su negocio. Si no tiene logo, lo hablamos y vemos la mejor opción para usted.',
+  },
+];
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organizacion,
+    persona,
+    web,
+    paginaLd(ruta, 'WebPage', titulo, descripcion),
+    migasLd(ruta, migas),
+    servicioLd(ruta, h1, entradilla),
+    faqLd(ruta, preguntas),
+  ],
+};
+---
+<Base titulo={titulo} descripcion={descripcion} ruta={ruta} jsonld={jsonld}>
+  <div class="alterna">
+
+    <HeroPagina migas={migas} etiqueta="Línea 1" titulo={h1} entradilla={entradilla}>
+      <BotonReserva clase="boton boton--primario" evento={eventoDiagnostico}>Reservar diagnóstico gratuito</BotonReserva>
+      <a class="enlace-flecha" href="#incluye">Ver qué incluye <Icono nombre="flecha" /></a>
+    </HeroPagina>
+
+    <SeccionLista titulo="Para negocios que pierden clientes por el camino" puntos={problemas} />
+
+    <section class="seccion" id="incluye">
+      <div class="contenedor">
+        <div class="cabecera-seccion">
+          <h2 class="titulo-seccion">Lo que puedo hacer por su negocio</h2>
+          <p class="entradilla">Cada pieza se contrata por separado. Lo normal es empezar con una página principal sencilla y la forma de contacto que más use, y crecer cuando lo necesite.</p>
+        </div>
+        <TablaProductos columnas={['Producto', 'Qué recibe']} filas={productos} />
+        {mostrarPrecios && (
+          <div class="packs">
+            <p class="packs__titulo">Packs:</p>
+            <ul class="lista-puntos">
+              {packs.map((p) => <li>{p}</li>)}
+            </ul>
+          </div>
+        )}
+        <NotaPrecios />
+        <p class="no-incluye"><strong>No incluye:</strong> dominio, fotografía profesional, revisión de los textos legales por un abogado, campañas de anuncios, ni diseño de logo o de identidad de marca. Si los necesita, se lo digo en el diagnóstico y lo vemos aparte.</p>
+        <div class="destacado">
+          <h3 class="titulo-tarjeta">Empiece con una tarjeta digital gratis</h3>
+          <p>Le hago una tarjeta digital básica sin coste: sus datos, hasta seis enlaces, botón para guardar el contacto, código QR y opción de compartir. Al final lleva un aviso pequeño de AI Resolution Labs.</p>
+          <a class="enlace-flecha" href="https://founder.airesolutionlabs.com/tarjeta/">Pedir mi tarjeta gratis <Icono nombre="flecha-externa" /></a>
+        </div>
+      </div>
+    </section>
+
+    {mostrarPrecios && (
+      <section class="seccion">
+        <div class="contenedor contenedor--columna">
+          <h2 class="titulo-seccion">Sabrá lo que paga el primer año</h2>
+          <p class="texto-bloque">Le doy por separado el precio de la web y el del mantenimiento, sin permanencia. Así puede comparar el coste total con cualquier otra propuesta. Por ejemplo, una web desde plantilla de 990 € con el plan de mantenimiento Web (59 €/mes) suma 1.698 € el primer año, sin IVA. Si un año no necesita mantenimiento, lo da de baja.</p>
+        </div>
+      </section>
+    )}
+
+    <SeccionPasos titulo="Por fases, con precio cerrado" pasos={pasos}>
+      <p class="herramientas">Construyo las webs con <a href="https://astro.build/">Astro</a>, que genera páginas ligeras y rápidas. Las reservas van con <a href="https://cal.com/">Cal.com</a> y los formularios con <a href="https://developers.google.com/apps-script">Google Apps Script</a>. Alojo las webs en <a href="https://www.cloudflare.com/">Cloudflare</a>.</p>
+    </SeccionPasos>
+
+    <Mantenimiento />
+
+    <SeccionFaq preguntas={preguntas} />
+
+    <LlamadaFinal />
+
+  </div>
+</Base>

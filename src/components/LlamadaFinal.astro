@@ -1,0 +1,16 @@
+---
+// Llamada final (bloque compartido 3.1): bloque oscuro, una frase y una acción (DESIGN §6).
+import BotonReserva from './BotonReserva.astro';
+import Icono from './Icono.astro';
+import { eventoDiagnostico } from '../data/paginas.js';
+---
+<section class="seccion seccion--oscura llamada-final">
+  <div class="contenedor">
+    <h2 class="titulo-seccion">Cuénteme qué le quita tiempo</h2>
+    <p class="entradilla">En 30 minutos vemos qué tiene, qué necesita y si puedo ayudarle. La primera vez es gratis.</p>
+    <div class="acciones">
+      <BotonReserva clase="boton boton--primario-oscuro" evento={eventoDiagnostico}>Reservar diagnóstico gratuito</BotonReserva>
+      <a class="enlace-flecha" href="/contacto/">Prefiero escribir <Icono nombre="flecha" /></a>
+    </div>
+  </div>
+</section>

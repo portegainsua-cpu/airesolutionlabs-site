@@ -1,0 +1,16 @@
+---
+// Migas de pan visibles (brief §6.2). El mismo listado genera el BreadcrumbList (src/data/entidad.js).
+interface Props { migas: { nombre: string; ruta: string }[] }
+const { migas } = Astro.props;
+---
+<nav class="migas" aria-label="Migas de pan">
+  <ol>
+    {migas.map((m, i) => (
+      <li>
+        {i === migas.length - 1
+          ? <span aria-current="page">{m.nombre}</span>
+          : <a href={m.ruta}>{m.nombre}</a>}
+      </li>
+    ))}
+  </ol>
+</nav>

@@ -5,7 +5,9 @@ const FORM_AJUSTES = {
   ENDPOINT: 'https://script.google.com/macros/s/AKfycbzCgaigJtDxVea-eIOW5tq_OZKyM_AU4Bv7mUer4SZhgpuEOlUX0wJQLEbWa500PQMFIg/exec',
   // Clave del sitio de Turnstile (es pública). Clave de prueba: 1x00000000000000000000AA
   TURNSTILE_SITEKEY: '0x4AAAAAAFIFiqOfy6ts7wC6',
-  VERSION_TEXTO_LEGAL: '2026-10-05',
+  // Versión del texto legal que ve la persona (casilla + primera capa de privacidad).
+  // Si cambia ese texto, cambia la versión y se anota en el registro de versiones de Pablo.
+  VERSION_TEXTO_LEGAL: '2026-10-16',
   // Apps Script puede tardar más de 25 s en responder aunque el envío llegue bien
   TIEMPO_MAXIMO_MS: 45000,
   EMAIL_CONTACTO: 'info@airesolutionlabs.com',
@@ -21,6 +23,31 @@ const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 const tInicio = Date.now();
 
+// Mensajes del formulario. Estos son los de la portada; una página puede sustituir
+// cualquiera con data-textos en el formulario (por ejemplo, /contacto/ en "usted").
+// `errores`: mensaje bajo cada campo y en el resumen (si no se da, se usa CAMPOS).
+const TEXTOS = {
+  enviando: 'Enviando...',
+  registrando: 'Un momento, lo estoy registrando...',
+  exito: (nombre) => `¡Gracias, ${nombre}! He recibido tu mensaje y te responderé al correo que me has indicado.`,
+  revisa: 'Revisa los datos del formulario e inténtalo de nuevo.',
+  verificacionAntispam: `No se ha podido completar la verificación antispam (puede que un bloqueador la esté impidiendo). Escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`,
+  limite: 'Has enviado varios mensajes seguidos. Espera un rato antes de volver a intentarlo.',
+  verificacion: 'No se ha podido verificar el envío. Vuelve a pulsar el botón.',
+  general: `No se ha podido enviar tu mensaje. Inténtalo de nuevo o escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`,
+  errores: null,
+};
+if (contactForm && contactForm.dataset.textos) {
+  try {
+    const propios = JSON.parse(contactForm.dataset.textos);
+    if (typeof propios.exito === 'string') {
+      const exito = propios.exito;
+      propios.exito = () => exito;
+    }
+    Object.assign(TEXTOS, propios);
+  } catch (err) { /* se quedan los de la portada */ }
+}
+
 // Resumen bajo el botón (aria-live), con icono y texto: el color nunca va solo (DESIGN §7.3)
 function showFormStatus(text, isError) {
   if (!formStatus) return;
@@ -34,6 +61,19 @@ function showFormStatus(text, isError) {
 
 function hideFormStatus() {
   if (formStatus) formStatus.hidden = true;
+}
+
+// Aviso de espera agotada (tono neutro): el envío puede haber llegado aunque no haya respuesta.
+// Se rellena la región aria-live, que ya está en la página, con el contenido de la plantilla.
+const formAviso = document.getElementById('form-aviso');
+const formAvisoContenido = document.getElementById('form-aviso-contenido');
+
+function mostrarAviso() {
+  if (formAviso && formAvisoContenido) formAviso.replaceChildren(formAvisoContenido.content.cloneNode(true));
+}
+
+function ocultarAviso() {
+  if (formAviso) formAviso.replaceChildren();
 }
 
 // Campos que valida el servidor: nombre del campo en el Apps Script → campo del formulario
@@ -70,18 +110,18 @@ function marcarErrores(campos) {
   if (!campos.length) return;
   const conocidos = campos.filter((c) => CAMPOS[c]);
   if (!conocidos.length) {
-    showFormStatus('Revisa los datos del formulario e inténtalo de nuevo.', true);
+    showFormStatus(TEXTOS.revisa, true);
     return;
   }
   conocidos.forEach((c) => {
     document.getElementById(CAMPOS[c].id).setAttribute('aria-invalid', 'true');
     const err = document.getElementById('error-' + CAMPOS[c].id);
     if (err) {
-      err.querySelector('[data-texto]').textContent = mayuscula(CAMPOS[c].msg);
+      err.querySelector('[data-texto]').textContent = TEXTOS.errores ? TEXTOS.errores[c] : mayuscula(CAMPOS[c].msg);
       err.hidden = false;
     }
   });
-  showFormStatus(conocidos.map((c) => `Revisa «${CAMPOS[c].etiqueta}»: ${CAMPOS[c].msg}`).join(' '), true);
+  showFormStatus(conocidos.map((c) => (TEXTOS.errores ? TEXTOS.errores[c] : `Revisa «${CAMPOS[c].etiqueta}»: ${CAMPOS[c].msg}`)).join(' '), true);
   document.getElementById(CAMPOS[conocidos[0]].id).focus();
 }
 
@@ -155,6 +195,7 @@ if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault(); // Previene la recarga convencional de la página
     hideFormStatus();
+    ocultarAviso();
     cargarTurnstile();
 
     const datos = {
@@ -169,15 +210,15 @@ if (contactForm) {
     }
     marcarErrores([]);
 
-    ocupado(true, 'Enviando...');
+    ocupado(true, TEXTOS.enviando);
     obtenerToken(12000).then((token) => {
       if (!token) {
         ocupado(false);
-        showFormStatus(`No se ha podido completar la verificación antispam (puede que un bloqueador la esté impidiendo). Escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
+        showFormStatus(TEXTOS.verificacionAntispam, true);
         return null;
       }
       // Apps Script tarda unos segundos en responder: se avisa para que nadie pulse dos veces
-      ocupado(true, 'Un momento, lo estoy registrando...');
+      ocupado(true, TEXTOS.registrando);
       const cuerpo = {
         formulario: 'contacto',
         datos: datos,
@@ -207,16 +248,16 @@ if (contactForm) {
         ocupado(false);
         reiniciarTurnstile();
         if (r && r.ok) {
-          showFormStatus(`¡Gracias, ${datos.nombre}! He recibido tu mensaje y te responderé al correo que me has indicado.`, false);
+          showFormStatus(TEXTOS.exito(datos.nombre), false);
           contactForm.reset();
         } else if (r && r.error === 'validacion' && r.campos) {
           marcarErrores(r.campos);
         } else if (r && r.error === 'limite') {
-          showFormStatus('Has enviado varios mensajes seguidos. Espera un rato antes de volver a intentarlo.', true);
+          showFormStatus(TEXTOS.limite, true);
         } else if (r && r.error === 'verificacion') {
-          showFormStatus('No se ha podido verificar el envío. Vuelve a pulsar el botón.', true);
+          showFormStatus(TEXTOS.verificacion, true);
         } else {
-          showFormStatus(`No se ha podido enviar tu mensaje. Inténtalo de nuevo o escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
+          showFormStatus(TEXTOS.general, true);
         }
       });
     }).catch((error) => {
@@ -224,10 +265,11 @@ if (contactForm) {
       ocupado(false);
       reiniciarTurnstile();
       if (error && error.name === 'AbortError') {
-        // Se agotó la espera, pero el servidor puede haberlo registrado: se evita que se reenvíe varias veces
-        showFormStatus(`Tu mensaje puede haberse enviado. Si en unos minutos no te llega la confirmación por correo, escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
+        // Se agotó la espera, pero el servidor puede haberlo registrado: aviso neutro, los campos se
+        // conservan y el texto no invita a reenviar, para no duplicar solicitudes
+        mostrarAviso();
       } else {
-        showFormStatus(`No se ha podido enviar tu mensaje. Inténtalo de nuevo o escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`, true);
+        showFormStatus(TEXTOS.general, true);
       }
     });
   });

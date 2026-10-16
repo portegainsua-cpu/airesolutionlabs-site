@@ -1,0 +1,85 @@
+---
+// Sobre mí. Textos literales de los textos aprobados de la etapa B (§8).
+// Retrato actual: excepción temporal de DESIGN §17 (FOTO PENDIENTE: sesión profesional).
+import Base from '../../layouts/Base.astro';
+import Migas from '../../components/Migas.astro';
+import Icono from '../../components/Icono.astro';
+import LlamadaFinal from '../../components/LlamadaFinal.astro';
+import { migaInicio } from '../../data/paginas.js';
+import { organizacion, persona, web, migasLd, paginaLd, sitio } from '../../data/entidad.js';
+
+const ruta = '/sobre/';
+const titulo = 'Pablo Ortega, consultor de tecnología e IA';
+const descripcion = 'Soy Pablo Ortega, fundador de AI Resolution Labs. Investigo herramientas de IA, las implanto en empresas y enseño a usarlas. Desde Sevilla.';
+const entradilla = 'Fundé AI Resolution Labs para ayudar a las empresas que saben que la tecnología y la IA les pueden ahorrar trabajo, pero no tienen tiempo de pararse a investigarlas. Yo las investigo, las pongo en marcha y enseño a usarlas.';
+const migas = [migaInicio, { nombre: 'Sobre mí', ruta }];
+
+const compromisos = [
+  '<strong>Habla siempre conmigo.</strong> No hay comerciales ni intermediarios: la persona del diagnóstico es la que hace el trabajo.',
+  '<strong>Precio cerrado y por escrito</strong>, antes de empezar y por fases. Cada fase se contrata por separado.',
+  '<strong>Sabe qué pasa con sus datos.</strong> Le explico qué datos pasan por cada herramienta y a qué proveedor.',
+  '<strong>Todo queda a su nombre:</strong> dominio, cuentas y suscripciones.',
+  '<strong>Pocos proyectos a la vez,</strong> para atender bien cada uno.',
+];
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organizacion,
+    { ...persona, description: entradilla },
+    web,
+    { ...paginaLd(ruta, 'ProfilePage', titulo, descripcion), mainEntity: { '@id': `${sitio}/#pablo` } },
+    migasLd(ruta, migas),
+  ],
+};
+---
+<Base titulo={titulo} descripcion={descripcion} ruta={ruta} jsonld={jsonld}>
+  <div class="alterna">
+
+    <section class="hero-pagina">
+      <div class="contenedor">
+        <Migas migas={migas} />
+        <div class="rejilla-dos sobre__hero">
+          <div class="hero-pagina__texto">
+            <h1 class="titulo-pagina">Soy Pablo Ortega</h1>
+            <p class="entradilla">{entradilla}</p>
+          </div>
+          <img class="sobre__foto" src="/pablo.webp" alt="Pablo Ortega, fundador de AI Resolution Labs" width="640" height="800" fetchpriority="high" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor contenedor--columna">
+        <h2 class="titulo-seccion">Del marketing a la tecnología</h2>
+        <p class="texto-bloque">Antes dirigí una empresa de marketing. Allí vi lo que necesita un negocio para conseguir clientes y el poco tiempo que le queda para todo lo demás. Hoy estudio a diario herramientas de IA, las pruebo en proyectos reales y desarrollo aplicaciones propias.</p>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor contenedor--columna">
+        <h2 class="titulo-seccion">Lo que puede esperar de mí</h2>
+        <ul class="lista-puntos">
+          {compromisos.map((c) => <li set:html={c}></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor contenedor--columna">
+        <h2 class="titulo-seccion">Uso IA en mi trabajo, y lo reviso todo</h2>
+        <p class="texto-bloque">Uso herramientas de IA para investigar, programar y redactar más rápido. Todo lo que entrego lo reviso yo antes. No introduzco datos de clientes en herramientas que los usen para entrenar sus modelos.</p>
+        <div class="bloque-final">
+          <p>Trabajo desde Sevilla con empresas de toda España, por videollamada o en persona.</p>
+          <div class="enlaces-lista">
+            <a class="enlace-flecha" href="https://www.linkedin.com/in/pablo-ortega-ins%C3%BAa-775b92277/" target="_blank" rel="noopener">Mi perfil de LinkedIn <Icono nombre="flecha-externa" /><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+            <a class="enlace-flecha" href="https://founder.airesolutionlabs.com/">Mi tarjeta digital <Icono nombre="flecha-externa" /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <LlamadaFinal />
+
+  </div>
+</Base>

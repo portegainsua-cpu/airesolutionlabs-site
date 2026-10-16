@@ -1,11 +1,17 @@
 ---
 // Preguntas frecuentes con <details>/<summary> (DESIGN §11). El atributo name hace que,
 // en los navegadores que lo admiten, solo quede abierta una respuesta a la vez.
+// Sin `preguntas`, muestra las de la portada (src/data/faq.js).
 import Icono from './Icono.astro';
 import { preguntasPublicadas } from '../data/faq.js';
+
+interface Props {
+  preguntas?: { pregunta: string; respuesta: string }[];
+}
+const { preguntas = preguntasPublicadas } = Astro.props;
 ---
 <div class="faq__lista">
-  {preguntasPublicadas.map((p, i) => (
+  {preguntas.map((p, i) => (
     <details class="faq__item" name="faq" open={i === 0}>
       <summary>{p.pregunta}<Icono nombre="abajo" /></summary>
       <p class="faq__respuesta" set:html={p.respuesta}></p>

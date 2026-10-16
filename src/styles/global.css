@@ -521,6 +521,21 @@ button, input, textarea { font: inherit; }
 .formulario__estado--error { color: var(--color-error); }
 .formulario__estado--exito { color: var(--color-success); }
 .formulario__estado svg { margin-top: 3px; }
+/* Aviso de espera agotada: tono neutro (ni error ni éxito), porque no se sabe si el envío llegó */
+.formulario__aviso:empty { display: none; }
+.formulario__aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-small);
+}
+.formulario__aviso svg { margin-top: 2px; }
+.formulario__aviso strong { display: block; margin-bottom: var(--space-1); font-weight: 600; }
 
 .casilla {
   display: flex;
@@ -583,6 +598,123 @@ button, input, textarea { font: inherit; }
 .texto-legal p, .texto-legal li { max-width: 68ch; }
 .error-404 { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-5); }
 .error-404__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); }
+
+/* --- Páginas interiores (etapa B) --- */
+/* Secciones alternas: blanco, superficie, blanco… La llamada final es siempre oscura. */
+.alterna > .seccion:nth-child(even):not(.seccion--oscura) { background: var(--color-surface); }
+
+.boton--primario-oscuro { background: var(--color-on-dark-accent); color: var(--color-surface-dark); }
+.boton--primario-oscuro:hover { background: var(--color-on-dark); color: var(--color-surface-dark); }
+.seccion--oscura .enlace-flecha { color: var(--color-on-dark); }
+.seccion--oscura .enlace-flecha:hover { color: var(--color-on-dark-accent); }
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+}
+
+.migas { margin-bottom: var(--space-6); font-size: var(--text-label); line-height: 1.4; }
+.migas ol { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.migas li { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-text-muted); }
+.migas li + li::before { content: '/'; color: var(--color-border-input); }
+.migas a { color: var(--color-text-muted); }
+.migas a:hover { color: var(--color-accent); }
+
+.hero-pagina { padding: var(--section-y) 0 calc(var(--section-y) * 0.75); }
+.hero-pagina__texto { display: flex; flex-direction: column; gap: var(--space-5); max-width: 48em; }
+.hero-pagina__texto .acciones { padding-top: var(--space-2); }
+
+.sobre__hero { align-items: center; gap: var(--space-bloque) var(--space-8); }
+.sobre__foto {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.llamada-final .entradilla { margin-top: var(--space-4); }
+.llamada-final .acciones { margin-top: var(--space-7); }
+
+.texto-bloque { max-width: 68ch; }
+.titulo-seccion + .texto-bloque { margin-top: var(--space-5); }
+* + .texto-bloque { margin-top: var(--space-5); }
+.titulo-seccion + .acciones, .texto-bloque + .acciones { margin-top: var(--space-6); }
+
+.lista-puntos {
+  margin-top: var(--space-6);
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 68ch;
+}
+.lista-puntos li { position: relative; padding-left: var(--space-6); }
+.lista-puntos li::before {
+  content: '';
+  position: absolute;
+  left: var(--space-1);
+  top: 0.65em;
+  width: var(--space-3);
+  height: 2px;
+  background: var(--color-support);
+}
+.lista-puntos + .texto-bloque { margin-top: var(--space-bloque); }
+
+/* Tabla de productos: dos columnas en pantallas anchas; en móvil, cada fila es un bloque */
+.tabla { margin-top: var(--space-7); }
+.titulo-seccion + .tabla { margin-top: var(--space-bloque); }
+.seccion > .contenedor > .tabla:first-child { margin-top: 0; }
+.tabla table { width: 100%; border-collapse: collapse; text-align: left; }
+.tabla th, .tabla td { padding: var(--space-4) var(--space-5) var(--space-4) 0; vertical-align: top; border-bottom: 1px solid var(--color-border); }
+.tabla thead th { font-family: var(--font-mono); font-size: var(--text-label); font-weight: 400; letter-spacing: 0.02em; color: var(--color-text-muted); border-bottom-color: var(--color-text); }
+.tabla tbody th { width: 32%; font-weight: 600; }
+.tabla td { color: var(--color-text-muted); }
+.tabla__precio { white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--color-text); font-weight: 500; }
+@media (max-width: 639px) {
+  .tabla thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .tabla table, .tabla tbody, .tabla tr, .tabla th, .tabla td { display: block; width: auto; }
+  .tabla tr { padding: var(--space-4) 0; border-bottom: 1px solid var(--color-border); }
+  .tabla tbody tr:first-child { border-top: 1px solid var(--color-text); }
+  .tabla th, .tabla td { padding: 0; border: none; }
+  .tabla tbody th { width: auto; margin-bottom: var(--space-1); }
+  .tabla__precio { margin-top: var(--space-2); }
+}
+
+.notas { margin-top: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); max-width: 68ch; font-size: var(--text-small); color: var(--color-text-muted); }
+.packs { margin-top: var(--space-6); }
+.packs__titulo { font-weight: 600; }
+.packs .lista-puntos { margin-top: var(--space-3); }
+.no-incluye { margin-top: var(--space-6); max-width: 68ch; color: var(--color-text-muted); }
+.no-incluye strong { color: var(--color-text); font-weight: 600; }
+.nota-app { margin-top: var(--space-5); font-size: var(--text-small); color: var(--color-text-muted); }
+
+/* Columna de lectura (720 px, DESIGN §6) alineada a la izquierda del contenedor, como el resto de la página */
+.contenedor--columna > * { max-width: 720px; }
+
+.destacado {
+  margin-top: var(--space-7);
+  padding: clamp(var(--space-5), 4vw, var(--space-bloque));
+  border-radius: var(--radius-lg);
+  background: var(--color-accent-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+.destacado p { max-width: 60ch; }
+
+.herramientas { margin-top: var(--space-7); max-width: 68ch; color: var(--color-text-muted); }
+
+.bloque-final { margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid var(--color-border); display: flex; flex-direction: column; gap: var(--space-3); }
+.bloque-final--sin-linea { margin-top: 0; padding-top: 0; border-top: none; }
+.enlaces-lista { display: flex; flex-direction: column; align-items: flex-start; }
+
+.contacto__formulario { margin-top: var(--space-bloque); }
 
 /* --- Movimiento reducido (§12) --- */
 @media (prefers-reduced-motion: reduce) {

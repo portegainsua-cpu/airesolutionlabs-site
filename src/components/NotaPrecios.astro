@@ -1,0 +1,9 @@
+---
+// Nota de precios bajo cada tabla de productos (bloque compartido 3.3).
+// "Precios sin IVA." solo se genera con mostrarPrecios = true.
+import { mostrarPrecios } from '../config.js';
+---
+<div class="notas">
+  <p>Le doy el precio cerrado y por escrito antes de empezar. Las licencias y suscripciones de terceros van a nombre de su empresa y se pagan aparte.</p>
+  {mostrarPrecios && <p>Precios sin IVA.</p>}
+</div>
