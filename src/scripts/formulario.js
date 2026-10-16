@@ -5,7 +5,9 @@ const FORM_AJUSTES = {
   ENDPOINT: 'https://script.google.com/macros/s/AKfycbzCgaigJtDxVea-eIOW5tq_OZKyM_AU4Bv7mUer4SZhgpuEOlUX0wJQLEbWa500PQMFIg/exec',
   // Clave del sitio de Turnstile (es pública). Clave de prueba: 1x00000000000000000000AA
   TURNSTILE_SITEKEY: '0x4AAAAAAFIFiqOfy6ts7wC6',
-  VERSION_TEXTO_LEGAL: '2026-10-05',
+  // Versión del texto legal que ve la persona (casilla + primera capa de privacidad).
+  // Si cambia ese texto, cambia la versión y se anota en el registro de versiones de Pablo.
+  VERSION_TEXTO_LEGAL: '2026-10-16',
   // Apps Script puede tardar más de 25 s en responder aunque el envío llegue bien
   TIEMPO_MAXIMO_MS: 45000,
   EMAIL_CONTACTO: 'info@airesolutionlabs.com',

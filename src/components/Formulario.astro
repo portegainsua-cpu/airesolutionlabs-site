@@ -9,7 +9,7 @@ interface Textos {
   nombre: string; ejemploNombre: string;
   email: string; ejemploEmail: string;
   mensaje: string; ejemploMensaje: string;
-  casilla: string; boton: string;
+  boton: string;
   /** Mensajes del script (ver TEXTOS en src/scripts/formulario.js) */
   script?: Record<string, unknown>;
 }
@@ -19,7 +19,6 @@ const portada: Textos = {
   nombre: 'Nombre', ejemploNombre: 'Tu nombre',
   email: 'Email', ejemploEmail: 'tu@empresa.com',
   mensaje: '¿Qué te quita tiempo?', ejemploMensaje: 'Por ejemplo: paso cada semana dos horas copiando pedidos del correo a una hoja.',
-  casilla: 'He leído la <a href="/politica-privacidad.html">Política de Privacidad</a>.',
   boton: 'Enviar mensaje',
 };
 const { textos = portada } = Astro.props;
@@ -45,7 +44,8 @@ const campos = [
   <div class="campo">
     <label class="casilla" for="privacy-agreement">
       <input type="checkbox" id="privacy-agreement" name="privacy-agreement" required aria-describedby="error-privacy-agreement">
-      <span set:html={textos.casilla}></span>
+      <!-- Mismo texto en todas las páginas: forma parte de la versión del texto legal (VERSION_TEXTO_LEGAL) -->
+      <span>He leído la <a href="/politica-privacidad.html">política de privacidad</a>.</span>
     </label>
     <p class="campo__error" id="error-privacy-agreement" hidden><Icono nombre="alerta" /><span data-texto></span></p>
   </div>
