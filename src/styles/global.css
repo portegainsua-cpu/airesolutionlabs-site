@@ -278,6 +278,7 @@ button, input, textarea { font: inherit; }
 }
 .cabecera__menu a, .menu-movil a:not(.boton) { color: var(--color-text); text-decoration: none; }
 .cabecera__menu a:hover, .menu-movil a:not(.boton):hover { color: var(--color-accent); text-decoration: underline; }
+.cabecera__menu a[aria-current="page"], .menu-movil a[aria-current="page"] { color: var(--color-accent); }
 .cabecera__abrir {
   flex: none;
   margin-left: auto;
@@ -416,7 +417,16 @@ button, input, textarea { font: inherit; }
   gap: var(--space-4);
 }
 .tarjeta__texto { color: var(--color-text-muted); }
-.tarjeta__nota { font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-text-muted); }
+.tarjeta__nota { font-size: var(--text-small); color: var(--color-text-muted); }
+/* Tarjeta con un único destino: el enlace del titular cubre toda la tarjeta */
+.tarjeta--enlace { position: relative; transition: border-color var(--duracion) ease-out; }
+.tarjeta--enlace:hover { border-color: var(--color-accent); }
+.tarjeta__enlace { color: var(--color-text); text-decoration: none; }
+.tarjeta__enlace::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius-md); }
+.tarjeta--enlace:hover .tarjeta__enlace { color: var(--color-accent); text-decoration: underline; }
+.tarjeta__enlace:focus-visible { outline: none; }
+.tarjeta__enlace:focus-visible::after { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.tarjeta__flecha { margin-top: auto; color: var(--color-accent); }
 .servicios__orientacion { margin-top: var(--space-bloque); color: var(--color-text-muted); }
 .servicios__orientacion a { font-weight: 500; }
 

@@ -16,9 +16,9 @@ interface Textos {
 interface Props { textos?: Textos }
 
 const portada: Textos = {
-  nombre: 'Nombre', ejemploNombre: 'Tu nombre',
-  email: 'Email', ejemploEmail: 'tu@empresa.com',
-  mensaje: '¿Qué te quita tiempo?', ejemploMensaje: 'Por ejemplo: paso cada semana dos horas copiando pedidos del correo a una hoja.',
+  nombre: 'Nombre', ejemploNombre: 'Su nombre',
+  email: 'Email', ejemploEmail: 'su@empresa.com',
+  mensaje: '¿Qué le quita tiempo?', ejemploMensaje: 'Por ejemplo: paso cada semana dos horas copiando pedidos del correo a una hoja.',
   boton: 'Enviar mensaje',
 };
 const { textos = portada } = Astro.props;
@@ -51,7 +51,7 @@ const campos = [
   </div>
   <!-- Campo trampa para bots: fuera de la pantalla, las personas no lo ven ni lo rellenan -->
   <div class="formulario__trampa" aria-hidden="true">
-    <label for="web_empresa">No rellenes este campo</label>
+    <label for="web_empresa">No rellene este campo</label>
     <input type="text" id="web_empresa" name="web_empresa" tabindex="-1" autocomplete="off">
   </div>
   <!-- Verificación antispam (Cloudflare Turnstile, tema claro, interaction-only): solo se ve si hace falta -->

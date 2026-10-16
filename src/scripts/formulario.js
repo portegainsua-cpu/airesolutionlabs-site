@@ -24,17 +24,17 @@ const formStatus = document.getElementById('form-status');
 const tInicio = Date.now();
 
 // Mensajes del formulario. Estos son los de la portada; una página puede sustituir
-// cualquiera con data-textos en el formulario (por ejemplo, /contacto/ en "usted").
+// cualquiera con data-textos en el formulario (por ejemplo, /contacto/).
 // `errores`: mensaje bajo cada campo y en el resumen (si no se da, se usa CAMPOS).
 const TEXTOS = {
   enviando: 'Enviando...',
   registrando: 'Un momento, lo estoy registrando...',
-  exito: (nombre) => `¡Gracias, ${nombre}! He recibido tu mensaje y te responderé al correo que me has indicado.`,
-  revisa: 'Revisa los datos del formulario e inténtalo de nuevo.',
-  verificacionAntispam: `No se ha podido completar la verificación antispam (puede que un bloqueador la esté impidiendo). Escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`,
-  limite: 'Has enviado varios mensajes seguidos. Espera un rato antes de volver a intentarlo.',
-  verificacion: 'No se ha podido verificar el envío. Vuelve a pulsar el botón.',
-  general: `No se ha podido enviar tu mensaje. Inténtalo de nuevo o escríbeme a ${FORM_AJUSTES.EMAIL_CONTACTO}.`,
+  exito: (nombre) => `¡Gracias, ${nombre}! He recibido su mensaje y le responderé al correo que me ha indicado.`,
+  revisa: 'Revise los datos del formulario e inténtelo de nuevo.',
+  verificacionAntispam: `No se ha podido completar la verificación antispam (puede que un bloqueador la esté impidiendo). Escríbame a ${FORM_AJUSTES.EMAIL_CONTACTO}.`,
+  limite: 'Ha enviado varios mensajes seguidos. Espere un rato antes de volver a intentarlo.',
+  verificacion: 'No se ha podido verificar el envío. Vuelva a pulsar el botón.',
+  general: `No se ha podido enviar su mensaje. Inténtelo de nuevo o escríbame a ${FORM_AJUSTES.EMAIL_CONTACTO}.`,
   errores: null,
 };
 if (contactForm && contactForm.dataset.textos) {
@@ -78,10 +78,10 @@ function ocultarAviso() {
 
 // Campos que valida el servidor: nombre del campo en el Apps Script → campo del formulario
 const CAMPOS = {
-  nombre: { id: 'name', etiqueta: 'Nombre', msg: 'escribe tu nombre (entre 2 y 80 caracteres).' },
-  email: { id: 'email', etiqueta: 'Email', msg: 'escribe un correo electrónico válido.' },
-  mensaje: { id: 'message', etiqueta: '¿Qué te quita tiempo?', msg: 'cuéntanos tu consulta (entre 10 y 2.000 caracteres).' },
-  privacidad: { id: 'privacy-agreement', etiqueta: 'Política de Privacidad', msg: 'marca la casilla para confirmar que la has leído.' },
+  nombre: { id: 'name', etiqueta: 'Nombre', msg: 'escriba su nombre (entre 2 y 80 caracteres).' },
+  email: { id: 'email', etiqueta: 'Email', msg: 'escriba un correo electrónico válido.' },
+  mensaje: { id: 'message', etiqueta: '¿Qué le quita tiempo?', msg: 'cuéntenos su consulta (entre 10 y 2.000 caracteres).' },
+  privacidad: { id: 'privacy-agreement', etiqueta: 'política de privacidad', msg: 'marque la casilla para confirmar que la ha leído.' },
 };
 
 const mayuscula = (s) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -121,7 +121,7 @@ function marcarErrores(campos) {
       err.hidden = false;
     }
   });
-  showFormStatus(conocidos.map((c) => (TEXTOS.errores ? TEXTOS.errores[c] : `Revisa «${CAMPOS[c].etiqueta}»: ${CAMPOS[c].msg}`)).join(' '), true);
+  showFormStatus(conocidos.map((c) => (TEXTOS.errores ? TEXTOS.errores[c] : `Revise «${CAMPOS[c].etiqueta}»: ${CAMPOS[c].msg}`)).join(' '), true);
   document.getElementById(CAMPOS[conocidos[0]].id).focus();
 }
 

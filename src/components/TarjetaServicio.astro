@@ -1,6 +1,7 @@
 ---
 // Tarjeta de servicio (DESIGN §11): icono, titular, una frase y, si existe, una nota.
-// Sin enlace hasta que existan las páginas de servicio (etapa A de la 2B).
+// Con `href`, toda la tarjeta lleva a la página del servicio (un único destino): el enlace va
+// en el titular y su área se extiende a la tarjeta entera.
 import Icono from './Icono.astro';
 
 interface Props {
@@ -8,12 +9,14 @@ interface Props {
   titulo: string;
   texto: string;
   nota?: string;
+  href?: string;
 }
-const { icono, titulo, texto, nota } = Astro.props;
+const { icono, titulo, texto, nota, href } = Astro.props;
 ---
-<article class="tarjeta">
+<article class:list={['tarjeta', { 'tarjeta--enlace': href }]}>
   <Icono nombre={icono} tamano={24} />
-  <h3 class="titulo-tarjeta">{titulo}</h3>
+  <h3 class="titulo-tarjeta">{href ? <a class="tarjeta__enlace" href={href}>{titulo}</a> : titulo}</h3>
   <p class="tarjeta__texto">{texto}</p>
   {nota && <p class="tarjeta__nota">{nota}</p>}
+  {href && <span class="tarjeta__flecha" aria-hidden="true"><Icono nombre="flecha" /></span>}
 </article>
