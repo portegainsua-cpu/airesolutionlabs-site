@@ -1,0 +1,18 @@
+# Dependabot abre un Pull Request cuando hay una versión nueva de una dependencia o de una acción.
+# Así los parches de seguridad llegan solos y no hay que revisarlos a mano cada cierto tiempo.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 3
+    groups:
+      dependencias:
+        patterns: ["*"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 2
