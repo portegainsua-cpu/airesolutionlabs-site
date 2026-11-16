@@ -1,5 +1,5 @@
 ---
-// Línea 1: Webs y captación. Textos literales de los textos aprobados de la etapa B (§4).
+// Línea 1: Webs y entornos de trabajo (catálogo de 3 bloques, 16/11/2026; misma dirección). Textos literales de los textos aprobados de la etapa B (§4).
 // Lo marcado como [precio] solo se genera con mostrarPrecios = true (src/config.js).
 import Base from '../../../layouts/Base.astro';
 import HeroPagina from '../../../components/HeroPagina.astro';
@@ -17,11 +17,11 @@ import { eventoDiagnostico, migaInicio, migaServicios } from '../../../data/pagi
 import { organizacion, persona, web, migasLd, faqLd, paginaLd, servicioLd } from '../../../data/entidad.js';
 
 const ruta = '/servicios/webs-y-captacion/';
-const titulo = 'Webs y captación para empresas · AI Resolution Labs';
-const descripcion = 'Webs rápidas y preparadas para Google y asistentes de IA, con reservas, formularios y tarjeta digital. Desde Sevilla para toda España.';
-const h1 = 'Webs y captación para empresas y profesionales';
-const entradilla = 'Hago webs rápidas, preparadas para Google y para asistentes de IA como ChatGPT, y les conecto lo que convierte una visita en un cliente: reservas, formularios y tarjeta digital. Empezamos por lo que su negocio necesita ya y añadimos el resto por fases.';
-const migas = [migaInicio, migaServicios, { nombre: 'Webs y captación', ruta }];
+const titulo = 'Webs y entornos de trabajo · AI Resolution Labs';
+const descripcion = 'Webs rápidas y preparadas para Google y asistentes de IA, y Microsoft 365 o Google Workspace bien configurado. Desde Sevilla para toda España.';
+const h1 = 'Webs y entornos de trabajo para empresas y profesionales';
+const entradilla = 'Hago webs rápidas, preparadas para Google y para asistentes de IA como ChatGPT, y les conecto lo que convierte una visita en un cliente: reservas, formularios y tarjeta digital. También pongo en orden el correo, los archivos y los permisos de su empresa con Microsoft 365 o Google Workspace. Empezamos por lo que su negocio necesita ya y añadimos el resto por fases.';
+const migas = [migaInicio, migaServicios, { nombre: 'Webs y entornos de trabajo', ruta }];
 
 const problemas = [
   'Su web tarda en cargar o se ve mal en el móvil.',
@@ -29,6 +29,9 @@ const problemas = [
   'Da las citas a mano y nadie le recuerda al cliente que tiene una.',
   'Le han presupuestado una web con una cuota mensual alta y no sabe bien qué paga.',
   'Cuando alguien busca lo que usted hace, en Google o en ChatGPT, su negocio no sale.',
+  'Cada persona guarda los archivos en su ordenador o en su correo, y nadie encuentra la última versión.',
+  'Se trabaja con cuentas de correo gratuitas o personales.',
+  'Cuando alguien se va, nadie sabe qué accesos tenía ni cómo recuperar su información.',
 ];
 
 const productos = [
@@ -37,6 +40,8 @@ const productos = [
   { nombre: 'Formulario con seguimiento', texto: 'Formulario en su web o en su tarjeta. Cada solicitud queda guardada en una hoja, a usted le llega un aviso y el cliente recibe una respuesta automática', precio: 'desde 250 €' },
   { nombre: 'Web desde plantilla', texto: 'Web de varias páginas con mi sistema de diseño, adaptada a sus colores, su logo y sus textos. Rápida, accesible y preparada para buscadores y para IA', precio: 'desde 990 €' },
   { nombre: 'Web a medida', texto: 'Diseño y estructura propios para negocios que necesitan más páginas, funciones o contenido', precio: 'desde 3.200 €' },
+  { nombre: 'Implantación del entorno', texto: 'Microsoft 365 o Google Workspace configurado: cuentas y correo con su dominio, carpetas compartidas con permisos por persona o por área, y la seguridad básica activada', precio: 'desde 500 € + 100 € por usuario' },
+  { nombre: 'Migración de correo antiguo', texto: 'Paso del correo de cada buzón anterior a la cuenta nueva', precio: '30 € por buzón' },
 ];
 
 const packs = [
@@ -67,6 +72,10 @@ const preguntas = [
   {
     pregunta: '¿Qué tengo que preparar?',
     respuesta: 'Su logo, si lo tiene, las fotos que quiera usar y una idea de lo que quiere contar. Si le faltan textos o fotos, lo hablamos en el diagnóstico y lo incluyo en la propuesta.',
+  },
+  {
+    pregunta: '¿Microsoft 365 o Google Workspace?',
+    respuesta: 'Depende de lo que ya usa su equipo y de los programas con los que trabaja. Si viven en Word y Excel, suele encajar Microsoft 365; si ya usan Gmail y Google Drive, Google Workspace. Se lo recomiendo en el diagnóstico, con el coste de las licencias de cada opción.',
   },
   {
     pregunta: '¿Diseña logos?',
@@ -114,6 +123,7 @@ const jsonld = {
         )}
         <NotaPrecios />
         <p class="no-incluye"><strong>No incluye:</strong> dominio, fotografía profesional, revisión de los textos legales por un abogado, campañas de anuncios, ni diseño de logo o de identidad de marca. Si los necesita, se lo digo en el diagnóstico y lo vemos aparte.</p>
+        <p class="texto-bloque">Las licencias de Microsoft o Google van aparte y a nombre de su empresa. Le ayudo a elegir el plan que necesita para no pagar de más.</p>
         <div class="destacado">
           <h3 class="titulo-tarjeta">Empiece con una tarjeta digital gratis</h3>
           <p>Le hago una tarjeta digital básica sin coste: sus datos, hasta seis enlaces, botón para guardar el contacto, código QR y opción de compartir. Al final lleva un aviso pequeño de AI Resolution Labs.</p>

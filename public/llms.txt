@@ -6,9 +6,9 @@ Tecnología e IA para empresas que no tienen tiempo de investigarla: le explico 
 
 ## Servicios
 
-- Webs y captación: una web rápida y preparada para Google y para los buscadores de IA, con reservas y formularios que no dejan escapar a nadie.
+- Webs y entornos de trabajo: una web rápida y preparada para Google y para los buscadores de IA, con reservas y formularios que no dejan escapar a nadie, y el correo, los archivos y los permisos bien montados con Microsoft 365 o Google Workspace.
 - Automatizaciones y aplicaciones: conecto sus herramientas para que nadie pase datos a mano y, cuando una suscripción le sale cara, creo una aplicación a su medida.
-- Entorno de trabajo e IA: correo, archivos, permisos y coordinación bien montados con Microsoft 365 u otra plataforma, y formación para que su equipo use la IA con criterio desde el primer día.
+- Asistentes y agentes de IA: asistentes de IA que atienden, ordenan y preparan trabajo con las reglas que usted fije, y formación para que su equipo use la IA con criterio desde el primer día.
 - Diagnóstico gratuito de 30 minutos la primera vez.
 
 ## Contacto
@@ -26,9 +26,9 @@ Tecnología e IA para empresas que no tienen tiempo de investigarla: le explico 
 - [Quién soy](https://www.airesolutionlabs.com/#quien)
 - [Preguntas frecuentes](https://www.airesolutionlabs.com/#faq)
 - [Contacto](https://www.airesolutionlabs.com/#contacto)
-- [Webs y captación](https://www.airesolutionlabs.com/servicios/webs-y-captacion/)
+- [Webs y entornos de trabajo](https://www.airesolutionlabs.com/servicios/webs-y-captacion/)
 - [Automatizaciones y aplicaciones](https://www.airesolutionlabs.com/servicios/automatizaciones-y-aplicaciones/)
-- [Entorno de trabajo e IA](https://www.airesolutionlabs.com/servicios/entorno-de-trabajo-e-ia/)
+- [Asistentes y agentes de IA](https://www.airesolutionlabs.com/servicios/entorno-de-trabajo-e-ia/)
 - [Asesoría](https://www.airesolutionlabs.com/asesoria/)
 - [Sobre mí](https://www.airesolutionlabs.com/sobre/)
 - [Página de contacto](https://www.airesolutionlabs.com/contacto/)
