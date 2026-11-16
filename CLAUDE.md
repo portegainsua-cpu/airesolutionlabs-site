@@ -10,8 +10,13 @@ Nunca copies su contenido, ni partes de él, a archivos que se suban al repo, a 
 
 ## Flujo de trabajo (obligatorio)
 - Empieza siempre desde main actualizada y crea una rama nueva por tarea.
-- Nunca hagas push a main, nunca hagas merge y nunca uses --force.
-- Al terminar, haz push de la rama y abre un Pull Request hacia main. El merge lo hace Pablo.
+- Nunca hagas push directo a main y nunca uses --force.
+- Al terminar, haz push de la rama y abre un Pull Request hacia main.
+- Quién fusiona (decidido por Pablo el 16/11/2026):
+  - Cambios técnicos que no se ven (dependencias, configuración, metadatos, datos estructurados, robots, sitemap): Claude abre el Pull Request y lo fusiona él mismo si la compilación pasa, el HTML generado no cambia en texto visible y las búsquedas de control dan 0.
+  - Cambios que se ven o se usan (textos, diseño, formulario, enlaces, legales): Claude abre el Pull Request con capturas y espera el clic de Pablo.
+  - Precios, datos del titular y textos legales: solo Pablo.
+- Si algo publicado falla, se revierte con un Pull Request de reversión, nunca reescribiendo el historial.
 - Añade los archivos por su nombre. No uses "git add .", "git add -A" ni "git add -f".
 - Usa git y gh por su nombre, nunca por ruta completa.
 
@@ -21,7 +26,7 @@ Nunca copies su contenido, ni partes de él, a archivos que se suban al repo, a 
   - antes de hacerlos, explica en una frase qué vas a cambiar y en qué parte de la página;
   - después, di qué hay que recargar y dónde mirar;
   - espera el "OK" de Pablo antes del commit. Si dice que no, deshaz el cambio.
-- Cambios técnicos que no se ven (robots.txt, sitemap, metadatos, datos estructurados, configuración): hazlos y resúmelos en una línea al terminar cada uno.
+- Cambios técnicos que no se ven (robots.txt, sitemap, metadatos, datos estructurados, configuración): hazlos y resúmelos en una línea al terminar cada uno. Se fusionan según la regla de «Quién fusiona».
 - Si cambia el texto de una pregunta o respuesta del FAQ, actualízalo igual, palabra por palabra, en el JSON-LD de FAQPage de index.html, en el mismo commit.
 
 ## Seguridad del frontend
