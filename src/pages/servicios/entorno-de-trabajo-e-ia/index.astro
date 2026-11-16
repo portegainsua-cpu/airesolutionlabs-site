@@ -1,5 +1,6 @@
 ---
-// Línea 3: Entorno de trabajo e IA. Textos literales de los textos aprobados de la etapa B (§6).
+// Línea 3: Asistentes y agentes de IA (catálogo de 3 bloques, 16/11/2026; misma dirección).
+// La formación y sus preguntas son textos aprobados de la etapa B (§6); lo de asistentes lo aprobó Pablo el 16/11/2026.
 // Lo marcado como [precio] solo se genera con mostrarPrecios = true (src/config.js).
 import Base from '../../../layouts/Base.astro';
 import HeroPagina from '../../../components/HeroPagina.astro';
@@ -15,31 +16,37 @@ import { eventoDiagnostico, migaInicio, migaServicios } from '../../../data/pagi
 import { organizacion, persona, web, migasLd, faqLd, paginaLd, servicioLd } from '../../../data/entidad.js';
 
 const ruta = '/servicios/entorno-de-trabajo-e-ia/';
-const titulo = 'Microsoft 365, Google Workspace y formación en IA';
-const descripcion = 'Implanto Microsoft 365 o Google Workspace y formo a su equipo en IA, como pide el artículo 4 del Reglamento europeo de IA. Desde Sevilla.';
-const h1 = 'Entorno de trabajo e IA para su equipo';
-const entradilla = 'Pongo en orden el correo, los archivos y los permisos de su empresa con Microsoft 365 o Google Workspace, y enseño a su equipo a usar la IA en su trabajo diario. Recibe el entorno configurado y un equipo que sabe usarlo.';
-const migas = [migaInicio, migaServicios, { nombre: 'Entorno de trabajo e IA', ruta }];
+const titulo = 'Asistentes y agentes de IA y formación · AI Resolution Labs';
+const descripcion = 'Asistentes y agentes de IA con las reglas que usted fije, y formación en IA para su equipo, como pide el artículo 4 del Reglamento europeo de IA.';
+const h1 = 'Asistentes y agentes de IA para su empresa';
+const entradilla = 'Asistentes de IA que atienden, ordenan y preparan trabajo con las reglas que usted fije, y formación para que su equipo use la IA en su trabajo diario.';
+const migas = [migaInicio, migaServicios, { nombre: 'Asistentes y agentes de IA', ruta }];
 
 const problemas = [
-  'Cada persona guarda los archivos en su ordenador o en su correo, y nadie encuentra la última versión.',
-  'Se trabaja con cuentas de correo gratuitas o personales.',
-  'Cuando alguien se va, nadie sabe qué accesos tenía ni cómo recuperar su información.',
+  'Recibe muchas consultas repetidas y contestarlas le quita horas.',
+  'Tiene tareas de oficina que se podrían delegar y quiere probar la IA con criterio.',
   'El equipo usa ChatGPT o Copilot por su cuenta, sin un criterio común sobre qué datos se pueden meter.',
 ];
 
+// Qué puede hacer un asistente. Es una descripción, no un producto: no lleva fila en la tabla hasta que esté definido.
+const asistentes = [
+  'Asistente de IA para atender consultas frecuentes.',
+  'Agentes que preparan borradores, resúmenes o clasificaciones.',
+  'Límites claros sobre qué puede hacer y qué no.',
+  'Revisión humana en lo importante.',
+  'Ajuste tras las primeras semanas de uso.',
+];
+
 const productos = [
-  { nombre: 'Implantación del entorno', texto: 'Microsoft 365 o Google Workspace configurado: cuentas y correo con su dominio, carpetas compartidas con permisos por persona o por área, y la seguridad básica activada', precio: 'desde 500 € + 100 € por usuario' },
-  { nombre: 'Migración de correo antiguo', texto: 'Paso del correo de cada buzón anterior a la cuenta nueva', precio: '30 € por buzón' },
   { nombre: 'Taller de IA', texto: '2 horas para hasta 8 personas: usos prácticos en su trabajo, qué datos no meter en la IA y cómo comprobar lo que responde. Incluye un registro de la formación', precio: 'desde 390 €' },
   { nombre: 'Formación de IA en 3 sesiones', texto: 'Tres sesiones con ejercicios sobre tareas reales de su equipo. Incluye un registro de la formación', precio: 'desde 990 €' },
 ];
 
 const pasos = [
-  { titulo: 'Diagnóstico gratuito.', texto: 'Veo qué usan hoy, cuántas personas son y qué les falla.' },
-  { titulo: 'Propuesta por escrito.', texto: 'Plataforma recomendada, usuarios, migración y formación, con precio cerrado.' },
-  { titulo: 'Implantación.', texto: 'Configuro el entorno y paso el correo antiguo sin que dejen de trabajar.' },
-  { titulo: 'Formación.', texto: 'Enseño al equipo a trabajar con el entorno nuevo y con la IA.' },
+  { titulo: 'Diagnóstico gratuito.', texto: 'Vemos dónde la IA le sirve y dónde no.' },
+  { titulo: 'Qué hará y qué no.', texto: 'Defino con usted qué hará el asistente y qué no.' },
+  { titulo: 'Pruebas.', texto: 'Lo preparo y lo probamos con casos reales.' },
+  { titulo: 'Ajuste y formación.', texto: 'Lo ajustamos según cómo funcione en su día a día y enseño al equipo a usarlo.' },
 ];
 
 const preguntas = [
@@ -49,12 +56,16 @@ const preguntas = [
     respuesta: 'Le obliga a tomar medidas para que su equipo aprenda a usar la IA, si su empresa la usa en su actividad, aunque no le exige un nivel concreto. El artículo 4 del Reglamento (UE) 2024/1689 se aplica desde el 2 de febrero de 2025. Con la reforma del <a href="https://eur-lex.europa.eu/eli/reg/2026/1744/oj/spa">Reglamento (UE) 2026/1744</a>, en vigor desde el 27 de julio de 2026, pide a las empresas que usan sistemas de IA que adopten medidas para «apoyar la promoción de la alfabetización en materia de IA» de su personal. Un taller o una formación es una forma directa de hacerlo. Mis talleres y formaciones incluyen un registro de fecha, contenidos y asistentes, que le sirve para demostrar las medidas que ha tomado. Esta respuesta es información general, no asesoramiento jurídico.',
   },
   {
-    pregunta: '¿Microsoft 365 o Google Workspace?',
-    respuesta: 'Depende de lo que ya usa su equipo y de los programas con los que trabaja. Si viven en Word y Excel, suele encajar Microsoft 365; si ya usan Gmail y Google Drive, Google Workspace. Se lo recomiendo en el diagnóstico, con el coste de las licencias de cada opción.',
-  },
-  {
     pregunta: '¿Por qué ordenar los permisos antes de usar Copilot?',
     respuesta: 'Porque Copilot puede mostrar a cada persona cualquier documento al que tenga acceso. <a href="https://learn.microsoft.com/microsoft-365-copilot/microsoft-365-copilot-privacy">Microsoft lo explica así en su documentación</a>: Copilot solo usa los datos de la organización que ese usuario tiene permiso para ver. Si los permisos están mal puestos, alguien puede encontrar con una pregunta un archivo que no debería ver.',
+  },
+  {
+    pregunta: '¿Un asistente de IA sustituye a mis empleados?',
+    respuesta: 'No; le quita tareas repetitivas.',
+  },
+  {
+    pregunta: '¿Qué pasa con los datos de mis clientes?',
+    respuesta: 'Lo revisamos antes de empezar y solo se usa lo necesario.',
   },
   {
     pregunta: '¿Sirve si mi equipo no sabe de tecnología?',
@@ -83,18 +94,19 @@ const jsonld = {
       <a class="enlace-flecha" href="#incluye">Ver qué incluye <Icono nombre="flecha" /></a>
     </HeroPagina>
 
-    <SeccionLista titulo="Para equipos que trabajan cada uno a su manera" puntos={problemas} />
+    <SeccionLista titulo="Para empresas que quieren probar la IA con criterio" puntos={problemas} />
+
+    <SeccionLista titulo="Qué puede hacer un asistente de IA en su empresa" puntos={asistentes} />
 
     <section class="seccion" id="incluye">
       <div class="contenedor">
-        <h2 class="titulo-seccion">Entorno configurado y equipo formado</h2>
+        <h2 class="titulo-seccion">Formación para su equipo</h2>
         <TablaProductos columnas={['Producto', 'Qué recibe']} filas={productos} />
         <NotaPrecios />
-        <p class="texto-bloque">Las licencias de Microsoft o Google van aparte y a nombre de su empresa. Le ayudo a elegir el plan que necesita para no pagar de más.</p>
       </div>
     </section>
 
-    <SeccionPasos titulo="Primero el orden, después la IA" pasos={pasos} />
+    <SeccionPasos titulo="Primero qué hará, después cómo" pasos={pasos} />
 
     <SeccionFaq preguntas={preguntas} />
 

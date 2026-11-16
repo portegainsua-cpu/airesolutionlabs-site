@@ -21,7 +21,8 @@ export const organizacion = {
   // Catálogo de servicios v1
   knowsAbout: [
     'Asesoría en tecnología e IA',
-    'Webs y captación',
+    'Webs y entornos de trabajo',
+    'Asistentes y agentes de IA',
     'Tarjetas digitales',
     'Reservas automáticas',
     'Formularios con seguimiento',
